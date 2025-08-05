@@ -1,7 +1,7 @@
 <?php
 /**
  * Script de procesamiento del formulario de contacto
- * Jurídica & Asociados - Bufete de Abogados
+ * Abogados FL - Bufete de Abogados
  * 
  * Este script maneja el envío seguro de formularios de contacto
  * con validación, sanitización y verificación reCAPTCHA
@@ -33,13 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Configuración del formulario
 $config = [
     'smtp' => [
-        'host' => 'smtp.gmail.com', // Cambiar por el SMTP de su proveedor
-        'port' => 587,
-        'username' => 'info@juridica.com', // Cambiar por su email
-        'password' => 'su_password_smtp', // Cambiar por su password
-        'from_email' => 'info@juridica.com',
-        'from_name' => 'Jurídica & Asociados',
-        'to_email' => 'contacto@juridica.com' // Email donde recibir consultas
+        'host' => 'mail.abogadosfl.cl', // Cambiar por el SMTP de su proveedor
+        'port' => 465, // Puerto SMTP (465 para SSL, 587 para TLS)
+        'username' => 'info@abogadosfl.cl', // Cambiar por su email
+        'password' => 'abogadosfl2026', // Cambiar por su password
+        'from_email' => 'info@abogadosfl.cl',
+        'from_name' => 'AbogadosFL',
+        'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
     ],
     'recaptcha' => [
         'secret_key' => 'YOUR_RECAPTCHA_SECRET_KEY' // Cambiar por su clave secreta
@@ -66,7 +66,7 @@ function validateEmail($email) {
 // Función de validación de teléfono (formato colombiano)
 function validatePhone($phone) {
     $phone = preg_replace('/\D/', '', $phone);
-    return preg_match('/^(\+57)?[0-9]{7,10}$/', $phone);
+    return preg_match('/^(\+56)?[0-9]{7,10}$/', $phone);
 }
 
 // Función para verificar reCAPTCHA
@@ -233,7 +233,7 @@ try {
     <body>
         <div class="header">
             <h2>Nueva Consulta Legal</h2>
-            <p>Jurídica & Asociados</p>
+            <p>Abogados FL</p>
         </div>
         <div class="content">
             <div class="field">
@@ -260,7 +260,7 @@ try {
             </div>
         </div>
         <div class="footer">
-            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de Jurídica & Asociados</p>
+            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de Abogados FL</p>
         </div>
     </body>
     </html>';

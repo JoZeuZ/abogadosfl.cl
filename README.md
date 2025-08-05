@@ -1,6 +1,6 @@
-# Jurídica & Asociados - Sitio Web del Bufete
+# Abogados FL - Sitio Web del Bufete
 
-Un sitio web profesional y moderno para el bufete de abogados Jurídica & Asociados, desarrollado con Astro para máximo rendimiento y optimización SEO.
+Un sitio web profesional y moderno para el bufete de abogados Abogados FL, desarrollado con Astro para máximo rendimiento y optimización SEO.
 
 ## 🌟 Características
 
@@ -47,11 +47,11 @@ $config = [
     'smtp' => [
         'host' => 'smtp.gmail.com',           // Su servidor SMTP
         'port' => 587,
-        'username' => 'info@juridica.com',    // Su email SMTP
+        'username' => 'info@abogadosfl.cl',    // Su email SMTP
         'password' => 'su_password_smtp',     // Su password SMTP
-        'from_email' => 'info@juridica.com',
-        'from_name' => 'Jurídica & Asociados',
-        'to_email' => 'contacto@juridica.com' // Email donde recibir consultas
+        'from_email' => 'info@abogadosfl.cl',
+        'from_name' => 'Abogados FL',
+        'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
     ],
     'recaptcha' => [
         'secret_key' => 'YOUR_RECAPTCHA_SECRET_KEY' // Su clave secreta de reCAPTCHA
@@ -205,7 +205,7 @@ Para mayor seguridad, puede usar variables de entorno:
 $config = [
     'smtp' => [
         'host' => $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com',
-        'username' => $_ENV['SMTP_USER'] ?? 'info@juridica.com',
+        'username' => $_ENV['SMTP_USER'] ?? 'info@abogadosfl.cl',
         'password' => $_ENV['SMTP_PASS'] ?? 'su_password',
         // ...
     ]
@@ -269,14 +269,14 @@ chmod 644 *.html
 
 Para soporte técnico o consultas sobre el desarrollo:
 
-- **Email**: soporte@juridica.com
-- **Teléfono**: +57 (1) 456-7890
+- **Email**: soporte@abogadosfl.cl
+- **Teléfono**: +56 (9) XXXXXXXX
 - **Documentación**: Ver comentarios en el código fuente
 
 ## 📄 Licencia
 
-Este proyecto está desarrollado exclusivamente para Jurídica & Asociados. Todos los derechos reservados.
+Este proyecto está desarrollado exclusivamente para Abogados FL. Todos los derechos reservados.
 
 ---
 
-*Desarrollado con ❤️ para Jurídica & Asociados - Defendemos sus derechos con excelencia y dedicación*
+*Desarrollado con ❤️ para Abogados FL - Defendemos sus derechos con excelencia y dedicación*

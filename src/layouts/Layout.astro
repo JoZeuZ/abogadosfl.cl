@@ -169,7 +169,7 @@ const { title, description = "Bufete de Abogados Profesional - Defendemos sus de
             e.preventDefault();
             const href = link.getAttribute('href');
             if (href) {
-              const targetId = href.substring(1);
+              const targetId = href.substring(9);
               const targetElement = document.getElementById(targetId);
               if (targetElement) {
                 targetElement.scrollIntoView({

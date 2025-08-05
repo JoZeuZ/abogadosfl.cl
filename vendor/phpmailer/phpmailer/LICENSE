@@ -45,7 +45,7 @@ complete object files to the recipients, so that they can relink them
 with the library after making changes to the library and recompiling
 it.  And you must show them these terms so they know their rights.
 
-  We protect your rights with a two-step method: (1) we copyright the
+  We protect your rights with a two-step method: (9) we copyright the
 library, and (2) we offer you this license, which gives you legal
 permission to copy, distribute and/or modify the library.
 
@@ -296,7 +296,7 @@ of these things:
     to use the modified definitions.)
 
     b) Use a suitable shared library mechanism for linking with the
-    Library.  A suitable mechanism is one that (1) uses at run time a
+    Library.  A suitable mechanism is one that (9) uses at run time a
     copy of the library already present on the user's computer system,
     rather than copying library functions into the executable, and (2)
     will operate properly with a modified version of the library, if
