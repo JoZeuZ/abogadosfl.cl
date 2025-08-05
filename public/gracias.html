@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por Contactarnos! - Jurídica & Asociados</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #1f2c3d;
+            --color-accent: #c5a47e;
+            --color-white: #ffffff;
+            --color-light: #f8f9fa;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-light);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-card {
+            background: var(--color-white);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #d4b887 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .success-icon i {
+            font-size: 3rem;
+            color: var(--color-white);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .success-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+            color: var(--color-white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .info-box h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .info-item i {
+            color: var(--color-accent);
+            width: 20px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #b8956d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .success-card {
+                padding: 3rem 2rem;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .success-message {
+                font-size: 1.1rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1 class="success-title">¡Mensaje Enviado Exitosamente!</h1>
+            
+            <p class="success-message">
+                Gracias por contactar a <strong>Jurídica & Asociados</strong>. 
+                Hemos recibido su consulta y uno de nuestros abogados especializados 
+                se pondrá en contacto con usted a la brevedad posible.
+            </p>
+            
+            <div class="info-box">
+                <h3>¿Qué sigue ahora?</h3>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Revisaremos su caso en las próximas 2-4 horas hábiles</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Nos comunicaremos con usted para agendar una consulta</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Le enviaremos un email de confirmación con los siguientes pasos</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Su información está protegida bajo estricta confidencialidad</span>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>¿Necesita atención inmediata?</h3>
+                <div class="info-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span><strong>Línea de Emergencia 24/7:</strong> +57 (300) 123-4567</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span><strong>Email directo:</strong> urgencias@juridica.com</span>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <a href="/" class="btn btn-primary">Volver al Inicio</a>
+                <a href="/#servicios" class="btn btn-outline">Ver Nuestros Servicios</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

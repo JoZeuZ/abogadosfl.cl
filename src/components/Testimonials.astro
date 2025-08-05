@@ -1,0 +1,409 @@
+---
+// Testimonials Component
+const testimonials = [
+  {
+    name: 'Roberto Martínez',
+    position: 'CEO, Empresas Martínez',
+    image: '/images/client-1.jpg',
+    rating: 5,
+    text: 'Excelente servicio legal. El equipo de Jurídica & Asociados nos ayudó a resolver un complejo caso corporativo con profesionalismo excepcional. Los recomiendo ampliamente.'
+  },
+  {
+    name: 'Ana Sofía Herrera',
+    position: 'Directora de Recursos Humanos',
+    image: '/images/client-2.jpg',
+    rating: 5,
+    text: 'Profesionales de primera categoría. Manejaron mi caso de derecho laboral con dedicación y obtuvieron resultados excelentes. Su atención personalizada marca la diferencia.'
+  },
+  {
+    name: 'Miguel Torres',
+    position: 'Empresario',
+    image: '/images/client-3.jpg',
+    rating: 5,
+    text: 'La mejor decisión fue contratar sus servicios. Su experiencia en derecho inmobiliario nos ahorró tiempo y dinero. Transparentes, eficaces y confiables.'
+  },
+  {
+    name: 'Carmen Delgado',
+    position: 'Consultora',
+    image: '/images/client-4.jpg',
+    rating: 5,
+    text: 'Atención excepcional en mi proceso de divorcio. El equipo fue empático, profesional y siempre me mantuvieron informada. Estoy muy agradecida por su apoyo.'
+  }
+];
+---
+
+<section id="testimonios" class="testimonials section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Testimonios</span>
+      <h2 class="section-title">
+        Lo que Dicen Nuestros <span class="text-accent">Clientes</span>
+      </h2>
+      <p class="section-description">
+        La satisfacción de nuestros clientes es nuestro mayor logro. 
+        Estas son algunas de sus experiencias trabajando con nosotros.
+      </p>
+    </div>
+    
+    <div class="testimonials-slider" id="testimonialsSlider">
+      <div class="testimonials-wrapper">
+        {testimonials.map((testimonial, index) => (
+          <div class="testimonial-card" data-index={index}>
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                {Array.from({ length: testimonial.rating }, (_, i) => (
+                  <i class="fas fa-star"></i>
+                ))}
+              </div>
+              
+              <blockquote class="testimonial-text">
+                "{testimonial.text}"
+              </blockquote>
+              
+              <div class="testimonial-author">
+                <div class="author-image">
+                  <img src={testimonial.image} alt={testimonial.name} />
+                </div>
+                <div class="author-info">
+                  <h4 class="author-name">{testimonial.name}</h4>
+                  <p class="author-position">{testimonial.position}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="slider-controls">
+        <button class="slider-btn slider-prev" id="prevBtn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="slider-dots" id="sliderDots">
+          {testimonials.map((_, index) => (
+            <button class={`slider-dot ${index === 0 ? 'active' : ''}`} data-slide={index}></button>
+          ))}
+        </div>
+        <button class="slider-btn slider-next" id="nextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="testimonials-cta text-center fade-in">
+      <h3>¿Listo para ser nuestro próximo cliente satisfecho?</h3>
+      <a href="#contacto" class="btn btn-primary btn-lg">Iniciar mi Caso</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+    color: var(--color-white);
+  }
+  
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    margin: 0.5rem 0 1rem;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+  
+  .testimonials-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  
+  .testimonials-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+  }
+  
+  .testimonial-card {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .testimonial-card.active {
+    display: block;
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .testimonial-rating {
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-rating i {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    margin: 0 2px;
+  }
+  
+  .testimonial-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+    font-family: var(--font-heading);
+    color: rgba(255, 255, 255, 0.95);
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-accent);
+  }
+  
+  .author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .author-info {
+    text-align: left;
+  }
+  
+  .author-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--color-white);
+  }
+  
+  .author-position {
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    margin: 0;
+  }
+  
+  .slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .slider-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slider-btn:hover {
+    background-color: var(--color-white);
+    color: var(--color-accent);
+    transform: scale(1.1);
+  }
+  
+  .slider-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .slider-dot.active,
+  .slider-dot:hover {
+    background-color: var(--color-accent);
+  }
+  
+  .testimonials-cta {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .testimonials-cta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--color-white);
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .testimonial-text {
+      font-size: 1.1rem;
+    }
+    
+    .testimonial-author {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .author-info {
+      text-align: center;
+    }
+    
+    .slider-controls {
+      gap: 1rem;
+    }
+    
+    .slider-btn {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .testimonials-cta {
+      padding: 2rem 1.5rem;
+    }
+    
+    .testimonials-cta h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSlide: number = 0;
+    let autoSlideInterval: NodeJS.Timeout;
+    
+    function showSlide(index: number): void {
+      // Ocultar todas las tarjetas
+      testimonialCards.forEach(card => {
+        card.classList.remove('active');
+      });
+      
+      // Remover clase active de todos los dots
+      dots.forEach(dot => {
+        dot.classList.remove('active');
+      });
+      
+      // Mostrar tarjeta actual
+      if (testimonialCards[index]) {
+        testimonialCards[index].classList.add('active');
+      }
+      
+      // Activar dot correspondiente
+      if (dots[index]) {
+        dots[index].classList.add('active');
+      }
+      
+      currentSlide = index;
+    }
+    
+    function nextSlide(): void {
+      const nextIndex = (currentSlide + 1) % testimonialCards.length;
+      showSlide(nextIndex);
+    }
+    
+    function prevSlide(): void {
+      const prevIndex = (currentSlide - 1 + testimonialCards.length) % testimonialCards.length;
+      showSlide(prevIndex);
+    }
+    
+    function startAutoSlide(): void {
+      autoSlideInterval = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoSlide(): void {
+      clearInterval(autoSlideInterval);
+    }
+    
+    // Event listeners
+    nextBtn?.addEventListener('click', () => {
+      nextSlide();
+      stopAutoSlide();
+      startAutoSlide();
+    });
+    
+    prevBtn?.addEventListener('click', () => {
+      prevSlide();
+      stopAutoSlide();
+      startAutoSlide();
+    });
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+        stopAutoSlide();
+        startAutoSlide();
+      });
+    });
+    
+    // Inicializar
+    showSlide(0);
+    startAutoSlide();
+    
+    // Pausar auto-slide cuando el mouse está sobre el slider
+    const slider = document.querySelector('.testimonials-slider');
+    slider?.addEventListener('mouseenter', stopAutoSlide);
+    slider?.addEventListener('mouseleave', startAutoSlide);
+  });
+</script>

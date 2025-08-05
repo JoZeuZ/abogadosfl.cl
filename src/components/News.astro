@@ -1,0 +1,279 @@
+---
+// News Component - Últimas Noticias
+const newsArticles = [
+  {
+    title: 'Nuevas Regulaciones en Derecho Corporativo 2024',
+    excerpt: 'Análisis de las últimas modificaciones en la legislación comercial que afectan a las empresas colombianas.',
+    image: '/images/news-1.jpg',
+    date: '15 Enero 2024',
+    category: 'Derecho Corporativo',
+    readTime: '5 min',
+    slug: 'regulaciones-derecho-corporativo-2024'
+  },
+  {
+    title: 'Guía Completa: Derechos Laborales del Empleado',
+    excerpt: 'Todo lo que necesita saber sobre sus derechos como trabajador en Colombia, incluyendo las últimas reformas.',
+    image: '/images/news-2.jpg',
+    date: '10 Enero 2024',
+    category: 'Derecho Laboral',
+    readTime: '8 min',
+    slug: 'derechos-laborales-empleado-2024'
+  },
+  {
+    title: 'Proceso de Sucesión: Pasos Legales Esenciales',
+    excerpt: 'Una guía práctica sobre los procedimientos legales necesarios para tramitar una sucesión en Colombia.',
+    image: '/images/news-3.jpg',
+    date: '5 Enero 2024',
+    category: 'Derecho Civil',
+    readTime: '6 min',
+    slug: 'proceso-sucesion-pasos-legales'
+  }
+];
+---
+
+<section id="noticias" class="news section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Blog Legal</span>
+      <h2 class="section-title">
+        Últimas <span class="text-accent">Noticias y Artículos</span>
+      </h2>
+      <p class="section-description">
+        Manténgase informado con nuestros artículos sobre las últimas novedades 
+        del mundo jurídico y consejos legales prácticos.
+      </p>
+    </div>
+    
+    <div class="news-grid">
+      {newsArticles.map((article, index) => (
+        <article class="news-card fade-in">
+          <div class="news-image">
+            <img src={article.image} alt={article.title} />
+            <div class="news-category">{article.category}</div>
+          </div>
+          
+          <div class="news-content">
+            <div class="news-meta">
+              <span class="news-date">
+                <i class="fas fa-calendar"></i>
+                {article.date}
+              </span>
+              <span class="news-read-time">
+                <i class="fas fa-clock"></i>
+                {article.readTime}
+              </span>
+            </div>
+            
+            <h3 class="news-title">
+              <a href={`/blog/${article.slug}`}>{article.title}</a>
+            </h3>
+            
+            <p class="news-excerpt">{article.excerpt}</p>
+            
+            <a href={`/blog/${article.slug}`} class="news-link">
+              Leer Más <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="news-cta text-center fade-in">
+      <h3>¿Necesita asesoría legal personalizada?</h3>
+      <p>Nuestros expertos están listos para ayudarle</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Consultar Ahora</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .news {
+    background-color: var(--color-white);
+  }
+  
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin: 0.5rem 0 1rem;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+  
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .news-card {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+  }
+  
+  .news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .news-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .news-card:hover .news-image img {
+    transform: scale(1.1);
+  }
+  
+  .news-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .news-content {
+    padding: 2rem;
+  }
+  
+  .news-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+  }
+  
+  .news-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .news-meta i {
+    color: var(--color-accent);
+  }
+  
+  .news-title {
+    margin-bottom: 1rem;
+  }
+  
+  .news-title a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+  
+  .news-title a:hover {
+    color: var(--color-accent);
+  }
+  
+  .news-excerpt {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .news-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .news-link:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+  }
+  
+  .news-cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+    color: var(--color-white);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+  }
+  
+  .news-cta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+  }
+  
+  .news-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  @media (max-width: 768px) {
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .news-content {
+      padding: 1.5rem;
+    }
+    
+    .news-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .news-title a {
+      font-size: 1.2rem;
+    }
+    
+    .news-cta {
+      padding: 2rem 1.5rem;
+    }
+    
+    .news-cta h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

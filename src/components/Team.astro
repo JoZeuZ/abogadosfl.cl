@@ -1,0 +1,337 @@
+---
+// Team Component
+const teamMembers = [
+  {
+    name: 'Dr. Carlos Mendoza',
+    position: 'Socio Fundador',
+    specialty: 'Derecho Corporativo y Comercial',
+    image: '/images/team-1.jpg',
+    experience: '25 años',
+    education: 'Universidad de Los Andes',
+    social: {
+      linkedin: '#',
+      email: 'carlos@juridica.com'
+    }
+  },
+  {
+    name: 'Dra. María Rodríguez',
+    position: 'Socia Senior',
+    specialty: 'Derecho de Familia y Civil',
+    image: '/images/team-2.jpg',
+    experience: '18 años',
+    education: 'Universidad Externado',
+    social: {
+      linkedin: '#',
+      email: 'maria@juridica.com'
+    }
+  },
+  {
+    name: 'Dr. Andrés López',
+    position: 'Socio',
+    specialty: 'Derecho Penal y Laboral',
+    image: '/images/team-3.jpg',
+    experience: '15 años',
+    education: 'Universidad Javeriana',
+    social: {
+      linkedin: '#',
+      email: 'andres@juridica.com'
+    }
+  },
+  {
+    name: 'Dra. Laura González',
+    position: 'Asociada Senior',
+    specialty: 'Derecho Inmobiliario',
+    image: '/images/team-4.jpg',
+    experience: '12 años',
+    education: 'Universidad del Rosario',
+    social: {
+      linkedin: '#',
+      email: 'laura@juridica.com'
+    }
+  }
+];
+---
+
+<section id="equipo" class="team section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Nuestro Equipo</span>
+      <h2 class="section-title">
+        Profesionales <span class="text-accent">Experimentados</span>
+      </h2>
+      <p class="section-description">
+        Nuestro equipo está conformado por abogados altamente calificados con amplia experiencia 
+        en diferentes áreas del derecho, comprometidos con la excelencia en el servicio.
+      </p>
+    </div>
+    
+    <div class="team-grid">
+      {teamMembers.map((member, index) => (
+        <div class="team-card fade-in">
+          <div class="team-image">
+            <img src={member.image} alt={member.name} />
+            <div class="team-overlay">
+              <div class="team-social">
+                <a href={member.social.linkedin} class="social-link">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href={`mailto:${member.social.email}`} class="social-link">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-content">
+            <h3 class="team-name">{member.name}</h3>
+            <p class="team-position">{member.position}</p>
+            <p class="team-specialty">{member.specialty}</p>
+            
+            <div class="team-details">
+              <div class="team-detail">
+                <span class="detail-label">Experiencia:</span>
+                <span class="detail-value">{member.experience}</span>
+              </div>
+              <div class="team-detail">
+                <span class="detail-label">Educación:</span>
+                <span class="detail-value">{member.education}</span>
+              </div>
+            </div>
+            
+            <a href={`mailto:${member.social.email}`} class="team-contact">
+              Contactar <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="team-cta text-center fade-in">
+      <h3>¿Necesita consulta especializada?</h3>
+      <p>Nuestro equipo está listo para atender su caso</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Agendar Reunión</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    background-color: var(--color-light);
+  }
+  
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin: 0.5rem 0 1rem;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .team-card {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .team-image {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+  }
+  
+  .team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .team-card:hover .team-image img {
+    transform: scale(1.1);
+  }
+  
+  .team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(31, 44, 61, 0.8) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .team-card:hover .team-overlay {
+    opacity: 1;
+  }
+  
+  .team-social {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background-color: var(--color-white);
+    color: var(--color-accent);
+    transform: translateY(-3px);
+  }
+  
+  .team-content {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .team-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+  }
+  
+  .team-position {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-specialty {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-details {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .team-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .detail-label {
+    color: var(--color-text-light);
+    font-weight: 500;
+  }
+  
+  .detail-value {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  
+  .team-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 2px solid var(--color-accent);
+  }
+  
+  .team-contact:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transform: translateX(5px);
+  }
+  
+  .team-cta {
+    background-color: var(--color-white);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .team-cta h3 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .team-cta p {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .team-image {
+      height: 250px;
+    }
+    
+    .team-content {
+      padding: 1.5rem;
+    }
+    
+    .team-cta {
+      padding: 2rem 1.5rem;
+    }
+    
+    .team-cta h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

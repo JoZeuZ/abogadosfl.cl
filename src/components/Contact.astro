@@ -1,0 +1,411 @@
+---
+// Contact Section Component
+---
+
+<section id="contacto" class="contact section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Contacto</span>
+      <h2 class="section-title">
+        Inicie su <span class="text-accent">Consulta Legal</span>
+      </h2>
+      <p class="section-description">
+        Estamos aquí para ayudarle. Contáctenos para una consulta gratuita 
+        y comencemos a trabajar en su caso hoy mismo.
+      </p>
+    </div>
+    
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h3>Información de Contacto</h3>
+        <p>Estamos disponibles para atender sus consultas y brindarle la mejor asesoría legal.</p>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Dirección</h4>
+            <p>Carrera 15 #93-48, Oficina 501<br>Bogotá, Colombia</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Teléfono</h4>
+            <p>+57 (1) 456-7890<br>+57 (1) 456-7891</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p>info@juridica.com<br>consultas@juridica.com</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-details">
+            <h4>Horario de Atención</h4>
+            <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
+          </div>
+        </div>
+        
+        <div class="emergency-contact">
+          <h4><i class="fas fa-exclamation-triangle"></i> Emergencias 24/7</h4>
+          <p>Para casos urgentes: <strong>+57 (300) 123-4567</strong></p>
+        </div>
+      </div>
+      
+      <div class="contact-form-container fade-in">
+        <form class="contact-form" id="contactForm" action="/enviar_correo.php" method="POST">
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" name="telefono" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="servicio">Área Legal de Interés *</label>
+            <select id="servicio" name="servicio" required>
+              <option value="">Seleccione un servicio</option>
+              <option value="derecho-corporativo">Derecho Corporativo</option>
+              <option value="derecho-inmobiliario">Derecho Inmobiliario</option>
+              <option value="derecho-familia">Derecho de Familia</option>
+              <option value="derecho-laboral">Derecho Laboral</option>
+              <option value="derecho-penal">Derecho Penal</option>
+              <option value="derecho-civil">Derecho Civil</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="mensaje">Descripción del Caso *</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describa brevemente su situación legal y cómo podemos ayudarle..."></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="politicas" name="politicas" required>
+              <span class="checkmark"></span>
+              He leído y acepto la <a href="/politica-privacidad" target="_blank">Política de Privacidad</a> y el <a href="/terminos-condiciones" target="_blank">Tratamiento de Datos</a>
+            </label>
+          </div>
+          
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-lg contact-submit">
+            <span class="btn-text">Enviar Consulta</span>
+            <span class="btn-loader" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+          
+          <p class="form-note">
+            * Campos obligatorios. Su información será tratada de manera confidencial.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background-color: var(--color-light);
+  }
+  
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin: 0.5rem 0 1rem;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+  
+  .contact-info h3 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+  }
+  
+  .contact-info > p {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+  
+  .contact-icon {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .contact-details h4 {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .contact-details p {
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .emergency-contact {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+    color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+  }
+  
+  .emergency-contact h4 {
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .emergency-contact p {
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  .contact-form-container {
+    background-color: var(--color-white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .contact-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--color-white);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(197, 164, 126, 0.1);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+  }
+  
+  .checkbox-label a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  
+  .checkbox-label a:hover {
+    text-decoration: underline;
+  }
+  
+  .contact-submit {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .form-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .g-recaptcha {
+    margin: 1rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-form-container {
+      padding: 2rem 1.5rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .contact-info h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.querySelector('.contact-submit') as HTMLButtonElement;
+    const btnText = document.querySelector('.btn-text') as HTMLElement;
+    const btnLoader = document.querySelector('.btn-loader') as HTMLElement;
+    
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Validar reCAPTCHA
+      const grecaptcha = (window as any).grecaptcha;
+      const recaptchaResponse = grecaptcha?.getResponse();
+      if (!recaptchaResponse) {
+        alert('Por favor, complete la verificación reCAPTCHA.');
+        return;
+      }
+      
+      // Cambiar estado del botón
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoader) btnLoader.style.display = 'inline';
+      
+      try {
+        const formData = new FormData(form);
+        formData.append('g-recaptcha-response', recaptchaResponse);
+        
+        const response = await fetch('/enviar_correo.php', {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (response.ok) {
+          window.location.href = '/gracias.html';
+        } else {
+          window.location.href = '/error.html';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        window.location.href = '/error.html';
+      } finally {
+        // Restaurar estado del botón
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline';
+        if (btnLoader) btnLoader.style.display = 'none';
+        grecaptcha?.reset();
+      }
+    });
+  });
+</script>

@@ -1,0 +1,186 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Bufete de Abogados Profesional - Defendemos sus derechos con excelencia y dedicación" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <slot />
+    
+    <style is:global>
+      :root {
+        --color-primary: #1f2c3d;
+        --color-accent: #c5a47e;
+        --color-white: #ffffff;
+        --color-light: #f8f9fa;
+        --color-text: #333333;
+        --color-text-light: #666666;
+        
+        --font-heading: 'Playfair Display', serif;
+        --font-body: 'Lato', sans-serif;
+        
+        --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: var(--font-body);
+        line-height: 1.6;
+        color: var(--color-text);
+        overflow-x: hidden;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        font-family: var(--font-body);
+      }
+      
+      .btn-primary {
+        background-color: var(--color-accent);
+        color: var(--color-white);
+      }
+      
+      .btn-primary:hover {
+        background-color: #b8956d;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+      }
+      
+      .btn-outline {
+        background-color: transparent;
+        color: var(--color-accent);
+        border: 2px solid var(--color-accent);
+      }
+      
+      .btn-outline:hover {
+        background-color: var(--color-accent);
+        color: var(--color-white);
+      }
+      
+      .section-padding {
+        padding: 80px 0;
+      }
+      
+      .text-center {
+        text-align: center;
+      }
+      
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+      
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      @media (max-width: 768px) {
+        .section-padding {
+          padding: 60px 0;
+        }
+        
+        .container {
+          padding: 0 1.5rem;
+        }
+      }
+    </style>
+
+    <script>
+      // Animaciones de scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const animatedElements = document.querySelectorAll('.fade-in');
+        animatedElements.forEach(el => observer.observe(el));
+      });
+
+      // Smooth scroll para enlaces de navegación
+      document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            if (href) {
+              const targetId = href.substring(1);
+              const targetElement = document.getElementById(targetId);
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

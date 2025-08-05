@@ -1,0 +1,197 @@
+---
+// Stats Bar Component
+---
+
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card fade-in">
+        <div class="stat-icon">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="1500">0</div>
+          <div class="stat-label">Casos Resueltos</div>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in">
+        <div class="stat-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="98">0</div>
+          <div class="stat-label">% Éxito</div>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="2500">0</div>
+          <div class="stat-label">Clientes Satisfechos</div>
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in">
+        <div class="stat-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="25">0</div>
+          <div class="stat-label">Años Experiencia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    background-color: var(--color-primary);
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/images/pattern.png') repeat;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .stat-card {
+    text-align: center;
+    color: var(--color-white);
+    padding: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .stat-icon {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .stat-icon i {
+    font-size: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  @media (max-width: 992px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+    }
+    
+    .stat-icon {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .stat-icon i {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.stats-bar .stat-number[data-target]');
+      
+      counters.forEach((counter, index) => {
+        const target = parseInt(counter.getAttribute('data-target') || '0');
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current).toString();
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toString();
+          }
+        };
+        
+        // Agregar delay escalonado para cada contador
+        setTimeout(() => {
+          updateCounter();
+        }, index * 200);
+      });
+    };
+    
+    // Iniciar animación cuando la sección sea visible
+    const statsSection = document.querySelector('.stats-bar');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(animateCounters, 300);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+  });
+</script>

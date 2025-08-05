@@ -1,0 +1,253 @@
+---
+// Services Component - Areas de Práctica
+const services = [
+  {
+    icon: 'fas fa-building',
+    title: 'Derecho Corporativo',
+    description: 'Asesoría integral para empresas, contratos comerciales, fusiones y adquisiciones.',
+    bgColor: 'primary'
+  },
+  {
+    icon: 'fas fa-home',
+    title: 'Derecho Inmobiliario',
+    description: 'Compraventa, arrendamientos, propiedad horizontal y regulación urbana.',
+    bgColor: 'accent'
+  },
+  {
+    icon: 'fas fa-heart',
+    title: 'Derecho de Familia',
+    description: 'Divorcios, custodia, pensiones alimentarias y adopciones con sensibilidad.',
+    bgColor: 'primary'
+  },
+  {
+    icon: 'fas fa-briefcase',
+    title: 'Derecho Laboral',
+    description: 'Defensa de trabajadores y empleadores en conflictos laborales.',
+    bgColor: 'accent'
+  },
+  {
+    icon: 'fas fa-shield-alt',
+    title: 'Derecho Penal',
+    description: 'Defensa penal especializada con amplia experiencia en tribunales.',
+    bgColor: 'primary'
+  },
+  {
+    icon: 'fas fa-file-contract',
+    title: 'Derecho Civil',
+    description: 'Contratos, responsabilidad civil, sucesiones y derechos reales.',
+    bgColor: 'accent'
+  }
+];
+---
+
+<section id="servicios" class="services section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Nuestros Servicios</span>
+      <h2 class="section-title">
+        Áreas de <span class="text-accent">Práctica Legal</span>
+      </h2>
+      <p class="section-description">
+        Ofrecemos servicios legales especializados en múltiples áreas del derecho, 
+        brindando soluciones integrales para individuos y empresas.
+      </p>
+    </div>
+    
+    <div class="services-grid">
+      {services.map((service, index) => (
+        <div class={`service-card service-card--${service.bgColor} fade-in`}>
+          <div class="service-icon">
+            <i class={service.icon}></i>
+          </div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-description">{service.description}</p>
+          <a href="#contacto" class="service-link">
+            Consultar <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="services-cta text-center fade-in">
+      <h3>¿No encuentra el servicio que necesita?</h3>
+      <p>Contáctenos para discutir su caso específico</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Consulta Personalizada</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background-color: var(--color-white);
+  }
+  
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin: 0.5rem 0 1rem;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .service-card {
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    z-index: 0;
+  }
+  
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .service-card--primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+    color: var(--color-white);
+  }
+  
+  .service-card--accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #d4b887 100%);
+    color: var(--color-white);
+  }
+  
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+  
+  .service-card--primary .service-icon {
+    background-color: rgba(197, 164, 126, 0.2);
+  }
+  
+  .service-card--accent .service-icon {
+    background-color: rgba(31, 44, 61, 0.2);
+  }
+  
+  .service-icon i {
+    font-size: 2rem;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+  }
+  
+  .service-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: currentColor;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+  }
+  
+  .services-cta {
+    background-color: var(--color-light);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+  }
+  
+  .services-cta h3 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .services-cta p {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .service-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .services-cta {
+      padding: 2rem 1.5rem;
+    }
+    
+    .services-cta h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

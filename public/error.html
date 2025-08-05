@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error al Enviar Mensaje - Jurídica & Asociados</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #1f2c3d;
+            --color-accent: #c5a47e;
+            --color-white: #ffffff;
+            --color-light: #f8f9fa;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --color-error: #dc3545;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-light);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-card {
+            background: var(--color-white);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .error-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--color-error) 0%, #e85a5a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .error-icon i {
+            font-size: 3rem;
+            color: var(--color-white);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .error-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
+            color: var(--color-white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .info-box h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .info-item i {
+            color: var(--color-accent);
+            width: 20px;
+            margin-top: 2px;
+        }
+        
+        .contact-methods {
+            background: var(--color-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .contact-methods h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--color-white);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-item i {
+            color: var(--color-accent);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(197, 164, 126, 0.1);
+            border-radius: 50%;
+        }
+        
+        .contact-item strong {
+            color: var(--color-primary);
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #b8956d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+        
+        .btn-error {
+            background-color: var(--color-error);
+            color: var(--color-white);
+        }
+        
+        .btn-error:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .error-card {
+                padding: 3rem 2rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-message {
+                font-size: 1.1rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-card">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            
+            <h1 class="error-title">Error al Enviar Mensaje</h1>
+            
+            <p class="error-message">
+                Lo sentimos, ha ocurrido un error al procesar su mensaje. 
+                Por favor, intente nuevamente o utilice uno de los métodos de contacto alternativos.
+            </p>
+            
+            <div class="info-box">
+                <h3>Posibles causas del error:</h3>
+                <div class="info-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Problemas temporales de conectividad</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-server"></i>
+                    <span>Mantenimiento del servidor en curso</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Verificación de seguridad reCAPTCHA incompleta</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-edit"></i>
+                    <span>Campos del formulario incompletos o incorrectos</span>
+                </div>
+            </div>
+            
+            <div class="contact-methods">
+                <h3>Métodos Alternativos de Contacto</h3>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Teléfono Principal:</strong><br>
+                        +57 (1) 456-7890
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email Directo:</strong><br>
+                        info@juridica.com
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <strong>Emergencias 24/7:</strong><br>
+                        +57 (300) 123-4567
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Oficina:</strong><br>
+                        Carrera 15 #93-48, Oficina 501<br>
+                        Bogotá, Colombia
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horario de Atención:</strong><br>
+                        Lunes a Viernes: 8:00 AM - 6:00 PM<br>
+                        Sábados: 9:00 AM - 2:00 PM
+                    </div>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <a href="/#contacto" class="btn btn-error">Intentar Nuevamente</a>
+                <a href="/" class="btn btn-primary">Volver al Inicio</a>
+                <a href="tel:+5714567890" class="btn btn-outline">Llamar Ahora</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-redirigir después de 30 segundos al formulario de contacto
+        setTimeout(() => {
+            if (confirm('¿Desea intentar enviar el formulario nuevamente?')) {
+                window.location.href = '/#contacto';
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
