@@ -26,24 +26,27 @@ header('X-XSS-Protection: 1; mode=block');
 // Solo permitir método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    header('Location: /error.html');
+    header('Location: /error.html?code=405&reason=method_not_allowed');
     exit('Método no permitido');
 }
 
 // Configuración del formulario
+if (!getenv('SMTP_HOST') || !getenv('SMTP_USER') || !getenv('SMTP_PASS') || !getenv('RECAPTCHA_SECRET_KEY')) {
+    error_log('ADVERTENCIA: Una o más variables de entorno requeridas no están configuradas');
+}
+
 $config = [
     'smtp' => [
-        // Se recomienda usar variables de entorno para las credenciales
-        'host'       => getenv('SMTP_HOST') ?: 'mail.abogadosfl.cl',
-        'port'       => getenv('SMTP_PORT') ?: 465, // 465 para SMTPS, 587 para STARTTLS
-        'username'   => getenv('SMTP_USER') ?: 'info@abogadosfl.cl',
-        'password'   => getenv('SMTP_PASS') ?: 'abogadosfl2026', // ¡Mover a variable de entorno!
-        'from_email' => getenv('SMTP_FROM_EMAIL') ?: 'info@abogadosfl.cl',
-        'from_name' => 'AbogadosFL',
-        'to_email'   => getenv('SMTP_TO_EMAIL') ?: 'contacto@abogadosfl.cl'
+        'host'       => getenv('SMTP_HOST')       ?: 'smtp.example.com',
+        'port'       => getenv('SMTP_PORT')       ?: 587,
+        'username'   => getenv('SMTP_USER')       ?: 'CONFIGURE_SMTP_USER',
+        'password'   => getenv('SMTP_PASS')       ?: 'CONFIGURE_SMTP_PASS',
+        'from_email' => getenv('SMTP_FROM_EMAIL') ?: 'no-reply@example.com',
+        'from_name'  => getenv('SMTP_FROM_NAME')  ?: 'Abogados FL',
+        'to_email'   => getenv('SMTP_TO_EMAIL')   ?: 'contacto@example.com'
     ],
     'recaptcha' => [
-        'secret_key' => getenv('RECAPTCHA_SECRET_KEY') ?: 'YOUR_RECAPTCHA_SECRET_KEY' // ¡Mover a variable de entorno!
+        'secret_key' => getenv('RECAPTCHA_SECRET_KEY') ?: 'CONFIGURE_RECAPTCHA_KEY'
     ],
     'backup' => [
         'enabled' => true,
@@ -135,17 +138,23 @@ try {
     $required_fields = ['nombre', 'email', 'telefono', 'servicio', 'mensaje', 'politicas'];
     foreach ($required_fields as $field) {
         if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
-            throw new Exception("El campo {$field} es obligatorio");
+            http_response_code(400);
+            header('Location: /error.html?code=400&reason=missing_fields&field=' . urlencode($field));
+            exit('Campo requerido faltante: ' . $field);
         }
     }
     
     // Verificar reCAPTCHA
     if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
-        throw new Exception("Debe completar la verificación reCAPTCHA");
+        http_response_code(403);
+        header('Location: /error.html?code=403&reason=recaptcha_missing');
+        exit('Verificación reCAPTCHA requerida');
     }
     
     if (!verifyRecaptcha($_POST['g-recaptcha-response'], $config['recaptcha']['secret_key'])) {
-        throw new Exception("Verificación reCAPTCHA fallida");
+        http_response_code(403);
+        header('Location: /error.html?code=403&reason=recaptcha_failed');
+        exit('Verificación reCAPTCHA fallida');
     }
     
     // Sanitizar y validar datos
@@ -157,24 +166,34 @@ try {
     
     // Validaciones específicas
     if (strlen($nombre) < 2 || strlen($nombre) > 100) {
-        throw new Exception("El nombre debe tener entre 2 y 100 caracteres");
+        http_response_code(400);
+        header('Location: /error.html?code=400&reason=invalid_name');
+        exit('El nombre debe tener entre 2 y 100 caracteres');
     }
     
     if (!validateEmail($email)) {
-        throw new Exception("El email no tiene un formato válido");
+        http_response_code(400);
+        header('Location: /error.html?code=400&reason=invalid_email');
+        exit('El email no tiene un formato válido');
     }
     
     if (!validatePhone($telefono)) {
-        throw new Exception("El teléfono no tiene un formato válido");
+        http_response_code(400);
+        header('Location: /error.html?code=400&reason=invalid_phone');
+        exit('El teléfono no tiene un formato válido');
     }
     
     if (strlen($mensaje) < 10 || strlen($mensaje) > 1000) {
-        throw new Exception("El mensaje debe tener entre 10 y 1000 caracteres");
+        http_response_code(400);
+        header('Location: /error.html?code=400&reason=' . (strlen($mensaje) < 10 ? 'short_message' : 'long_message'));
+        exit('El mensaje debe tener entre 10 y 1000 caracteres');
     }
     
     // Verificar que se aceptaron las políticas
     if ($_POST['politicas'] !== 'on') {
-        throw new Exception("Debe aceptar las políticas de privacidad");
+        http_response_code(400);
+        header('Location: /error.html?code=400&reason=no_policy');
+        exit('Debe aceptar las políticas de privacidad');
     }
     
     // Preparar datos para guardar y enviar

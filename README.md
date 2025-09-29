@@ -38,25 +38,52 @@ npm install
 composer install
 ```
 
-### 2. Configurar variables del formulario
+### 2. Configurar variables de entorno
 
-Editar el archivo `enviar_correo.php`:
+El formulario de contacto utiliza variables de entorno para una gestión segura de credenciales. Configure las siguientes variables en su servidor:
 
-```php
-$config = [
-    'smtp' => [
-        'host' => 'smtp.gmail.com',           // Su servidor SMTP
-        'port' => 587,
-        'username' => 'info@abogadosfl.cl',    // Su email SMTP
-        'password' => 'su_password_smtp',     // Su password SMTP
-        'from_email' => 'info@abogadosfl.cl',
-        'from_name' => 'Abogados FL',
-        'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
-    ],
-    'recaptcha' => [
-        'secret_key' => 'YOUR_RECAPTCHA_SECRET_KEY' // Su clave secreta de reCAPTCHA
-    ]
-];
+```bash
+# Configuración SMTP
+SMTP_HOST=smtp.tuservidor.com        # Ej: smtp.gmail.com
+SMTP_PORT=587                        # 587 para TLS, 465 para SSL
+SMTP_USER=tu_usuario@tudominio.com   # Email del remitente
+SMTP_PASS=tu_contraseña_segura      # Contraseña SMTP
+SMTP_FROM_EMAIL=no-reply@tudominio.com
+SMTP_FROM_NAME="Abogados FL"
+SMTP_TO_EMAIL=contacto@tudominio.com # Email para recibir consultas
+
+# Configuración reCAPTCHA
+RECAPTCHA_SECRET_KEY=tu_clave_secreta_recaptcha
+```
+
+**Métodos de configuración:**
+
+1. **En cPanel:**
+   - Accede a "Software" > "Variables de entorno"
+   - Añade cada variable con su valor correspondiente
+   - Reinicia PHP-FPM si es necesario
+
+2. **Usando .htaccess (Apache):**
+   ```apache
+   SetEnv SMTP_HOST smtp.tuservidor.com
+   SetEnv SMTP_PORT 587
+   SetEnv SMTP_USER tu_usuario@tudominio.com
+   # ... (resto de variables)
+   ```
+
+3. **En php.ini o .user.ini:**
+   ```ini
+   env[SMTP_HOST] = smtp.tuservidor.com
+   env[SMTP_PORT] = 587
+   # ... (resto de variables)
+   ```
+
+⚠️ **¡IMPORTANTE!**
+- Nunca almacenes credenciales en el código fuente
+- Usa contraseñas seguras y únicas
+- Configura todas las variables antes de desplegar
+- Mantén un respaldo seguro de las credenciales
+- Restringe los permisos de los archivos de configuración
 ```
 
 ### 3. Configurar reCAPTCHA

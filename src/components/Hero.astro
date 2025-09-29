@@ -1,6 +1,3 @@
----
-// Hero Section Component
----
 
 <section id="inicio" class="hero">
   <div class="hero-background" role="img" aria-label="Oficina de abogados moderna con vista a la ciudad">
@@ -22,7 +19,7 @@
         <a href="#sobre-nosotros" class="btn btn-outline btn-lg">Conoce Más</a>
       </div>
       
-      <div class="hero-stats">
+      <div class="hero-stats" id="hero-stats">
         <div class="stat-item">
           <div class="stat-number" data-target="100">0</div>
           <div class="stat-label">Casos Exitosos</div>
@@ -39,6 +36,16 @@
     </div>
   </div>
 </section>
+
+<script>
+  import { initNumberAnimation } from '../utils/animations';
+  document.addEventListener('DOMContentLoaded', () => {
+    const statsSection = document.getElementById('hero-stats');
+    if (statsSection) {
+      initNumberAnimation(statsSection);
+    }
+  });
+</script>
 
 <style>
   .hero {
@@ -85,7 +92,7 @@
   }
   
   .text-accent {
-    color: var(--color-accent);
+    @apply text-accent;
   }
   
   .hero-subtitle {
@@ -175,47 +182,4 @@
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Animación de contadores
-    const animateCounters = () => {
-      const counters = document.querySelectorAll('.stat-number[data-target]');
-      
-      counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target') || '0');
-        const duration = 2000; // 2 segundos
-        let start = 0;
-        
-        const updateCounter = (timestamp) => {
-          if (!start) start = timestamp;
-          const progress = timestamp - start;
-          const percentage = Math.min(progress / duration, 1);
-          
-          const currentVal = Math.floor(percentage * target);
-          counter.textContent = currentVal.toString();
-          
-          if (progress < duration) {
-            requestAnimationFrame(updateCounter);
-          }
-        };
-        
-        requestAnimationFrame((timestamp) => updateCounter(timestamp));
-      });
-    };
-    
-    // Iniciar animación cuando la sección sea visible
-    const heroSection = document.querySelector('.hero');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(animateCounters, 500);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    if (heroSection) {
-      observer.observe(heroSection);
-    }
-  });
-</script>
+

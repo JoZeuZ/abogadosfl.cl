@@ -1,8 +1,6 @@
----
-// Stats Bar Component
----
 
-<section class="stats-bar">
+
+<section class="stats-bar" id="stats-bar">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-card fade-in">
@@ -20,8 +18,8 @@
           <i class="fas fa-trophy"></i>
         </div>
         <div class="stat-content">
-          <div class="stat-number" data-target="98">0</div>
-          <div class="stat-label">% Éxito</div>
+          <div class="stat-number" data-target="98" data-suffix="%">0</div>
+          <div class="stat-label">Éxito</div>
         </div>
       </div>
       
@@ -30,7 +28,7 @@
           <i class="fas fa-users"></i>
         </div>
         <div class="stat-content">
-          <div class="stat-number" data-target="90">0</div>
+          <div class="stat-number" data-target="90" data-suffix="+">0</div>
           <div class="stat-label">Clientes Satisfechos</div>
         </div>
       </div>
@@ -40,7 +38,7 @@
           <i class="fas fa-award"></i>
         </div>
         <div class="stat-content">
-          <div class="stat-number" data-target="5">0</div>
+          <div class="stat-number" data-target="5" data-suffix="+">0</div>
           <div class="stat-label">Años Experiencia</div>
         </div>
       </div>
@@ -48,9 +46,20 @@
   </div>
 </section>
 
+
+<script>
+import { initNumberAnimation } from "../utils/animations";
+  document.addEventListener('DOMContentLoaded', () => {
+    const statsSection = document.getElementById('stats-bar');
+    if (statsSection) {
+      initNumberAnimation(statsSection);
+    }
+  });
+</script>
+
 <style>
   .stats-bar {
-    background-color: var(--color-primary);
+    @apply bg-primary;
     padding: 60px 0;
     position: relative;
     overflow: hidden;
@@ -80,8 +89,7 @@
   }
   
   .stat-card {
-    text-align: center;
-    color: var(--color-white);
+    @apply text-center text-white;
     padding: 1rem;
     transition: transform 0.3s ease;
   }
@@ -91,36 +99,18 @@
   }
   
   .stat-icon {
-    background-color: var(--color-accent);
-    color: var(--color-white);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    box-shadow: var(--shadow-card);
+    @apply bg-accent text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-card;
   }
   
   .stat-icon i {
-    font-size: 2rem;
+    @apply text-3xl;
   }
   
   .stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    font-family: var(--font-heading);
-    color: var(--color-accent);
-    margin-bottom: 0.5rem;
-  }
+    @apply text-4xl font-bold font-heading text-accent mb-2;
   
   .stat-label {
-    font-size: 1rem;
-    font-weight: 500;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    @apply text-base font-medium opacity-90 uppercase tracking-wider;
   }
   
   @media (max-width: 992px) {
@@ -150,48 +140,3 @@
     }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const animateCounters = () => {
-      const counters = document.querySelectorAll('.stats-bar .stat-number[data-target]');
-      
-      counters.forEach((counter, index) => {
-        const target = parseInt(counter.getAttribute('data-target') || '0');
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        
-        const updateCounter = () => {
-          current += step;
-          if (current < target) {
-            counter.textContent = Math.floor(current).toString();
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target.toString();
-          }
-        };
-        
-        // Agregar delay escalonado para cada contador
-        setTimeout(() => {
-          updateCounter();
-        }, index * 200);
-      });
-    };
-    
-    // Iniciar animación cuando la sección sea visible
-    const statsSection = document.querySelector('.stats-bar');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(animateCounters, 300);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
-  });
-</script>
