@@ -33,16 +33,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Configuración del formulario
 $config = [
     'smtp' => [
-        'host' => 'mail.abogadosfl.cl', // Cambiar por el SMTP de su proveedor
-        'port' => 465, // Puerto SMTP (465 para SSL, 587 para TLS)
-        'username' => 'info@abogadosfl.cl', // Cambiar por su email
-        'password' => 'abogadosfl2026', // Cambiar por su password
-        'from_email' => 'info@abogadosfl.cl',
+        // Se recomienda usar variables de entorno para las credenciales
+        'host'       => getenv('SMTP_HOST') ?: 'mail.abogadosfl.cl',
+        'port'       => getenv('SMTP_PORT') ?: 465, // 465 para SMTPS, 587 para STARTTLS
+        'username'   => getenv('SMTP_USER') ?: 'info@abogadosfl.cl',
+        'password'   => getenv('SMTP_PASS') ?: 'abogadosfl2026', // ¡Mover a variable de entorno!
+        'from_email' => getenv('SMTP_FROM_EMAIL') ?: 'info@abogadosfl.cl',
         'from_name' => 'AbogadosFL',
-        'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
+        'to_email'   => getenv('SMTP_TO_EMAIL') ?: 'contacto@abogadosfl.cl'
     ],
     'recaptcha' => [
-        'secret_key' => 'YOUR_RECAPTCHA_SECRET_KEY' // Cambiar por su clave secreta
+        'secret_key' => getenv('RECAPTCHA_SECRET_KEY') ?: 'YOUR_RECAPTCHA_SECRET_KEY' // ¡Mover a variable de entorno!
     ],
     'backup' => [
         'enabled' => true,
@@ -63,7 +64,7 @@ function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
 
-// Función de validación de teléfono (formato colombiano)
+// Función de validación de teléfono (formato chileno)
 function validatePhone($phone) {
     $phone = preg_replace('/\D/', '', $phone);
     return preg_match('/^(\+56)?[0-9]{7,10}$/', $phone);
@@ -203,7 +204,7 @@ try {
     $mail->SMTPAuth = true;
     $mail->Username = $config['smtp']['username'];
     $mail->Password = $config['smtp']['password'];
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->SMTPSecure = ($config['smtp']['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = $config['smtp']['port'];
     $mail->CharSet = 'UTF-8';
     

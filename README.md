@@ -227,7 +227,7 @@ $config = [
 
 - Nombre completo (requerido)
 - Email (requerido, validado)
-- Teléfono (requerido, formato colombiano)
+- Teléfono (requerido, formato chileno)
 - Área legal de interés (select)
 - Descripción del caso (requerido)
 - Aceptación de políticas (checkbox requerido)

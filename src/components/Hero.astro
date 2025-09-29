@@ -3,7 +3,7 @@
 ---
 
 <section id="inicio" class="hero">
-  <div class="hero-background">
+  <div class="hero-background" role="img" aria-label="Oficina de abogados moderna con vista a la ciudad">
     <div class="hero-overlay"></div>
   </div>
   
@@ -183,21 +183,23 @@
       
       counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target') || '0');
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
+        const duration = 2000; // 2 segundos
+        let start = 0;
         
-        const updateCounter = () => {
-          current += step;
-          if (current < target) {
-            counter.textContent = Math.floor(current).toString();
+        const updateCounter = (timestamp) => {
+          if (!start) start = timestamp;
+          const progress = timestamp - start;
+          const percentage = Math.min(progress / duration, 1);
+          
+          const currentVal = Math.floor(percentage * target);
+          counter.textContent = currentVal.toString();
+          
+          if (progress < duration) {
             requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target.toString();
           }
         };
         
-        updateCounter();
+        requestAnimationFrame((timestamp) => updateCounter(timestamp));
       });
     };
     

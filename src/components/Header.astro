@@ -22,7 +22,12 @@
       
       <div class="nav-actions">
         <a href="#contacto" class="btn btn-primary">Consulta</a>
-        <button class="mobile-toggle" id="mobile-toggle">
+        <button
+          class="mobile-toggle"
+          id="mobile-toggle"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -154,7 +159,7 @@
       display: flex;
     }
     
-    .mobile-toggle.active span:nth-child(9) {
+    .mobile-toggle.active span:nth-child(1) {
       transform: rotate(45deg) translate(8px, 8px);
     }
     
@@ -180,6 +185,7 @@
     mobileToggle?.addEventListener('click', () => {
       mobileToggle.classList.toggle('active');
       navMenu?.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', navMenu?.classList.contains('active').toString() || 'false');
     });
     
     // Cerrar menú al hacer click en un enlace
@@ -188,6 +194,7 @@
       link.addEventListener('click', () => {
         mobileToggle?.classList.remove('active');
         navMenu?.classList.remove('active');
+        mobileToggle?.setAttribute('aria-expanded', 'false');
       });
     });
     
