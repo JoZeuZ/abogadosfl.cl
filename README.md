@@ -197,20 +197,15 @@ composer install --no-dev --optimize-autoloader
 Agregar estas imágenes en `public/images/`:
 
 ```
-hero-bg.jpg           # Imagen de fondo del hero (1920x1080)
-lawyer-portrait.jpg   # Retrato abogado para sección "sobre nosotros"
-team-1.jpg           # Foto Dr. Carlos Mendoza
-team-2.jpg           # Foto Dra. María Rodríguez  
-team-3.jpg           # Foto Dr. Andrés López
-team-4.jpg           # Foto Dra. Laura González
-client-1.jpg         # Foto cliente testimonio 1
-client-2.jpg         # Foto cliente testimonio 2
-client-3.jpg         # Foto cliente testimonio 3
-client-4.jpg         # Foto cliente testimonio 4
-news-1.jpg           # Imagen artículo 1
-news-2.jpg           # Imagen artículo 2
-news-3.jpg           # Imagen artículo 3
-pattern.png          # Patrón para fondo de estadísticas
+abogado2.png         # Imagen principal del abogado para el Hero
+abogado4.png         # Foto perfil para sección "Sobre mí"
+abogado_horizontal1.png # Imagen destacada para sección del abogado
+abogado1.png         # Imagen para artículo del blog 1
+abogado3.png         # Imagen para artículo del blog 2
+abogado6.png         # Imagen para artículo del blog 3
+edificio_oficina.png # Imagen del edificio para banner de contacto
+entrada_edificio.png # Foto de la entrada del edificio
+pasillo_oficina.png  # Imagen de fondo para barra de estadísticas
 logo.svg             # Logo principal
 logo-white.svg       # Logo blanco para footer
 ```

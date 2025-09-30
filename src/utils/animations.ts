@@ -44,22 +44,22 @@ export function initNumberAnimation(container: HTMLElement): void {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const counters = container.querySelectorAll('[data-counter]');
+          const numbers = container.querySelectorAll<HTMLElement>('.stat-number');
           
-          counters.forEach((counter, index) => {
-            if (counter instanceof HTMLElement && !counter.dataset.animated) {
-              const target = parseInt(counter.dataset.counter || '0', 10);
-              const suffix = counter.dataset.suffix || '';
+          numbers.forEach((number, index) => {
+            if (!number.dataset.animated) {
+              const target = parseInt(number.dataset.target || '0', 10);
+              const suffix = number.dataset.suffix || '';
               
               // Agregar delay escalonado
               setTimeout(() => {
-                animateCounter(counter, target, suffix);
-                counter.dataset.animated = 'true';
+                animateCounter(number, target, suffix);
+                number.dataset.animated = 'true';
               }, index * 200);
             }
           });
           
-          observer.unobserve(container);
+          observer.disconnect();
         }
       });
     },

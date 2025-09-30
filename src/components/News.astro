@@ -1,32 +1,38 @@
 ---
-// News Component - Últimas Noticias
+// News Component - Últimas Publicaciones
+const author = {
+  name: 'Dr. Patolo Francisco',
+  role: 'Abogado Especialista',
+  image: '/images/abogado2.png'
+};
+
 const newsArticles = [
   {
-    title: 'Nuevas Regulaciones en Derecho Corporativo 2024',
-    excerpt: 'Análisis de las últimas modificaciones en la legislación comercial que afectan a las empresas chilenas.',
-    image: '/images/news-1.jpg',
+    title: 'Claves para Proteger sus Derechos en Litigios Civiles',
+    excerpt: 'Una guía estratégica sobre cómo enfrentar efectivamente procesos legales civiles y proteger sus intereses.',
+    image: '/images/abogado1.png',
     date: '15 Enero 2024',
-    category: 'Derecho Corporativo',
+    category: 'Derecho Civil',
     readTime: '5 min',
-    slug: 'regulaciones-derecho-corporativo-2024'
+    slug: 'claves-litigios-civiles'
   },
   {
-    title: 'Guía Completa: Derechos Laborales del Empleado',
-    excerpt: 'Todo lo que necesita saber sobre sus derechos como trabajador en Chile, incluyendo las últimas reformas.',
-    image: '/images/news-2.jpg',
+    title: 'Derechos Laborales: Lo que Todo Empleado Debe Saber',
+    excerpt: 'Análisis detallado de los derechos fundamentales en el ámbito laboral y cómo ejercerlos efectivamente.',
+    image: '/images/abogado3.png',
     date: '10 Enero 2024',
     category: 'Derecho Laboral',
     readTime: '8 min',
-    slug: 'derechos-laborales-empleado-2024'
+    slug: 'derechos-laborales-esenciales'
   },
   {
-    title: 'Proceso de Sucesión: Pasos Legales Esenciales',
-    excerpt: 'Una guía práctica sobre los procedimientos legales necesarios para tramitar una sucesión en Chile.',
-    image: '/images/news-3.jpg',
+    title: 'Asesoría Legal Preventiva: Anticiparse a los Problemas',
+    excerpt: 'Estrategias proactivas para proteger sus intereses legales antes de que surjan conflictos.',
+    image: '/images/abogado6.png',
     date: '5 Enero 2024',
-    category: 'Derecho Civil',
+    category: 'Consultoría Legal',
     readTime: '6 min',
-    slug: 'proceso-sucesion-pasos-legales'
+    slug: 'asesoria-legal-preventiva'
   }
 ];
 ---
@@ -34,25 +40,33 @@ const newsArticles = [
 <section id="noticias" class="news section-padding">
   <div class="container">
     <div class="section-header text-center fade-in">
-      <span class="section-subtitle">Blog Legal</span>
+      <span class="section-subtitle">Publicaciones Legales</span>
       <h2 class="section-title">
-        Últimas <span class="text-accent">Noticias y Artículos</span>
+        Conocimientos y <span class="text-accent">Experiencia Compartida</span>
       </h2>
       <p class="section-description">
-        Manténgase informado con nuestros artículos sobre las últimas novedades 
-        del mundo jurídico y consejos legales prácticos.
+        Comparto análisis y consejos legales basados en mi experiencia profesional,
+        para ayudarle a comprender mejor sus derechos y opciones legales.
       </p>
     </div>
     
     <div class="news-grid">
-      {newsArticles.map((article, index) => (
+      {newsArticles.map((article) => (
         <article class="news-card fade-in">
           <div class="news-image">
-            <img src={article.image} alt={article.title} />
+            <img src={article.image} alt={article.title} loading="lazy" />
             <div class="news-category">{article.category}</div>
           </div>
           
           <div class="news-content">
+            <div class="article-author">
+              <img src={author.image} alt={author.name} class="author-image" />
+              <div class="author-info">
+                <span class="author-name">{author.name}</span>
+                <span class="author-role">{author.role}</span>
+              </div>
+            </div>
+            
             <div class="news-meta">
               <span class="news-date">
                 <i class="fas fa-calendar"></i>
@@ -79,9 +93,12 @@ const newsArticles = [
     </div>
     
     <div class="news-cta text-center fade-in">
-      <h3>¿Necesita asesoría legal personalizada?</h3>
-      <p>Nuestros expertos están listos para ayudarle</p>
-      <a href="#contacto" class="btn btn-primary btn-lg">Consultar Ahora</a>
+      <h3>¿Necesita asesoría legal especializada?</h3>
+      <p>Estoy aquí para ayudarle con su caso particular</p>
+      <div class="cta-buttons">
+        <a href="#contacto" class="btn btn-primary btn-lg">Agendar Consulta</a>
+        <a href="/blog" class="btn btn-outline btn-lg">Ver Más Artículos</a>
+      </div>
     </div>
   </div>
 </section>
@@ -96,8 +113,32 @@ const newsArticles = [
     margin: 0 auto 4rem;
   }
   
+  .article-author {
+    @apply flex items-center gap-3 mb-4;
+  }
+  
+  .author-image {
+    @apply w-12 h-12 rounded-full object-cover;
+  }
+  
+  .author-info {
+    @apply flex flex-col;
+  }
+  
+  .author-name {
+    @apply font-semibold text-primary;
+  }
+  
+  .author-role {
+    @apply text-sm text-gray-600;
+  }
+  
+  .cta-buttons {
+    @apply flex flex-wrap justify-center gap-4 mt-6;
+  }
+  
   .section-subtitle {
-    color: var(--color-accent);
+    @apply text-accent;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -154,9 +195,7 @@ const newsArticles = [
   }
   
   .news-category {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
+    @apply absolute top-4 left-4 bg-accent text-white px-4 py-2 rounded-full text-sm font-medium;
     background-color: var(--color-accent);
     color: var(--color-white);
     padding: 0.5rem 1rem;

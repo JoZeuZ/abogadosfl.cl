@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.abogadosfl.cl/sitemap.xml
+
+# Directorios y archivos a no indexar
+Disallow: /error.html
+Disallow: /gracias.html
+Disallow: /.git/
+Disallow: /vendor/
+Disallow: /node_modules/

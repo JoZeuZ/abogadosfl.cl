@@ -1,103 +1,198 @@
 ---
-// Team Component
-const teamMembers = [
-  {
-    name: 'Dr. Patolo Francisco',
-    position: 'Socio Fundador',
-    specialty: 'Derecho Civil y Penal',
-    image: '/images/team-1.jpg',
-    experience: '5 años',
-    education: 'Universidad del Desarrollo',
-    social: {
-      linkedin: '#',
-      email: 'francisco@abogadosfl.cl'
-    }
+// Lawyer Profile Component
+const lawyer = {
+  name: 'Dr. Patolo Francisco',
+  title: 'Abogado Especialista',
+  specialties: ['Derecho Civil', 'Derecho Penal', 'Derecho Laboral'],
+  image: '/images/abogado_horizontal1.png',
+  experience: '5 años',
+  education: [
+    'Universidad del Desarrollo - Licenciatura en Derecho',
+    'Magíster en Derecho Penal'
+  ],
+  awards: [
+    'Distinción Máxima en Litigación',
+    'Premio Excelencia Académica 2020'
+  ],
+  description: `Especializado en casos complejos de derecho civil y penal, con un historial 
+    comprobado de éxito en la defensa de los derechos de mis clientes. Mi enfoque se 
+    centra en proporcionar soluciones legales efectivas y personalizadas.`,
+  social: {
+    linkedin: '#',
+    email: 'francisco@abogadosfl.cl'
   }
-];
+};
 ---
 
-<section id="equipo" class="team section-padding">
+<section id="abogado" class="lawyer section-padding">
   <div class="container">
     <div class="section-header text-center fade-in">
-      <span class="section-subtitle">Nuestro Equipo</span>
+      <span class="section-subtitle">Perfil Profesional</span>
       <h2 class="section-title">
-        Profesionales <span class="text-accent">Experimentados</span>
+        Experiencia y <span class="text-accent">Compromiso</span>
       </h2>
       <p class="section-description">
-        Nuestro equipo está conformado por abogados altamente calificados con amplia experiencia 
-        en diferentes áreas del derecho, comprometidos con la excelencia en el servicio.
+        Dedicado a brindar asesoría legal de excelencia, combinando experiencia práctica 
+        con un profundo conocimiento del derecho y un compromiso inquebrantable con mis clientes.
       </p>
     </div>
     
-    <div class="team-grid">
-      {teamMembers.map((member, index) => (
-        <div class="team-card fade-in">
-          <div class="team-image">
-            <img src={member.image} alt={member.name} />
-            <div class="team-overlay">
-              <div class="team-social">
-                <a href={member.social.linkedin} class="social-link">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href={`mailto:${member.social.email}`} class="social-link">
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="team-content">
-            <h3 class="team-name">{member.name}</h3>
-            <p class="team-position">{member.position}</p>
-            <p class="team-specialty">{member.specialty}</p>
-            
-            <div class="team-details">
-              <div class="team-detail">
-                <span class="detail-label">Experiencia:</span>
-                <span class="detail-value">{member.experience}</span>
-              </div>
-              <div class="team-detail">
-                <span class="detail-label">Educación:</span>
-                <span class="detail-value">{member.education}</span>
-              </div>
-            </div>
-            
-            <a href={`mailto:${member.social.email}`} class="team-contact">
-              Contactar <i class="fas fa-arrow-right"></i>
-            </a>
+    <div class="lawyer-profile fade-in">
+      <div class="lawyer-image">
+        <img src={lawyer.image} alt={lawyer.name} />
+        <div class="lawyer-social">
+          <a href={lawyer.social.linkedin} class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href={`mailto:${lawyer.social.email}`} class="social-link" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="lawyer-content">
+        <div class="lawyer-header">
+          <h3 class="lawyer-name">{lawyer.name}</h3>
+          <p class="lawyer-title">{lawyer.title}</p>
+        </div>
+
+        <p class="lawyer-bio">{lawyer.description}</p>
+        
+        <div class="lawyer-specialties">
+          <h4>Áreas de Práctica</h4>
+          <div class="specialty-tags">
+            {lawyer.specialties.map((specialty) => (
+              <span class="specialty-tag">{specialty}</span>
+            ))}
           </div>
         </div>
-      ))}
+        
+        <div class="lawyer-details">
+          <div class="detail-group">
+            <h4>Educación</h4>
+            <ul>
+              {lawyer.education.map((edu) => (
+                <li>{edu}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="detail-group">
+            <h4>Reconocimientos</h4>
+            <ul>
+              {lawyer.awards.map((award) => (
+                <li>{award}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <div class="team-cta text-center fade-in">
-      <h3>¿Necesita consulta especializada?</h3>
-      <p>Nuestro equipo está listo para atender su caso</p>
-      <a href="#contacto" class="btn btn-primary btn-lg">Agendar Reunión</a>
+    <div class="lawyer-cta text-center fade-in">
+      <h3>¿Necesita asesoría legal especializada?</h3>
+      <p>Estoy aquí para ayudarle con su caso</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Agendar Consulta</a>
     </div>
   </div>
 </section>
 
 <style>
-  .team {
-    background-color: var(--color-light);
+  .lawyer {
+    @apply bg-light py-20;
   }
   
   .section-header {
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    @apply max-w-2xl mx-auto mb-16 text-center;
   }
   
   .section-subtitle {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
+    @apply text-accent font-semibold uppercase tracking-wider text-sm;
+  }
+  
+  .lawyer-profile {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20;
+  }
+  
+  .lawyer-image {
+    @apply relative;
+  }
+  
+  .lawyer-image img {
+    @apply w-full h-auto rounded-lg shadow-xl;
+  }
+  
+  .lawyer-social {
+    @apply absolute bottom-4 right-4 flex gap-3;
+  }
+  
+  .social-link {
+    @apply w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center
+           transition-transform hover:scale-110;
+  }
+  
+  .lawyer-content {
+    @apply space-y-8;
+  }
+  
+  .lawyer-header {
+    @apply mb-6;
+  }
+  
+  .lawyer-name {
+    @apply text-3xl font-bold text-primary mb-2;
+  }
+  
+  .lawyer-title {
+    @apply text-xl text-accent font-medium;
+  }
+  
+  .lawyer-bio {
+    @apply text-lg leading-relaxed text-gray-700;
+  }
+  
+  .lawyer-specialties {
+    @apply space-y-4;
+  }
+  
+  .specialty-tags {
+    @apply flex flex-wrap gap-3;
+  }
+  
+  .specialty-tag {
+    @apply bg-primary/10 text-primary px-4 py-2 rounded-full font-medium;
+  }
+  
+  .lawyer-details {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+  }
+  
+  .detail-group {
+    @apply space-y-3;
+  }
+  
+  .detail-group h4 {
+    @apply text-lg font-semibold text-primary mb-2;
+  }
+  
+  .detail-group ul {
+    @apply space-y-2 text-gray-700;
+  }
+  
+  .lawyer-cta {
+    @apply max-w-2xl mx-auto text-center;
+  }
+  
+  .lawyer-cta h3 {
+    @apply text-2xl font-bold mb-3;
+  }
+  
+  .lawyer-cta p {
+    @apply text-lg text-gray-600 mb-6;
   }
   
   .section-title {
-    font-size: 2.5rem;
+    @apply text-4xl font-bold mb-4;
     color: var(--color-primary);
     margin: 0.5rem 0 1rem;
   }

@@ -9,5 +9,8 @@
     },
     "types": ["astro/client"],
     "strict": true
-  }
+  },
+  "exclude": [
+    "src/components/Contact.temp.astro"
+  ]
 }

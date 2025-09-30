@@ -1,35 +1,35 @@
 ---
-// Contact Section Component
 ---
-
 <section id="contacto" class="contact section-padding">
   <div class="container">
     <div class="section-header text-center fade-in">
+      <span class="section-subtitle">CONTACTO</span>
+      <h2 class="section-title">Solicite su Consulta Personalizada</h2>
+      <p class="section-description">Complete el formulario y me pondré en contacto con usted dentro de 24 horas.</p>
       <span class="section-subtitle">Contacto</span>
       <h2 class="section-title">
-        Inicie su <span class="text-accent">Consulta Legal</span>
+        Solicite su <span class="text-accent">Consulta Personalizada</span>
       </h2>
       <p class="section-description">
-        Estamos aquí para ayudarle. Contáctenos para una consulta personalizada 
-        y comencemos a trabajar en su caso hoy mismo.
+        Complete el formulario y me pondré en contacto con usted dentro de 24 horas.
       </p>
     </div>
-    
+
     <div class="contact-grid">
       <div class="contact-info fade-in">
         <h3>Información de Contacto</h3>
-        <p>Estamos disponibles para atender sus consultas y brindarle la mejor asesoría legal.</p>
-        
+        <p>Disponible para atender sus consultas y brindarle la mejor asesoría legal personalizada.</p>
+
         <div class="contact-item">
           <div class="contact-icon">
             <i class="fas fa-map-marker-alt"></i>
           </div>
           <div class="contact-details">
             <h4>Dirección</h4>
-            <p>Chiloé, Oficina 501<br>Chilote, Chiloé</p>
+            <p>Avenida Alemania 801<br>Los Ángeles, Chile<br>Edificio Plaza Fundación, Oficina 501</p>
           </div>
         </div>
-        
+
         <div class="contact-item">
           <div class="contact-icon">
             <i class="fas fa-phone"></i>
@@ -39,7 +39,7 @@
             <p>+56 (9) XXXXXXXX<br>+56 (9) XXXXXXXX</p>
           </div>
         </div>
-        
+
         <div class="contact-item">
           <div class="contact-icon">
             <i class="fas fa-envelope"></i>
@@ -49,7 +49,7 @@
             <p>info@abogadosfl.cl<br>consultas@abogadosfl.cl</p>
           </div>
         </div>
-        
+
         <div class="contact-item">
           <div class="contact-icon">
             <i class="fas fa-clock"></i>
@@ -59,69 +59,99 @@
             <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
           </div>
         </div>
-        
+
         <div class="emergency-contact">
           <h4><i class="fas fa-exclamation-triangle"></i> Emergencias 24/7</h4>
           <p>Para casos urgentes: <strong>+56 (9) XXXXXXXX</strong></p>
         </div>
       </div>
-      
+
       <div class="contact-form-container fade-in">
+        <div class="form-header">
+          <h3>Solicitar Consulta</h3>
+          <p>Complete el formulario y me pondré en contacto con usted dentro de 24 horas.</p>
+        </div>
+
         <form class="contact-form" id="contactForm" action="/enviar_correo.php" method="POST">
-          <div class="form-group">
-            <label for="nombre">Nombre Completo *</label>
-            <input type="text" id="nombre" name="nombre" required>
-          </div>
-          
           <div class="form-row">
             <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
+              <label for="nombre">Nombre Completo *</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                required 
+                placeholder="Ingrese su nombre completo"
+              />
             </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="correo@ejemplo.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
             <div class="form-group">
               <label for="telefono">Teléfono *</label>
-              <input type="tel" id="telefono" name="telefono" required>
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono" 
+                required 
+                placeholder="+56 9 XXXX XXXX"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="servicio">Área Legal de Interés *</label>
+              <select id="servicio" name="servicio" required>
+                <option value="">Seleccione un servicio</option>
+                <option value="derecho-corporativo">Derecho Corporativo</option>
+                <option value="derecho-inmobiliario">Derecho Inmobiliario</option>
+                <option value="derecho-familia">Derecho de Familia</option>
+                <option value="derecho-laboral">Derecho Laboral</option>
+                <option value="derecho-penal">Derecho Penal</option>
+                <option value="derecho-civil">Derecho Civil</option>
+                <option value="otro">Otro</option>
+              </select>
             </div>
           </div>
-          
-          <div class="form-group">
-            <label for="servicio">Área Legal de Interés *</label>
-            <select id="servicio" name="servicio" required>
-              <option value="">Seleccione un servicio</option>
-              <option value="derecho-corporativo">Derecho Corporativo</option>
-              <option value="derecho-inmobiliario">Derecho Inmobiliario</option>
-              <option value="derecho-familia">Derecho de Familia</option>
-              <option value="derecho-laboral">Derecho Laboral</option>
-              <option value="derecho-penal">Derecho Penal</option>
-              <option value="derecho-civil">Derecho Civil</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          
+
           <div class="form-group">
             <label for="mensaje">Descripción del Caso *</label>
-            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describa brevemente su situación legal y cómo podemos ayudarle..."></textarea>
+            <textarea 
+              id="mensaje" 
+              name="mensaje" 
+              rows="5" 
+              required 
+              placeholder="Describa brevemente su situación legal y cómo podemos ayudarle..."
+            ></textarea>
           </div>
-          
+
           <div class="form-group checkbox-group">
             <label class="checkbox-label">
-              <input type="checkbox" id="politicas" name="politicas" required>
+              <input type="checkbox" id="politicas" name="politicas" required />
               <span class="checkmark"></span>
               He leído y acepto la <a href="/politica-privacidad" target="_blank">Política de Privacidad</a> y el <a href="/terminos-condiciones" target="_blank">Tratamiento de Datos</a>
             </label>
           </div>
-          
-          <div class="form-group">
-            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-          </div>
-          
+
+          <div class="g-recaptcha" data-sitekey="TU_CLAVE_DEL_SITIO"></div>
+
           <button type="submit" class="btn btn-primary btn-lg contact-submit">
             <span class="btn-text">Enviar Consulta</span>
             <span class="btn-loader" style="display: none;">
               <i class="fas fa-spinner fa-spin"></i>
             </span>
           </button>
-          
+
           <p class="form-note">
             * Campos obligatorios. Su información será tratada de manera confidencial.
           </p>
@@ -129,18 +159,204 @@
       </div>
     </div>
   </div>
+
+  <div class="map-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">UBICACIÓN</span>
+        <h2 class="section-title">¿Dónde Encontrarnos?</h2>
+        <p class="section-description">Visítenos en nuestra oficina en el centro de Los Ángeles</p>
+      </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1234.5678901234567!2d-72.12345678901234!3d-37.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDEyJzM0LjUiUyA3MsKwMTInMzQuNSJX!5e0!3m2!1ses!2scl!4v1234567890123!5m2!1ses!2scl"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="location-details">
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h4 class="location-title">Dirección</h4>
+          <p class="location-text">
+            Avenida Alemania 801<br>
+            Edificio Plaza Fundación, Oficina 501<br>
+            Los Ángeles, Chile
+          </p>
+        </div>
+
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4 class="location-title">Horario de Atención</h4>
+          <p class="location-text">
+            Lunes a Viernes: 8:00 AM - 6:00 PM<br>
+            Sábados: 9:00 AM - 2:00 PM<br>
+            Domingos: Cerrado
+          </p>
+        </div>
+
+        <div class="location-item">
+          <div class="location-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h4 class="location-title">Teléfonos</h4>
+          <p class="location-text">
+            +56 (9) XXXXXXXX<br>
+            +56 (9) XXXXXXXX
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
   .contact {
+    position: relative;
     background-color: var(--color-light);
+    padding: 6rem 0;
   }
-  
+
   .section-header {
-    max-width: 600px;
+    max-width: 42rem;
     margin: 0 auto 4rem;
   }
-  
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .contact-form {
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(197, 164, 126, 0.2);
+    outline: none;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.25rem;
+  }
+
+  .checkbox-group label {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  .checkbox-group a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .map-section {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    background: var(--color-white);
+  }
+
+  .map-container {
+    height: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .location-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .location-item {
+    padding: 1.5rem;
+  }
+
+  .location-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .location-icon i {
+    font-size: 1.2rem;
+  }
+
+  .location-title {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .location-text {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+
   .section-subtitle {
     color: var(--color-accent);
     font-weight: 600;
@@ -148,79 +364,79 @@
     letter-spacing: 1px;
     font-size: 0.9rem;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
     color: var(--color-primary);
     margin: 0.5rem 0 1rem;
   }
-  
+
   .section-description {
     font-size: 1.1rem;
     color: var(--color-text-light);
     line-height: 1.6;
   }
-  
+
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
-    align-items: flex-start;
+    align-items: start;
   }
-  
+
   .contact-info h3 {
     color: var(--color-primary);
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    font-family: var(--font-heading);
+    font-weight: 600;
   }
-  
+
   .contact-info > p {
     color: var(--color-text-light);
     margin-bottom: 2rem;
     line-height: 1.6;
   }
-  
+
   .contact-item {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
     align-items: flex-start;
   }
-  
+
   .contact-icon {
     background-color: var(--color-accent);
     color: var(--color-white);
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  
+
   .contact-details h4 {
     color: var(--color-primary);
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
-  
+
   .contact-details p {
     color: var(--color-text-light);
     margin: 0;
     line-height: 1.5;
   }
-  
+
   .emergency-contact {
     background: linear-gradient(135deg, var(--color-primary) 0%, #2a3d50 100%);
     color: var(--color-white);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 0.75rem;
     margin-top: 2rem;
   }
-  
+
   .emergency-contact h4 {
     color: var(--color-accent);
     margin-bottom: 0.5rem;
@@ -228,53 +444,64 @@
     align-items: center;
     gap: 0.5rem;
   }
-  
+
   .emergency-contact p {
     margin: 0;
     opacity: 0.9;
   }
-  
+
   .contact-form-container {
     background-color: var(--color-white);
     padding: 3rem;
-    border-radius: 15px;
+    border-radius: 1rem;
     box-shadow: var(--shadow-card);
   }
-  
-  .contact-form {
-    width: 100%;
+
+  .form-header {
+    margin-bottom: 2rem;
   }
-  
+
+  .form-header h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-header p {
+    color: var(--color-text-light);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
   .form-group {
     margin-bottom: 1.5rem;
   }
-  
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  
+
   .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--color-primary);
     font-weight: 600;
   }
-  
+
   .form-group input,
   .form-group select,
   .form-group textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
     font-family: var(--font-body);
     font-size: 1rem;
-    transition: all 0.3s ease;
     background-color: var(--color-white);
+    transition: all 0.3s ease;
   }
-  
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
@@ -282,77 +509,76 @@
     border-color: var(--color-accent);
     box-shadow: 0 0 0 3px rgba(197, 164, 126, 0.1);
   }
-  
+
   .form-group textarea {
     resize: vertical;
     min-height: 120px;
   }
-  
+
   .checkbox-group {
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .checkbox-label {
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
     cursor: pointer;
-    line-height: 1.5;
     font-size: 0.9rem;
+    line-height: 1.5;
   }
-  
+
   .checkbox-label input[type="checkbox"] {
     width: auto;
-    margin: 0;
+    margin-top: 0.25rem;
   }
-  
+
   .checkbox-label a {
     color: var(--color-accent);
     text-decoration: none;
   }
-  
+
   .checkbox-label a:hover {
     text-decoration: underline;
   }
-  
+
+  .g-recaptcha {
+    margin: 1.5rem 0;
+  }
+
   .contact-submit {
     width: 100%;
     position: relative;
     overflow: hidden;
   }
-  
+
   .form-note {
     text-align: center;
     font-size: 0.85rem;
     color: var(--color-text-light);
-    margin-top: 1rem;
-    margin-bottom: 0;
+    margin: 1rem 0 0;
   }
-  
-  .g-recaptcha {
-    margin: 1rem 0;
-  }
-  
+
   @media (max-width: 768px) {
     .contact-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
-    
+
     .form-row {
       grid-template-columns: 1fr;
     }
-    
+
     .contact-form-container {
       padding: 2rem 1.5rem;
     }
-    
+
     .section-title {
       font-size: 2rem;
     }
-    
+
     .contact-info h3 {
       font-size: 1.5rem;
     }
@@ -360,52 +586,66 @@
 </style>
 
 <script>
+  declare global {
+    interface Window {
+      grecaptcha: {
+        getResponse: () => string;
+        reset: () => void;
+      };
+    }
+  }
+
+  let submitting = false;
+
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contactForm') as HTMLFormElement;
-    const submitBtn = document.querySelector('.contact-submit') as HTMLButtonElement;
-    const btnText = document.querySelector('.btn-text') as HTMLElement;
-    const btnLoader = document.querySelector('.btn-loader') as HTMLElement;
-    
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Validar reCAPTCHA
-      const grecaptcha = (window as any).grecaptcha;
-      const recaptchaResponse = grecaptcha?.getResponse();
-      if (!recaptchaResponse) {
-        alert('Por favor, complete la verificación reCAPTCHA.');
-        return;
-      }
-      
-      // Cambiar estado del botón
-      if (submitBtn) submitBtn.disabled = true;
-      if (btnText) btnText.style.display = 'none';
-      if (btnLoader) btnLoader.style.display = 'inline';
-      
-      try {
-        const formData = new FormData(form);
-        formData.append('g-recaptcha-response', recaptchaResponse);
+    const submitBtn = document.querySelector<HTMLButtonElement>('.contact-submit');
+    const btnText = document.querySelector<HTMLElement>('.btn-text');
+    const btnLoader = document.querySelector<HTMLElement>('.btn-loader');
+
+    if (form && submitBtn && btnText && btnLoader) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        const response = await fetch('/enviar_correo.php', {
-          method: 'POST',
-          body: formData
-        });
-        
-        if (response.ok) {
-          window.location.href = '/gracias.html';
-        } else {
+        if (submitting) return;
+
+        try {
+          submitting = true;
+          submitBtn.disabled = true;
+          btnText.style.display = 'none';
+          btnLoader.style.display = 'inline';
+
+          const recaptchaResponse = window.grecaptcha?.getResponse();
+
+          if (!recaptchaResponse) {
+            alert('Por favor, complete la verificación reCAPTCHA.');
+            return;
+          }
+
+          const formData = new FormData(form);
+          formData.append('g-recaptcha-response', recaptchaResponse);
+
+          const response = await fetch('/enviar_correo.php', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            window.location.href = '/gracias.html';
+          } else {
+            throw new Error('Error al enviar el formulario');
+          }
+        } catch (error) {
+          console.error('Error:', error);
           window.location.href = '/error.html';
+        } finally {
+          submitting = false;
+          submitBtn.disabled = false;
+          btnText.style.display = 'inline';
+          btnLoader.style.display = 'none';
+          window.grecaptcha?.reset();
         }
-      } catch (error) {
-        console.error('Error:', error);
-        window.location.href = '/error.html';
-      } finally {
-        // Restaurar estado del botón
-        if (submitBtn) submitBtn.disabled = false;
-        if (btnText) btnText.style.display = 'inline';
-        if (btnLoader) btnLoader.style.display = 'none';
-        grecaptcha?.reset();
-      }
-    });
+      });
+    }
   });
 </script>
