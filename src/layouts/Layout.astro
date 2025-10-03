@@ -2,9 +2,17 @@
 export interface Props {
   title: string;
   description?: string;
+  image?: string; // Nueva prop para imagen específica de la página
 }
 
-const { title, description = "Bufete de Abogados Profesional - Defendemos sus derechos con excelencia y dedicación" } = Astro.props;
+const { 
+  title, 
+  description = "Bufete de Abogados Profesional en Los Ángeles, Chile. Defendemos sus derechos con excelencia y dedicación.",
+  image = "/images/abogado_horizontal1.png" // Imagen por defecto para redes sociales
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -12,14 +20,18 @@ const { title, description = "Bufete de Abogados Profesional - Defendemos sus de
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    
+    <!-- Metaetiquetas SEO primarias -->
     <meta name="description" content={description} />
-    <meta name="author" content="Dr. Patolo Francisco" />
-    <meta name="keywords" content="abogado, servicios legales, derecho corporativo, derecho inmobiliario, derecho familia, derecho laboral, derecho penal, chiloé" />
+    <meta name="author" content="Abogados FL" />
+    <meta name="keywords" content="abogado, los ángeles, chile, servicios legales, derecho corporativo, derecho inmobiliario, derecho de familia, derecho laboral, derecho penal, derecho civil" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#1f2c3d" />
-    
+    <meta name="generator" content={Astro.generator} />
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.abogadosfl.cl" />
+    <link rel="canonical" href={canonicalURL} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -27,41 +39,46 @@ const { title, description = "Bufete de Abogados Profesional - Defendemos sus de
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.abogadosfl.cl" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://www.abogadosfl.cl/images/abogado2.png" />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:site_name" content="Abogados FL" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.abogadosfl.cl" />
+    <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://www.abogadosfl.cl/images/abogado2.png" />
+    <meta name="twitter:image" content={socialImageURL} />
     
-    <title>{title}</title>
-    
-    <!-- Schema.org markup para Abogado -->
-    <script type="application/ld+json">
+    <!-- Schema.org markup para Bufete de Abogados -->
+    <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": "Abogados FL",
-        "image": "https://www.abogadosfl.cl/images/abogado2.png",
-        "description": "Servicios legales profesionales especializados en derecho corporativo, inmobiliario, familia, laboral y penal.",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://www.abogadosfl.cl/images/abogado_horizontal1.png",
+          "height": "1080",
+          "width": "1920"
+        },
+        "description": "Servicios legales profesionales en Los Ángeles, Chile, especializados en derecho corporativo, inmobiliario, de familia, laboral y penal.",
         "url": "https://www.abogadosfl.cl",
-        "telephone": "+56 9 XXXXXXXX",
+        "telephone": "+56912345678",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Chiloé, Oficina 501",
-          "addressLocality": "Chilote",
-          "addressRegion": "Chiloé",
+          "streetAddress": "Avenida Alemania 801, Oficina 501",
+          "addressLocality": "Los Ángeles",
+          "addressRegion": "Biobío",
+          "postalCode": "4440000",
           "addressCountry": "CL"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "-42.4814",
-          "longitude": "-73.7646"
+          "latitude": "-37.4699",
+          "longitude": "-72.3514"
         },
         "openingHoursSpecification": [
           {
@@ -77,11 +94,7 @@ const { title, description = "Bufete de Abogados Profesional - Defendemos sus de
             "closes": "14:00"
           }
         ],
-        "sameAs": [
-          "https://www.facebook.com/AbogadosFL",
-          "https://www.linkedin.com/company/abogadosfl",
-          "https://twitter.com/AbogadosFL"
-        ]
+        "sameAs": []
       }
     </script>
     

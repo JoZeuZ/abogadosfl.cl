@@ -5,23 +5,15 @@
 <section id="sobre-nosotros" class="about section-padding">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image fade-in">
+      <div class="about-image-container fade-in-left">
         <img 
-          src="/images/abogado4.png" 
-          alt="Abogado FL en su oficina" 
-          class="about-img" 
+          src="/images/abogado_horizontal2.png" 
+          alt="Oficina moderna del bufete de abogados FL, mostrando un espacio de trabajo profesional y acogedor." 
+          class="about-image"
           loading="lazy"
-          decoding="async"
-          width="600"
-          height="800"
-          />
-        <div class="experience-badge">
-          <div class="badge-number">5+</div>
-          <div class="badge-text">Años de<br>Experiencia</div>
-        </div>
+        />
       </div>
-      
-      <div class="about-content fade-in">
+      <div class="about-content fade-in-right">
         <div class="section-header">
           <span class="section-subtitle">Mi Compromiso</span>
           <h2 class="section-title">
@@ -36,37 +28,37 @@
           conocimiento con un enfoque humano y cercano a cada cliente.
         </p>
         
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon">
+        <ul class="commitment-list">
+          <li class="commitment-item">
+            <div class="commitment-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <div class="feature-content">
+            <div class="commitment-text">
               <h4>Atención Personal</h4>
               <p>Trato directo conmigo en todo momento, sin intermediarios.</p>
             </div>
-          </div>
+          </li>
           
-          <div class="feature-item">
-            <div class="feature-icon">
+          <li class="commitment-item">
+            <div class="commitment-icon">
               <i class="fas fa-handshake"></i>
             </div>
-            <div class="feature-content">
+            <div class="commitment-text">
               <h4>Confianza y Cercanía</h4>
               <p>Construyo relaciones duraderas basadas en honestidad y compromiso.</p>
             </div>
-          </div>
+          </li>
           
-          <div class="feature-item">
-            <div class="feature-icon">
+          <li class="commitment-item">
+            <div class="commitment-icon">
               <i class="fas fa-clock"></i>
             </div>
-            <div class="feature-content">
+            <div class="commitment-text">
               <h4>Disponibilidad Total</h4>
               <p>Atención personalizada y respuesta rápida cuando me necesite.</p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
         
         <div class="about-actions">
           <a href="#contacto" class="btn btn-primary">Solicitar Consulta</a>
@@ -85,19 +77,13 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
     align-items: center;
+    gap: 4rem;
   }
-  
+
   .about-image {
-    position: relative;
-  }
-  
-  .about-img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
+    border-radius: 1rem;
     box-shadow: var(--shadow-card);
   }
   
@@ -196,7 +182,11 @@
   @media (max-width: 768px) {
     .about-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 3rem;
+    }
+
+    .about-content .section-header {
+      text-align: center;
     }
     
     .about-image {

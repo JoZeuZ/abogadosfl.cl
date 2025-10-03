@@ -1,27 +1,29 @@
 ---
-// Lawyer Profile Component
-const lawyer = {
-  name: 'Dr. Patolo Francisco',
-  title: 'Abogado Especialista',
-  specialties: ['Derecho Civil', 'Derecho Penal', 'Derecho Laboral'],
-  image: '/images/abogado_horizontal1.png',
-  experience: '5 años',
-  education: [
-    'Universidad del Desarrollo - Licenciatura en Derecho',
-    'Magíster en Derecho Penal'
-  ],
-  awards: [
-    'Distinción Máxima en Litigación',
-    'Premio Excelencia Académica 2020'
-  ],
-  description: `Especializado en casos complejos de derecho civil y penal, con un historial 
-    comprobado de éxito en la defensa de los derechos de mis clientes. Mi enfoque se 
-    centra en proporcionar soluciones legales efectivas y personalizadas.`,
+interface Lawyer {
+  name: string;
+  title: string;
+  image: string;
+  description: string;
+  specialties: string[];
   social: {
-    linkedin: '#',
-    email: 'francisco@abogadosfl.cl'
+    linkedin: string;
+    email: string;
+  };
+}
+
+const lawyers: Lawyer[] = [
+  {
+    name: "Dr. Patolo Francisco",
+    title: "Socio Fundador, Experto en Derecho Corporativo",
+    image: "/images/abogado1.png",
+    description: "Con más de 15 años de experiencia, el Dr. Francisco lidera el bufete con una profunda experiencia en fusiones, adquisiciones y litigios comerciales complejos.",
+    specialties: ["Derecho Corporativo", "Fusiones y Adquisiciones", "Litigios Comerciales"],
+    social: {
+      linkedin: "https://www.linkedin.com/in/dr-patolo-francisco",
+      email: "dr.patolo.francisco@example.com"
+    },
   }
-};
+];
 ---
 
 <section id="abogado" class="lawyer section-padding">
@@ -39,12 +41,12 @@ const lawyer = {
     
     <div class="lawyer-profile fade-in">
       <div class="lawyer-image">
-        <img src={lawyer.image} alt={lawyer.name} />
+        <img src={lawyers[0].image} alt={lawyers[0].name} />
         <div class="lawyer-social">
-          <a href={lawyer.social.linkedin} class="social-link" aria-label="LinkedIn">
+          <a href={lawyers[0].social.linkedin} class="social-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href={`mailto:${lawyer.social.email}`} class="social-link" aria-label="Email">
+          <a href={`mailto:${lawyers[0].social.email}`} class="social-link" aria-label="Email">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -52,26 +54,26 @@ const lawyer = {
       
       <div class="lawyer-content">
         <div class="lawyer-header">
-          <h3 class="lawyer-name">{lawyer.name}</h3>
-          <p class="lawyer-title">{lawyer.title}</p>
+          <h3 class="lawyer-name">{lawyers[0].name}</h3>
+          <p class="lawyer-title">{lawyers[0].title}</p>
         </div>
 
-        <p class="lawyer-bio">{lawyer.description}</p>
+        <p class="lawyer-bio">{lawyers[0].description}</p>
         
         <div class="lawyer-specialties">
           <h4>Áreas de Práctica</h4>
           <div class="specialty-tags">
-            {lawyer.specialties.map((specialty) => (
+            {lawyers[0].specialties.map((specialty) => (
               <span class="specialty-tag">{specialty}</span>
             ))}
           </div>
         </div>
         
         <div class="lawyer-details">
-          <div class="detail-group">
+          <!-- <div class="detail-group">
             <h4>Educación</h4>
             <ul>
-              {lawyer.education.map((edu) => (
+              {lawyers[0].education.map((edu) => (
                 <li>{edu}</li>
               ))}
             </ul>
@@ -79,12 +81,12 @@ const lawyer = {
           
           <div class="detail-group">
             <h4>Reconocimientos</h4>
-            <ul>
-              {lawyer.awards.map((award) => (
+            <ul> -->
+              <!-- {lawyers[0].awards.map((award) => (
                 <li>{award}</li>
-              ))}
-            </ul>
-          </div>
+              ))} -->
+            <!-- </ul>
+          </div> -->
         </div>
       </div>
     </div>
@@ -93,6 +95,44 @@ const lawyer = {
       <h3>¿Necesita asesoría legal especializada?</h3>
       <p>Estoy aquí para ayudarle con su caso</p>
       <a href="#contacto" class="btn btn-primary btn-lg">Agendar Consulta</a>
+    </div>
+  </div>
+</section>
+
+<section class="team section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Nosotros</span>
+      <h2 class="section-title">
+        Abogado con <span class="text-accent">Experiencia</span>
+      </h2>
+      <p class="section-description">
+        Conozca a Francisco Patolo, profesional dedicado a brindar la mejor defensa y asesoría legal.
+      </p>
+    </div>
+    
+    <div class="team-grid">
+      {lawyers.map((lawyer: Lawyer) => (
+        <div class="team-member fade-in">
+          <div class="member-image">
+            <img src={lawyer.image} alt={`Retrato de ${lawyer.name}, ${lawyer.title}`} />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">{lawyer.name}</h3>
+            <p class="member-title">{lawyer.title}</p>
+            <div class="member-specialties">
+              {lawyer.specialties.map((specialty: string) => (
+                <span class="specialty-tag">{specialty}</span>
+              ))}
+            </div>
+            <div class="member-contact">
+              <a href={`mailto:${lawyer.social.email}`} class="btn btn-primary btn-sm">
+                Contactar
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -160,7 +200,24 @@ const lawyer = {
   }
   
   .specialty-tag {
-    @apply bg-primary/10 text-primary px-4 py-2 rounded-full font-medium;
+    background-color: var(--color-light);
+    color: var(--color-accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 992px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
   }
   
   .lawyer-details {

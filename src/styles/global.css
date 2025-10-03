@@ -1,16 +1,20 @@
 :root {
-  --color-primary: #1f2c3d;
-  --color-accent: #c5a47e;
+  --color-primary: #1f2c3d;      /* Azul oscuro principal */
+  --color-secondary: #2a3d50;    /* Un azul un poco más claro */
+  --color-accent: #c5a47e;       /* Dorado/beige para acentos */
   --color-white: #ffffff;
-  --color-light: #f8f9fa;
-  --color-text-light: #6c757d;
-  --color-text-dark: #343a40;
-  
+  --color-light: #f7f9fc;       /* Un gris muy claro para fondos */
+  --color-text: #333333;         /* Texto principal oscuro para legibilidad */
+  --color-text-light: #555555;   /* Texto secundario un poco más claro */
+  --color-border: #dddddd;       /* Borde sutil para inputs y tarjetas */
+  --color-background-alt: #f0f4f8; /* Fondo alternativo para secciones */
+
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Lato', sans-serif;
   
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos base */
@@ -26,8 +30,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-text-dark);
-  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  line-height: 1.6;
 }
 
 /* Clases de utilidad comunes */
@@ -152,8 +157,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-text-dark);
-  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
