@@ -81,31 +81,6 @@ const services = [
     background-color: var(--color-white);
   }
   
-  .section-header {
-    max-width: 600px;
-    margin: 0 auto 4rem;
-  }
-  
-  .section-subtitle {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    margin: 0.5rem 0 1rem;
-  }
-  
-  .section-description {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    line-height: 1.6;
-  }
-  
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -156,6 +131,19 @@ const services = [
   @media (max-width: 768px) {
     .services-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .service-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .services-cta {
+      padding: 2rem 1.5rem;
+    }
+    
+    .services-cta h3 {
+      font-size: 1.5rem;
     }
   }
   
@@ -242,28 +230,5 @@ const services = [
     color: var(--color-text-light);
     font-size: 1.1rem;
     margin-bottom: 2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    
-    .service-card {
-      padding: 2rem 1.5rem;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-    }
-    
-    .services-cta {
-      padding: 2rem 1.5rem;
-    }
-    
-    .services-cta h3 {
-      font-size: 1.5rem;
-    }
   }
 </style>
