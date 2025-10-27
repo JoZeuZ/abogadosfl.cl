@@ -6,7 +6,7 @@
   <div class="container">
     <nav class="navbar">
       <a href="/" class="logo-link">
-        <img src="/logo.svg" alt="Logo de Abogados FL" class="logo" />
+        <img src="/logo.png" alt="Logo de Abogados FL" class="logo" />
       </a>
       <div class="nav-menu-container">
         <ul class="nav-menu">
@@ -27,7 +27,7 @@
 
 <div class="mobile-nav" id="mobile-nav">
   <div class="mobile-nav-header">
-    <img src="/logo.svg" alt="Logo de Abogados FL" class="mobile-nav-logo" />
+    <img src="/logo.png" alt="Logo de Abogados FL" class="mobile-nav-logo" />
     <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">
       <i class="fas fa-times"></i>
     </button>
@@ -44,48 +44,56 @@
 <div class="overlay" id="overlay"></div>
 
 <style>
+  /* ==========================================================================
+     Estilos del Header
+     ========================================================================== */
   .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--color-white);
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-primary);
     transition: all 0.3s ease;
+  }
+
+  .header.scrolled {
+    background-color: var(--color-primary);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   }
 
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5rem;
+    height: 4.5rem; /* Altura móvil */
   }
 
   .logo {
-    height: 2.5rem;
+    height: 12.25rem;
     width: auto;
   }
 
+  /* Menú de escritorio */
   .nav-menu-container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    display: none; /* Oculto en móvil */
   }
 
   .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .nav-link {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    color: var(--color-white);
+    font-weight: 500;
+    transition: all 0.3s ease;
     position: relative;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    letter-spacing: 0.5px;
   }
 
   .nav-link::after {
@@ -93,71 +101,68 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 2px;
     background-color: var(--color-accent);
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
   }
 
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link:focus {
     color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .btn-nav {
-    padding: 0.6rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+  }
+
+  .btn-nav:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
   }
 
   .nav-toggle {
-    display: none;
+    display: block; /* Visible en móvil */
     background: none;
     border: none;
     font-size: 1.5rem;
     color: var(--color-primary);
     cursor: pointer;
+    z-index: 1020;
   }
 
-  /* Estilos para el menú móvil */
+  /* Menú móvil */
   .mobile-nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 320px;
+    width: min(80vw, 320px);
     height: 100%;
     background-color: var(--color-white);
     z-index: 1010;
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
     transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 2rem;
     display: flex;
     flex-direction: column;
+    padding: 6rem 2rem 2rem;
   }
 
   .mobile-nav.is-active {
     right: 0;
-  }
-
-  .mobile-nav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-  }
-
-  .mobile-nav-logo {
-    height: 2rem;
-  }
-
-  .mobile-nav-close {
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: var(--color-primary);
-    cursor: pointer;
   }
 
   .mobile-nav-menu {
@@ -165,19 +170,17 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: auto; /* Empuja el botón hacia abajo */
   }
 
   .mobile-nav-link {
     color: var(--color-primary);
-    text-decoration: none;
     font-size: 1.2rem;
     font-weight: 600;
   }
 
   .btn-block {
     width: 100%;
-    text-align: center;
   }
 
   .overlay {
@@ -198,13 +201,24 @@
     visibility: visible;
   }
 
-  @media (max-width: 768px) {
+  /* Media Query para Desktop */
+  @media (min-width: 768px) {
+    .navbar {
+      height: 5rem;
+    }
+
+    .logo {
+      height: 12.5rem;
+    }
+
     .nav-menu-container {
-      display: none;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
     .nav-toggle {
-      display: block;
+      display: none;
     }
   }
 </style>

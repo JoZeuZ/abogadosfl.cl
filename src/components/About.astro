@@ -9,7 +9,7 @@
         <img 
           src="/images/abogado_horizontal2.png" 
           alt="Oficina moderna del bufete de abogados FL, mostrando un espacio de trabajo profesional y acogedor." 
-          class="about-image"
+          class="about-image content-image"
           loading="lazy"
         />
       </div>
@@ -70,165 +70,250 @@
 </section>
 
 <style>
+  /* ==========================================================================
+     Estilos de la Sección "Sobre Nosotros"
+     ========================================================================== */
   .about {
-    background-color: var(--color-light);
+    background-color: var(--color-white);
+    position: relative;
+    overflow: hidden;
   }
   
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
     gap: 4rem;
   }
 
+  .about-image-container {
+    order: 1;
+    position: relative;
+  }
+
+  .about-image-container::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--color-accent);
+    z-index: 1;
+  }
+
   .about-image {
     width: 100%;
-    border-radius: 1rem;
-    box-shadow: var(--shadow-card);
+    position: relative;
+    z-index: 2;
+    box-shadow: var(--shadow-lg);
   }
   
-  .experience-badge {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
-    padding: 1.5rem;
-    border-radius: 10px;
+  .about-content {
+    order: 2;
     text-align: center;
-    box-shadow: var(--shadow-hover);
   }
   
-  .badge-number {
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: var(--font-heading);
-  }
-  
-  .badge-text {
-    font-size: 0.9rem;
-    line-height: 1.2;
-  }
-  
-  .section-header {
-    margin-bottom: 2rem;
-  }
-  
-  .section-subtitle {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    color: var(--color-primary);
-    margin-top: 0.5rem;
+  .about-content .section-header {
+    margin-bottom: 3rem;
+    text-align: center;
   }
   
   .about-description {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
-  .about-features {
-    margin-bottom: 2.5rem;
+  .commitment-list {
+    list-style: none;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
   
-  .feature-item {
+  .commitment-item {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
     align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-white);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .commitment-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--color-accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
   }
   
-  .feature-icon {
-    background-color: var(--color-accent);
-    color: var(--color-white);
+  .commitment-icon {
+    color: var(--color-accent);
     width: 50px;
     height: 50px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+    position: relative;
   }
   
-  .feature-icon i {
-    font-size: 1.2rem;
+  .commitment-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--color-accent);
+    opacity: 0.2;
+    transition: all 0.3s ease;
   }
   
-  .feature-content h4 {
+  .commitment-icon i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .commitment-text h4 {
     color: var(--color-primary);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
   }
   
-  .feature-content p {
-    color: var(--color-text-light);
+  .commitment-text p {
+    color: var(--color-text);
     margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .commitment-item:hover {
+    transform: translateX(10px);
+  }
+
+  .commitment-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .commitment-item:hover .commitment-icon {
+    transform: rotate(-10deg);
+  }
+
+  .commitment-item:hover .commitment-icon::after {
+    transform: scale(1.1);
+    opacity: 0.3;
   }
   
   .about-actions {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .about-actions .btn {
+    min-width: 200px;
   }
   
-  @media (max-width: 768px) {
+  /* Media Query para Tablet */
+  @media (min-width: 768px) {
+    .commitment-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .commitment-text h4 {
+      font-size: 1.375rem;
+    }
+  }
+  
+  /* Media Query para Desktop */
+  @media (min-width: 1024px) {
+    .about {
+      padding-top: var(--spacing-xl);
+      padding-bottom: var(--spacing-xl);
+    }
+
     .about-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-container {
+      order: 1;
+    }
+
+    .about-content {
+      text-align: left;
     }
 
     .about-content .section-header {
-      text-align: center;
+      text-align: left;
+      margin-bottom: 4rem;
     }
-    
-    .about-image {
-      order: -1;
+
+    .about-description {
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 1.25rem;
     }
-    
-    .about-img {
-      height: 400px;
+
+    .commitment-list {
+      grid-template-columns: 1fr;
+      margin-bottom: 4rem;
     }
-    
-    .experience-badge {
-      bottom: 10px;
-      right: 10px;
-      padding: 1rem;
-    }
-    
-    .badge-number {
-      font-size: 1.5rem;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-    }
-    
+
     .about-actions {
-      justify-content: center;
-    }
-    
-    .about-actions .btn {
-      flex: 1;
-      min-width: 200px;
+      justify-content: flex-start;
+      margin-top: 4rem;
     }
   }
-  
-  @media (max-width: 480px) {
-    .feature-item {
-      flex-direction: column;
-      text-align: center;
+
+  /* Media Query para pantallas grandes */
+  @media (min-width: 1280px) {
+    .about-grid {
+      gap: 8rem;
     }
-    
-    .about-actions {
-      flex-direction: column;
+
+    .about-content .section-header {
+      margin-bottom: 5rem;
+    }
+
+    .commitment-item {
+      padding: 2rem;
+    }
+
+    .commitment-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .commitment-icon i {
+      font-size: 1.75rem;
+    }
+
+    .commitment-text h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .commitment-text p {
+      font-size: 1.125rem;
     }
   }
 </style>

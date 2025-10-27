@@ -46,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
           <br>
           Email: info@abogadosfl.cl
           <br>
-          Dirección: Avenida Alemania 801, Oficina 501, Los Ángeles, Chile
+          Dirección: Valdivia #300, Oficina 515, Los Ángeles, Chile
         </p>
       </div>
     </div>
@@ -54,27 +54,37 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  /* ==========================================================================
+     Estilos de Páginas Legales
+     ========================================================================== */
   .legal-page {
     background-color: var(--color-light);
+    padding-top: 8rem; /* Espacio para el header fijo */
   }
+
   .legal-content {
     max-width: 800px;
     margin: 2rem auto;
     background: var(--color-white);
-    padding: 2rem;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
   }
+
   .legal-content h2 {
     color: var(--color-primary);
+    font-size: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
   }
+
   .legal-content p, .legal-content ul {
     color: var(--color-text);
     line-height: 1.7;
+    margin-bottom: 1rem;
   }
+
   .legal-content ul {
-    padding-left: 20px;
+    padding-left: 1.5rem;
   }
 </style>

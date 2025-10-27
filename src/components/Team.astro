@@ -138,114 +138,279 @@ const lawyers: Lawyer[] = [
 </section>
 
 <style>
+  /* Estilos generales de la sección */
   .lawyer {
-    @apply bg-light py-20;
+    background-color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lawyer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/pattern-light.png');
+    background-size: cover;
+    opacity: 0.03;
+    pointer-events: none;
   }
   
   .section-header {
-    @apply max-w-2xl mx-auto mb-16 text-center;
+    max-width: 750px;
+    margin: 0 auto 5rem;
+    text-align: center;
+    position: relative;
   }
   
   .section-subtitle {
-    @apply text-accent font-semibold uppercase tracking-wider text-sm;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
   }
   
   .lawyer-profile {
-    @apply grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    position: relative;
   }
   
   .lawyer-image {
-    @apply relative;
+    position: relative;
   }
   
   .lawyer-image img {
-    @apply w-full h-auto rounded-lg shadow-xl;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .lawyer-image::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--color-accent);
+    z-index: 1;
   }
   
   .lawyer-social {
-    @apply absolute bottom-4 right-4 flex gap-3;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 3;
   }
   
   .social-link {
-    @apply w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center
-           transition-transform hover:scale-110;
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-accent);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .social-link i {
+    position: relative;
+    z-index: 1;
+    font-size: 1.125rem;
+  }
+
+  .social-link:hover::before {
+    transform: translateY(0);
   }
   
   .lawyer-content {
-    @apply space-y-8;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
   
   .lawyer-header {
-    @apply mb-6;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .lawyer-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
   }
   
   .lawyer-name {
-    @apply text-3xl font-bold text-primary mb-2;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
   }
   
   .lawyer-title {
-    @apply text-xl text-accent font-medium;
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    font-family: var(--font-heading);
   }
   
   .lawyer-bio {
-    @apply text-lg leading-relaxed text-gray-700;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text);
   }
   
   .lawyer-specialties {
-    @apply space-y-4;
+    margin-top: 2rem;
+  }
+  
+  .lawyer-specialties h4 {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
   }
   
   .specialty-tags {
-    @apply flex flex-wrap gap-3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
   
   .specialty-tag {
-    background-color: var(--color-light);
-    color: var(--color-accent);
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
   }
 
-  @media (max-width: 992px) {
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
+  .specialty-tag:hover {
+    background-color: transparent;
+    color: var(--color-primary);
   }
   
   .lawyer-details {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
-  }
-  
-  .detail-group {
-    @apply space-y-3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
   }
   
   .detail-group h4 {
-    @apply text-lg font-semibold text-primary mb-2;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .detail-group h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background-color: var(--color-accent);
   }
   
   .detail-group ul {
-    @apply space-y-2 text-gray-700;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .detail-group ul li {
+    font-size: 1.125rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .detail-group ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
   }
   
   .lawyer-cta {
-    @apply max-w-2xl mx-auto text-center;
+    max-width: 800px;
+    margin: 6rem auto 0;
+    text-align: center;
+    background-color: var(--color-primary);
+    padding: 4rem;
+    color: var(--color-white);
+    position: relative;
+  }
+
+  .lawyer-cta::before {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   }
   
   .lawyer-cta h3 {
-    @apply text-2xl font-bold mb-3;
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-white);
   }
   
   .lawyer-cta p {
-    @apply text-lg text-gray-600 mb-6;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .lawyer-cta .btn {
+    min-width: 200px;
   }
   
   .section-title {
@@ -425,29 +590,76 @@ const lawyers: Lawyer[] = [
     margin-bottom: 2rem;
   }
   
-  @media (max-width: 768px) {
-    .team-grid {
-      grid-template-columns: 1fr;
+  /* Media Query para Tablet */
+  @media (min-width: 768px) {
+    .lawyer-details {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
     }
-    
-    .section-title {
-      font-size: 2rem;
+
+    .specialty-tags {
+      gap: 1.25rem;
     }
-    
-    .team-image {
-      height: 250px;
+
+    .lawyer-cta {
+      padding: 5rem;
     }
-    
-    .team-content {
-      padding: 1.5rem;
+
+    .lawyer-cta h3 {
+      font-size: 2.5rem;
     }
-    
-    .team-cta {
-      padding: 2rem 1.5rem;
+  }
+
+  /* Media Query para Desktop */
+  @media (min-width: 1024px) {
+    .lawyer-profile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6rem;
     }
-    
-    .team-cta h3 {
+
+    .lawyer-content {
+      gap: 3rem;
+    }
+
+    .lawyer-name {
+      font-size: 3rem;
+    }
+
+    .lawyer-title {
+      font-size: 1.375rem;
+    }
+
+    .lawyer-bio {
+      font-size: 1.25rem;
+    }
+
+    .lawyer-specialties h4,
+    .detail-group h4 {
       font-size: 1.5rem;
+    }
+
+    .specialty-tag {
+      font-size: 1rem;
+    }
+  }
+
+  /* Media Query para pantallas grandes */
+  @media (min-width: 1280px) {
+    .lawyer-profile {
+      gap: 8rem;
+    }
+
+    .lawyer-cta {
+      padding: 6rem;
+      margin-top: 8rem;
+    }
+
+    .lawyer-cta h3 {
+      font-size: 3rem;
+    }
+
+    .lawyer-cta p {
+      font-size: 1.375rem;
     }
   }
 </style>
