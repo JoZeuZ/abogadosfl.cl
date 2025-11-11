@@ -111,9 +111,7 @@
             </label>
           </div>
           
-          <div class="form-group">
-            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-          </div>
+          <!-- reCAPTCHA v3 - sin widget visible -->
           
           <button type="submit" class="btn btn-primary btn-lg contact-submit">
             <span class="btn-text">Enviar Consulta</span>
@@ -369,22 +367,18 @@
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Validar reCAPTCHA
-      const grecaptcha = (window as any).grecaptcha;
-      const recaptchaResponse = grecaptcha?.getResponse();
-      if (!recaptchaResponse) {
-        alert('Por favor, complete la verificación reCAPTCHA.');
-        return;
-      }
-      
       // Cambiar estado del botón
       if (submitBtn) submitBtn.disabled = true;
       if (btnText) btnText.style.display = 'none';
       if (btnLoader) btnLoader.style.display = 'inline';
       
       try {
+        // Ejecutar reCAPTCHA v3
+        const grecaptcha = (window as any).grecaptcha;
+        const token = await grecaptcha.execute('6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3', { action: 'submit' });
+        
         const formData = new FormData(form);
-        formData.append('g-recaptcha-response', recaptchaResponse);
+        formData.append('g-recaptcha-response', token);
         
         const response = await fetch('/enviar_correo.php', {
           method: 'POST',
@@ -404,7 +398,6 @@
         if (submitBtn) submitBtn.disabled = false;
         if (btnText) btnText.style.display = 'inline';
         if (btnLoader) btnLoader.style.display = 'none';
-        grecaptcha?.reset();
       }
     });
   });

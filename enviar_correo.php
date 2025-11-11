@@ -35,14 +35,14 @@ $config = [
     'smtp' => [
         'host' => 'mail.abogadosfl.cl', // Cambiar por el SMTP de su proveedor
         'port' => 465, // Puerto SMTP (465 para SSL, 587 para TLS)
-        'username' => 'info@abogadosfl.cl', // Cambiar por su email
-        'password' => 'abogadosfl2026', // Cambiar por su password
-        'from_email' => 'info@abogadosfl.cl',
+        'username' => 'contacto@abogadosfl.cl', // Cambiar por su email
+        'password' => 'Patolo1234', // Cambiar por su password
+        'from_email' => 'contacto@abogadosfl.cl',
         'from_name' => 'AbogadosFL',
         'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
     ],
     'recaptcha' => [
-        'secret_key' => 'YOUR_RECAPTCHA_SECRET_KEY' // Cambiar por su clave secreta
+        'secret_key' => '6LceRAksAAAAAMVncmHnayHiujv2ExcIC9dG58nF' // Cambiar por su clave secreta
     ],
     'backup' => [
         'enabled' => true,
@@ -63,7 +63,7 @@ function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
 
-// Función de validación de teléfono (formato colombiano)
+// Función de validación de teléfono (formato Chileno)
 function validatePhone($phone) {
     $phone = preg_replace('/\D/', '', $phone);
     return preg_match('/^(\+56)?[0-9]{7,10}$/', $phone);
@@ -203,7 +203,7 @@ try {
     $mail->SMTPAuth = true;
     $mail->Username = $config['smtp']['username'];
     $mail->Password = $config['smtp']['password'];
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = $config['smtp']['port'];
     $mail->CharSet = 'UTF-8';
     
