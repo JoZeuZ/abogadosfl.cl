@@ -1,0 +1,113 @@
+---
+// Map Component - Ubicación de las oficinas de Abogados FL
+---
+
+<section id="ubicacion" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-primary mb-4">Nuestra Ubicación</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Visítanos en nuestras oficinas en el centro de Los Ángeles, Biobío
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <!-- Información de contacto -->
+      <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-primary mb-6">Información de Contacto</h3>
+        
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">Dirección</h4>
+              <p class="text-gray-600">Valdivia #300 Oficina 505</p>
+              <p class="text-gray-600">Edificio Plaza Fundación</p>
+              <p class="text-gray-600">Los Ángeles, Biobío, Chile</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">Horario de Atención</h4>
+              <p class="text-gray-600">Lunes a Viernes: 9:00 - 18:00</p>
+              <p class="text-gray-600">Sábado: 10:00 - 14:00</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-1">Teléfono</h4>
+              <p class="text-gray-600">+56 9 1234 5678</p>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a 
+              href="https://www.google.com/maps/dir/?api=1&destination=-37.47005715557837,-72.35250437912185" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+              </svg>
+              Cómo Llegar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa interactivo -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div id="map" class="w-full h-full min-h-[400px]"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Leaflet JS y configuración del mapa (cliente) -->
+<!-- load map-client.js from the public folder (copy it to /public/js during deployment or build) -->
+<script src="/js/map-client.js" defer></script>
+
+
+<style>
+  /* Asegurar que el mapa se vea correctamente */
+  #map {
+    z-index: 0;
+  }
+
+  /* Animación suave para el marcador */
+  .custom-marker {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Estilos para el popup de Leaflet */
+  :global(.leaflet-popup-content-wrapper) {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  :global(.leaflet-popup-tip) {
+    background: white;
+  }
+</style>

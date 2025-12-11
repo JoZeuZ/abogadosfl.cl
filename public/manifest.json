@@ -1,0 +1,27 @@
+{
+  "name": "Abogados FL - Bufete Legal Profesional",
+  "short_name": "Abogados FL",
+  "description": "Bufete de abogados profesional especializado en derecho corporativo, inmobiliario, familia, laboral y penal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1f2c3d",
+  "theme_color": "#c5a47e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "legal"],
+  "lang": "es-CL",
+  "dir": "ltr"
+}

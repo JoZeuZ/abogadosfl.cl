@@ -1,31 +1,34 @@
 ---
-// Header component
+// Header component - Mejorado y totalmente responsivo
 ---
 
-<header class="header">
+<header class="header" id="header">
   <div class="container">
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
       <div class="nav-brand">
-        <img src="/logo.svg" alt="Logo" class="logo" />
-        <span class="brand-text">Abogados FL</span>
+        <a href="/" class="brand-link" aria-label="Ir al inicio">
+          <img src="/logo.svg" alt="Logo Abogados FL" class="logo" width="40" height="40" />
+          <span class="brand-text">Abogados FL</span>
+        </a>
       </div>
       
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#inicio" class="nav-link">Inicio</a></li>
-        <li><a href="#sobre-nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#equipo" class="nav-link">Equipo</a></li>
-        <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
-        <li><a href="#noticias" class="nav-link">Noticias</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      <ul class="nav-menu" id="nav-menu" role="menubar">
+        <li role="none"><a href="#inicio" class="nav-link" role="menuitem">Inicio</a></li>
+        <li role="none"><a href="#sobre-nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+        <li role="none"><a href="#servicios" class="nav-link" role="menuitem">Servicios</a></li>
+        <li role="none"><a href="#equipo" class="nav-link" role="menuitem">Equipo</a></li>
+        <li role="none"><a href="#testimonios" class="nav-link" role="menuitem">Testimonios</a></li>
+        <li role="none"><a href="#noticias" class="nav-link" role="menuitem">Noticias</a></li>
+        <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+        <li role="none" class="mobile-cta"><a href="#contacto" class="btn btn-primary">Consulta Gratis</a></li>
       </ul>
       
       <div class="nav-actions">
-        <a href="#contacto" class="btn btn-primary">Consulta</a>
-        <button class="mobile-toggle" id="mobile-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
+        <a href="#contacto" class="btn btn-primary desktop-cta">Consulta Gratis</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
         </button>
       </div>
     </nav>
@@ -35,13 +38,24 @@
 <style>
   .header {
     background-color: var(--color-white);
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-md);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
+    z-index: var(--z-fixed);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .header.hidden {
+    transform: translateY(-100%);
   }
   
   .navbar {
@@ -49,24 +63,43 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0;
+    min-height: 70px;
   }
   
   .nav-brand {
+    flex-shrink: 0;
+    z-index: calc(var(--z-fixed) + 1);
+  }
+  
+  .brand-link {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: opacity var(--transition-base);
+  }
+  
+  .brand-link:hover {
+    opacity: 0.8;
   }
   
   .logo {
-    height: 40px;
+    height: 45px;
     width: auto;
+    display: block;
+    transition: transform var(--transition-base);
+  }
+  
+  .brand-link:hover .logo {
+    transform: scale(1.05);
   }
   
   .brand-text {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 700;
     color: var(--color-primary);
+    letter-spacing: -0.5px;
   }
   
   .nav-menu {
@@ -74,17 +107,27 @@
     list-style: none;
     gap: 2rem;
     margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+  
+  .nav-menu li {
+    margin: 0;
   }
   
   .nav-link {
     text-decoration: none;
     color: var(--color-text);
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    transition: color var(--transition-base);
     position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
   }
   
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link:focus {
     color: var(--color-accent);
   }
   
@@ -93,14 +136,15 @@
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: 0;
     left: 50%;
-    background-color: var(--color-accent);
-    transition: all 0.3s ease;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-dark));
+    transition: all var(--transition-base);
     transform: translateX(-50%);
   }
   
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link:focus::after {
     width: 100%;
   }
   
@@ -116,94 +160,270 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 24px;
-    justify-content: space-between;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
+    z-index: calc(var(--z-fixed) + 1);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-base);
   }
   
-  .mobile-toggle span {
+  .mobile-toggle:hover {
+    background-color: var(--color-light);
+  }
+  
+  .mobile-toggle:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  
+  .hamburger-line {
     display: block;
     height: 3px;
     width: 100%;
     background-color: var(--color-primary);
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
+    border-radius: 2px;
+  }
+  
+  .mobile-cta {
+    display: none;
+  }
+  
+  /* Tablets y móviles */
+  @media (max-width: 1024px) {
+    .nav-menu {
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      font-size: 0.9rem;
+    }
   }
   
   @media (max-width: 768px) {
+    .navbar {
+      padding: 0.75rem 0;
+      min-height: 60px;
+    }
+    
+    .logo {
+      height: 38px;
+    }
+    
+    .brand-text {
+      font-size: 1.25rem;
+    }
+    
     .nav-menu {
       position: fixed;
-      top: 70px;
-      left: -100%;
+      top: 0;
+      left: 100%;
       width: 100%;
-      height: calc(100vh - 70px);
-      background-color: var(--color-white);
+      max-width: 400px;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
-      padding: 2rem 0;
-      transition: left 0.3s ease;
-      box-shadow: var(--shadow-card);
+      align-items: stretch;
+      padding: 100px 2rem 2rem;
+      gap: 0;
+      transition: left var(--transition-base);
+      box-shadow: var(--shadow-2xl);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     
     .nav-menu.active {
-      left: 0;
+      left: calc(100% - 400px);
+    }
+    
+    .nav-menu li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu li:last-child {
+      border-bottom: none;
+    }
+    
+    .nav-link {
+      display: block;
+      color: var(--color-white);
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      width: 100%;
+    }
+    
+    .nav-link::after {
+      display: none;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--color-accent);
+      padding-left: 0.5rem;
     }
     
     .mobile-toggle {
       display: flex;
     }
     
-    .mobile-toggle.active span:nth-child(9) {
-      transform: rotate(45deg) translate(8px, 8px);
+    .mobile-toggle.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
     }
     
-    .mobile-toggle.active span:nth-child(2) {
+    .mobile-toggle.active .hamburger-line:nth-child(2) {
       opacity: 0;
+      transform: translateX(-20px);
     }
     
-    .mobile-toggle.active span:nth-child(3) {
+    .mobile-toggle.active .hamburger-line:nth-child(3) {
       transform: rotate(-45deg) translate(7px, -7px);
     }
     
-    .nav-actions .btn {
+    .nav-actions .desktop-cta {
       display: none;
     }
+    
+    .mobile-cta {
+      display: block;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .mobile-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  /* Móviles pequeños */
+  @media (max-width: 480px) {
+    .nav-menu {
+      max-width: 100%;
+    }
+    
+    .nav-menu.active {
+      left: 0;
+    }
+    
+    .brand-text {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Animación de entrada del overlay */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-fixed) - 1);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+  
+  .nav-overlay.active {
+    display: block;
+    opacity: 1;
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navMenu = document.getElementById('nav-menu');
+  // Funcionalidad del header mejorada
+  const header = document.getElementById('header');
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+  let lastScroll = 0;
+  
+  // Toggle menú móvil
+  mobileToggle?.addEventListener('click', () => {
+    const isActive = mobileToggle.classList.toggle('active');
+    navMenu?.classList.toggle('active');
+    mobileToggle.setAttribute('aria-expanded', isActive.toString());
     
-    mobileToggle?.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
-      navMenu?.classList.toggle('active');
+    // Prevenir scroll del body cuando el menú está abierto
+    if (isActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Cerrar menú al hacer click en un enlace
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileToggle?.classList.remove('active');
+      navMenu?.classList.remove('active');
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
+  });
+  
+  // Efecto de scroll en el header
+  let scrollTimeout: number | undefined;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
     
-    // Cerrar menú al hacer click en un enlace
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileToggle?.classList.remove('active');
-        navMenu?.classList.remove('active');
-      });
-    });
+    // Añadir clase scrolled para efectos visuales
+    if (currentScroll > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
     
-    // Scroll effect para el header
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      const header = document.querySelector('.header');
-      
-      if (currentScroll > 100) {
-        header?.classList.add('scrolled');
+    // Ocultar/mostrar header al hacer scroll (solo en desktop)
+    if (window.innerWidth > 768) {
+      if (currentScroll > lastScroll && currentScroll > 200) {
+        header?.classList.add('hidden');
       } else {
-        header?.classList.remove('scrolled');
+        header?.classList.remove('hidden');
       }
-      
-      lastScroll = currentScroll;
-    });
+    }
+    
+    lastScroll = currentScroll;
+    
+    // Limpiar timeout previo
+    if (scrollTimeout) {
+      window.clearTimeout(scrollTimeout);
+    }
+    
+    // Siempre mostrar el header después de que el usuario deje de hacer scroll
+    scrollTimeout = window.setTimeout(() => {
+      header?.classList.remove('hidden');
+    }, 150);
+  }, { passive: true });
+  
+  // Cerrar menú si se hace click fuera
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (navMenu?.classList.contains('active') && 
+        !navMenu.contains(target) && 
+        !mobileToggle?.contains(target)) {
+      mobileToggle?.classList.remove('active');
+      navMenu?.classList.remove('active');
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Cerrar menú con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu?.classList.contains('active')) {
+      mobileToggle?.classList.remove('active');
+      navMenu?.classList.remove('active');
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      mobileToggle?.focus();
+      document.body.style.overflow = '';
+    }
   });
 </script>
