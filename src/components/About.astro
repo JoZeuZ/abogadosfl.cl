@@ -6,7 +6,7 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-image fade-in">
-        <img src="/images/lawyer-portrait.svg" alt="Abogado Profesional" class="about-img" />
+        <img src="/images/abogado-francisco.jpg" alt="Francisco Javier Flores León - Fundador Abogados FL" class="about-img" loading="lazy" />
         <div class="experience-badge">
           <div class="badge-number">5+</div>
           <div class="badge-text">Años de<br>Experiencia</div>
@@ -89,8 +89,14 @@
     width: 100%;
     height: 500px;
     object-fit: cover;
+    object-position: center 15%;
     border-radius: 10px;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-base);
+  }
+  
+  .about-img:hover {
+    transform: scale(1.02);
   }
   
   .experience-badge {
@@ -213,6 +219,12 @@
       font-size: 2rem;
     }
     
+    .feature-item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
     .about-actions {
       justify-content: center;
     }
@@ -224,11 +236,6 @@
   }
   
   @media (max-width: 480px) {
-    .feature-item {
-      flex-direction: column;
-      text-align: center;
-    }
-    
     .about-actions {
       flex-direction: column;
     }

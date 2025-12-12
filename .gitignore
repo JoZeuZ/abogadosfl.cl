@@ -4,6 +4,17 @@ dist/
 # generated types
 .astro/
 
+# Archivos de configuración sensibles (IMPORTANTE)
+config.php
+.env
+.env.local
+.env.production
+
+# Logs
+logs/*.log
+logs/*.txt
+logs/*.csv
+
 # dependencies
 node_modules/
 

@@ -2,15 +2,15 @@
 // Services Component - Areas de Práctica
 const services = [
   {
-    icon: 'fas fa-building',
-    title: 'Derecho Corporativo',
-    description: 'Asesoría integral para empresas, contratos comerciales, fusiones y adquisiciones.',
+    icon: 'fas fa-briefcase',
+    title: 'Derecho Laboral',
+    description: 'Defensa de trabajadores y empleadores en conflictos laborales.',
     bgColor: 'primary'
   },
   {
-    icon: 'fas fa-home',
-    title: 'Derecho Inmobiliario',
-    description: 'Compraventa, arrendamientos, propiedad horizontal y regulación urbana.',
+    icon: 'fas fa-building',
+    title: 'Derecho Corporativo',
+    description: 'Asesoría integral para empresas, contratos comerciales, fusiones y adquisiciones.',
     bgColor: 'accent'
   },
   {
@@ -20,21 +20,21 @@ const services = [
     bgColor: 'primary'
   },
   {
-    icon: 'fas fa-briefcase',
-    title: 'Derecho Laboral',
-    description: 'Defensa de trabajadores y empleadores en conflictos laborales.',
-    bgColor: 'accent'
-  },
-  {
     icon: 'fas fa-shield-alt',
     title: 'Derecho Penal',
     description: 'Defensa penal especializada con amplia experiencia en tribunales.',
-    bgColor: 'primary'
+    bgColor: 'accent'
   },
   {
     icon: 'fas fa-file-contract',
     title: 'Derecho Civil',
     description: 'Contratos, responsabilidad civil, sucesiones y derechos reales.',
+    bgColor: 'primary'
+  },
+  {
+    icon: 'fas fa-home',
+    title: 'Derecho Inmobiliario',
+    description: 'Compraventa, arrendamientos, propiedad horizontal y regulación urbana.',
     bgColor: 'accent'
   }
 ];
@@ -186,9 +186,11 @@ const services = [
   
   .service-title {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 1rem;
     font-family: var(--font-heading);
+    color: var(--color-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
   .service-description {
@@ -237,12 +239,38 @@ const services = [
   
   @media (max-width: 768px) {
     .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
     
     .service-card {
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 1rem;
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+    }
+    
+    .service-icon i {
+      font-size: 1.5rem;
+    }
+    
+    .service-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .service-description {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    
+    .service-link {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.875rem;
     }
     
     .section-title {

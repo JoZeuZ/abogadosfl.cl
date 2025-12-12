@@ -3,10 +3,22 @@
 ---
 
 <section id="inicio" class="hero">
-  <div class="hero-background" data-parallax="0.5">
-    <div class="hero-overlay"></div>
-    <div class="hero-pattern"></div>
-  </div>
+  <!-- Video Background Optimizado -->
+  <video 
+    class="hero-video"
+    autoplay 
+    muted 
+    loop 
+    playsinline
+    preload="auto"
+    style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; min-width: 100% !important; min-height: 100% !important; max-width: none !important; max-height: none !important; object-fit: cover !important; display: block !important;"
+  >
+    <source src="/videos/Timelapse_edificio.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Overlays para legibilidad y estética -->
+  <div class="hero-overlay"></div>
+  <div class="hero-pattern"></div>
   
   <div class="container">
     <div class="hero-content">
@@ -69,18 +81,19 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding-top: 70px;
+    padding-top: 100px;
+    background: #1f2c3d;
   }
   
-  .hero-background {
+  .hero-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/images/hero-bg.svg') center/cover no-repeat;
-    background-attachment: fixed;
-    z-index: -2;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.65);
   }
   
   .hero-overlay {
@@ -89,8 +102,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(31, 44, 61, 0.92) 0%, rgba(31, 44, 61, 0.85) 50%, rgba(42, 61, 80, 0.88) 100%);
-    z-index: 1;
+    background: linear-gradient(
+      135deg, 
+      rgba(31, 44, 61, 0.5) 0%, 
+      rgba(31, 44, 61, 0.4) 50%, 
+      rgba(197, 164, 126, 0.2) 100%
+    );
+    z-index: 2;
   }
   
   .hero-pattern {
@@ -102,7 +120,7 @@
     background-image: 
       radial-gradient(circle at 20% 50%, rgba(197, 164, 126, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(197, 164, 126, 0.08) 0%, transparent 50%);
-    z-index: 2;
+    z-index: 3;
   }
   
   .hero-content {
@@ -111,8 +129,8 @@
     max-width: 900px;
     margin: 0 auto;
     position: relative;
-    z-index: 3;
-    padding: 2rem 0;
+    z-index: 10;
+    padding: 2rem 0 8rem;
   }
   
   .hero-title {
@@ -122,6 +140,7 @@
     line-height: 1.15;
     letter-spacing: -0.5px;
     animation: fadeInUp 0.8s ease-out;
+    color: var(--color-white);
   }
   
   .text-accent {
@@ -229,14 +248,14 @@
   
   .scroll-indicator {
     position: absolute;
-    bottom: 2rem;
+    bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     color: var(--color-white);
     opacity: 0.7;
     animation: bounce 2s infinite;
-    z-index: 3;
+    z-index: 10;
     cursor: pointer;
   }
   
@@ -267,6 +286,10 @@
   
   /* Tablets */
   @media (max-width: 1024px) {
+    .hero-video {
+      filter: brightness(0.6);
+    }
+    
     .hero-stats {
       gap: 1.5rem;
       padding: 1.5rem;
@@ -282,8 +305,9 @@
       min-height: 100svh;
     }
     
-    .hero-background {
-      background-attachment: scroll;
+    /* Video más oscuro en móvil para mejor legibilidad */
+    .hero-video {
+      filter: brightness(0.5);
     }
     
     .hero-content {
@@ -315,7 +339,7 @@
       grid-template-columns: 1fr;
       gap: 1rem;
       padding: 1.5rem 1rem;
-      margin: 0 1rem;
+      margin: 0 1rem 5rem;
     }
     
     .stat-item {
@@ -337,7 +361,7 @@
     }
     
     .scroll-indicator {
-      bottom: 1rem;
+      bottom: 2rem;
     }
     
     .scroll-indicator span {
@@ -352,7 +376,7 @@
     }
     
     .hero-content {
-      padding-top: 60px;
+      padding: 60px 0 8rem;
     }
     
     .hero-subtitle {
@@ -378,6 +402,24 @@
     
     .scroll-indicator {
       display: none;
+    }
+  }
+  
+  /* Accesibilidad: Respetar preferencia de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video {
+      display: none;
+    }
+    
+    .hero-video-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/images/hero-bg.svg') center/cover;
+      filter: brightness(0.6);
     }
   }
 </style>
@@ -432,4 +474,72 @@
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
   });
+  
+  // ===== OPTIMIZACIÓN DE VIDEO =====
+  const heroVideo = document.querySelector('.hero-video') as HTMLVideoElement | null;
+  
+  console.log('🎥 Video element:', heroVideo);
+  console.log('🎥 Video source:', heroVideo?.src);
+  console.log('🎥 Video readyState:', heroVideo?.readyState);
+  
+  if (heroVideo) {
+    // Intentar reproducir inmediatamente
+    heroVideo.play()
+      .then(() => {
+        console.log('✅ Video playing successfully');
+      })
+      .catch(err => {
+        console.error('❌ Video autoplay prevented:', err);
+        // Intentar reproducir en cualquier interacción del usuario
+        document.addEventListener('click', () => {
+          heroVideo.play().then(() => {
+            console.log('✅ Video playing after user interaction');
+          }).catch(e => console.error('❌ Still cannot play:', e));
+        }, { once: true });
+      });
+    
+    // Eventos de debug
+    heroVideo.addEventListener('loadstart', () => console.log('📥 Video loadstart'));
+    heroVideo.addEventListener('loadedmetadata', () => console.log('📊 Video metadata loaded'));
+    heroVideo.addEventListener('loadeddata', () => console.log('📦 Video data loaded'));
+    heroVideo.addEventListener('canplay', () => console.log('▶️ Video can play'));
+    heroVideo.addEventListener('playing', () => console.log('🎬 Video is playing'));
+    
+    // 1. Pausar/reproducir según visibilidad del HERO (no del video)
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            console.log('👁️ Hero section visible, playing video');
+            heroVideo.play().catch(err => {
+              console.log('❌ Video play prevented:', err);
+            });
+          } else {
+            console.log('🙈 Hero section not visible, pausing video');
+            heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.1 }); // Solo necesita 10% de visibilidad
+      
+      videoObserver.observe(heroSection);
+    }
+    
+    // 2. Pausar video cuando la pestaña no está visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        heroVideo.pause();
+      } else if (heroVideo.paused) {
+        heroVideo.play().catch(err => console.log('❌ Video play prevented:', err));
+      }
+    });
+    
+    // 3. Manejar errores de carga del video
+    heroVideo.addEventListener('error', (e) => {
+      console.error('💥 Error cargando video:', e);
+      console.error('💥 Error details:', heroVideo.error);
+    });
+  } else {
+    console.error('❌ No se encontró el elemento de video');
+  }
 </script>

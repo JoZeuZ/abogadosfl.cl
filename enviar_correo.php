@@ -30,25 +30,31 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Método no permitido');
 }
 
-// Configuración del formulario
-$config = [
-    'smtp' => [
-        'host' => 'mail.abogadosfl.cl', // Cambiar por el SMTP de su proveedor
-        'port' => 465, // Puerto SMTP (465 para SSL, 587 para TLS)
-        'username' => 'contacto@abogadosfl.cl', // Cambiar por su email
-        'password' => 'Patolo1234', // Cambiar por su password
-        'from_email' => 'contacto@abogadosfl.cl',
-        'from_name' => 'AbogadosFL',
-        'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
-    ],
-    'recaptcha' => [
-        'secret_key' => '6LceRAksAAAAAMVncmHnayHiujv2ExcIC9dG58nF' // Cambiar por su clave secreta
-    ],
-    'backup' => [
-        'enabled' => true,
-        'file' => __DIR__ . '/logs/mensajes.csv'
-    ]
-];
+// Cargar configuración desde archivo seguro
+$configFile = __DIR__ . '/config.php';
+if (!file_exists($configFile)) {
+    error_log('[ERROR] Archivo config.php no encontrado');
+    http_response_code(500);
+    header('Location: /error.html');
+    exit('Error de configuración del servidor');
+}
+
+try {
+    $config = require $configFile;
+} catch (Exception $e) {
+    error_log('[ERROR] Error al cargar config.php: ' . $e->getMessage());
+    http_response_code(500);
+    header('Location: /error.html');
+    exit('Error de configuración del servidor');
+}
+
+// Validar que la configuración tenga los campos necesarios
+if (!isset($config['smtp']['password']) || empty($config['smtp']['password'])) {
+    error_log('[ERROR] Contraseña SMTP no configurada en config.php');
+    http_response_code(500);
+    header('Location: /error.html');
+    exit('Error de configuración del servidor');
+}
 
 // Función de sanitización
 function sanitizeInput($input) {
@@ -70,10 +76,10 @@ function validatePhone($phone) {
 }
 
 // Función para verificar reCAPTCHA
-function verifyRecaptcha($recaptcha_response, $secret_key) {
+function verifyRecaptcha($recaptcha_response, $config) {
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = [
-        'secret' => $secret_key,
+        'secret' => $config['recaptcha']['secret_key'],
         'response' => $recaptcha_response,
         'remoteip' => $_SERVER['REMOTE_ADDR']
     ];
@@ -143,7 +149,7 @@ try {
         throw new Exception("Debe completar la verificación reCAPTCHA");
     }
     
-    if (!verifyRecaptcha($_POST['g-recaptcha-response'], $config['recaptcha']['secret_key'])) {
+    if (!verifyRecaptcha($_POST['g-recaptcha-response'], $config)) {
         throw new Exception("Verificación reCAPTCHA fallida");
     }
     

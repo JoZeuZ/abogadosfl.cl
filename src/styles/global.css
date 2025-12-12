@@ -151,6 +151,10 @@ img {
   display: block;
 }
 
+video {
+  display: block;
+}
+
 /* Utilidades de texto */
 .text-center {
   text-align: center;
