@@ -211,11 +211,6 @@ composer install  # ⚠️ Requiere PHP para enviar_correo.php
    - Contraseña
    - Puerto
 
-3. **Información de Contacto**: Actualizar en componentes:
-   - Teléfono real (actualmente: +56-9-XXXXXXXX)
-   - Email real
-   - Dirección física completa
-
 ### 📁 Archivos Listos para Deploy
 - ✅ `dist/` folder (después de `npm run build`)
 - ✅ `public/.htaccess`

@@ -20,11 +20,6 @@ Esta carpeta debe contener las siguientes imágenes para el correcto funcionamie
 - `client-3.jpg` (150x150px) - Foto de Miguel Torres
 - `client-4.jpg` (150x150px) - Foto de Carmen Delgado
 
-## Blog/Noticias
-- `news-1.jpg` (600x400px) - Imagen para artículo sobre regulaciones corporativas
-- `news-2.jpg` (600x400px) - Imagen para artículo sobre derechos laborales
-- `news-3.jpg` (600x400px) - Imagen para artículo sobre sucesiones
-
 ## Logos
 - `logo.svg` - Logo principal del bufete (para header)
 - `logo-white.svg` - Logo en blanco (para footer)

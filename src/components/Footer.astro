@@ -63,7 +63,7 @@
             </div>
             <div class="contact-item">
               <i class="fas fa-phone"></i>
-              <span>+56 (9) XXXXXXXX</span>
+              <span>+56 9 7319 8154</span>
             </div>
             <div class="contact-item">
               <i class="fas fa-envelope"></i>
@@ -76,7 +76,7 @@
           </div>
         </div>
         
-        <div class="footer-section">
+        <div class="footer-section footer-newsletter">
           <h4 class="footer-title">Newsletter</h4>
           <p class="newsletter-text">
             Suscríbase para recibir noticias legales y consejos jurídicos.
@@ -109,7 +109,7 @@
     <div class="container">
       <div class="footer-bottom-content">
         <p class="copyright">
-          &copy; 2024 Abogados FL. Todos los derechos reservados.
+          &copy; 2025 Abogados FL. Todos los derechos reservados.
         </p>
         <div class="footer-bottom-links">
           <a href="/aviso-legal">Aviso Legal</a>
@@ -354,12 +354,43 @@
   
   @media (max-width: 768px) {
     .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1.5rem;
+    }
+    
+    .footer-brand {
+      grid-column: 1 / -1;
+      text-align: center;
+      max-width: 100%;
+    }
+    
+    .footer-logo {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .footer-social {
+      justify-content: center;
+    }
+    
+    .footer-newsletter {
+      grid-column: 1 / -1;
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
     }
     
     .footer-main {
       padding: 40px 0 30px;
+    }
+    
+    .footer-section {
+      min-width: 0;
     }
     
     .footer-bottom-content {
@@ -369,15 +400,25 @@
     
     .footer-bottom-links {
       justify-content: center;
+      flex-wrap: wrap;
     }
   }
   
-  @media (max-width: 576px) {
+  @media (max-width: 480px) {
+    .footer-grid {
+      gap: 1.5rem 1rem;
+    }
+    
+    .footer-section {
+      font-size: 0.9rem;
+    }
+    
     .footer-bottom-links {
       flex-direction: column;
       gap: 1rem;
     }
   }
+
 </style>
 
 <script>

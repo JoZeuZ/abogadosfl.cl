@@ -130,7 +130,10 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background-color 1.2s ease,
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 1.2s ease;
+            will-change: transform;
             cursor: pointer;
             border: none;
             font-family: var(--font-body);
@@ -143,7 +146,7 @@
         
         .btn-primary:hover {
             background-color: #b8956d;
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
         
         .btn-outline {
@@ -225,7 +228,7 @@
                 <h3>¿Necesita atención inmediata?</h3>
                 <div class="info-item">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <span><strong>Línea de Emergencia 24/7:</strong> +56 (9) XXXXXXXX</span>
+                    <span><strong>Línea de Emergencia 24/7:</strong> +56 9 7319 8154</span>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>

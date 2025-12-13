@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Aviso Legal - Abogados FL">
+  <Header />
+  
+  <main class="legal-page">
+    <div class="container">
+      <div class="legal-content">
+        <h1 class="legal-title">Aviso Legal</h1>
+        
+        <section class="legal-section">
+          <h2>1. Información General</h2>
+          <p>
+            En cumplimiento de la Ley N° 19.496 sobre Protección de los Derechos de los Consumidores 
+            y demás normativa aplicable en Chile, se informa que el presente sitio web es propiedad de:
+          </p>
+          <ul>
+            <li><strong>Razón Social:</strong> Abogados FL</li>
+            <li><strong>Domicilio:</strong> Valdivia #300 Oficina 505, Los Ángeles, Chile</li>
+            <li><strong>Correo Electrónico:</strong> info@abogadosfl.cl</li>
+            <li><strong>Teléfono:</strong> +56 9 7319 8154</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. Objeto del Sitio Web</h2>
+          <p>
+            El presente sitio web tiene como finalidad proporcionar información sobre los servicios 
+            legales ofrecidos por nuestro estudio jurídico, así como facilitar el contacto entre 
+            potenciales clientes y nuestros profesionales.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. Condiciones de Uso</h2>
+          <p>
+            El acceso y uso de este sitio web atribuye la condición de usuario y implica la 
+            aceptación plena de todas las condiciones incluidas en este Aviso Legal. El usuario 
+            se compromete a:
+          </p>
+          <ul>
+            <li>Hacer un uso adecuado y lícito del sitio web</li>
+            <li>No utilizar el sitio con fines ilícitos o lesivos</li>
+            <li>No realizar actividades que puedan dañar la imagen, intereses o derechos del estudio</li>
+            <li>No introducir o difundir virus informáticos o cualquier sistema que pueda causar daños</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. Propiedad Intelectual e Industrial</h2>
+          <p>
+            Todos los contenidos del sitio web, incluyendo pero no limitándose a textos, fotografías, 
+            gráficos, imágenes, iconos, tecnología, software, links y demás contenidos audiovisuales 
+            o sonoros, así como su diseño gráfico y códigos fuente, son propiedad intelectual de 
+            Abogados FL o de terceros, sin que puedan entenderse cedidos al usuario ninguno de los 
+            derechos de explotación reconocidos por la normativa vigente en materia de propiedad 
+            intelectual sobre los mismos.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>5. Responsabilidad</h2>
+          <p>
+            Abogados FL no se hace responsable de los daños y perjuicios de cualquier naturaleza 
+            que pudieran derivarse de:
+          </p>
+          <ul>
+            <li>La falta de disponibilidad o continuidad del funcionamiento del sitio web</li>
+            <li>La falta de utilidad del sitio web para la realización de actividades específicas</li>
+            <li>La presencia de virus o elementos lesivos en el sitio web</li>
+            <li>El uso ilícito, negligente, fraudulento o contrario al presente Aviso Legal</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>6. Enlaces</h2>
+          <p>
+            El sitio web puede contener enlaces a otros sitios de terceros. Abogados FL no se 
+            hace responsable del contenido de dichos sitios web ni de las políticas de privacidad 
+            que estos puedan tener.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>7. Modificaciones</h2>
+          <p>
+            Abogados FL se reserva el derecho de efectuar sin previo aviso las modificaciones que 
+            considere oportunas en su sitio web, pudiendo cambiar, suprimir o añadir tanto los 
+            contenidos y servicios que se presten a través de la misma como la forma en la que 
+            éstos aparezcan presentados o localizados.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>8. Legislación Aplicable y Jurisdicción</h2>
+          <p>
+            Las presentes condiciones se rigen por la legislación chilena. Para cualquier controversia 
+            que pudiera derivarse del acceso o uso de este sitio web, las partes se someten 
+            expresamente a la jurisdicción de los Tribunales de Justicia de Los Ángeles, Chile.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <p class="legal-update">
+            <strong>Última actualización:</strong> Diciembre 2025
+          </p>
+        </section>
+
+        <div class="legal-actions">
+          <a href="/" class="btn-primary">Volver al Inicio</a>
+          <a href="/contacto" class="btn-secondary">Contactar</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 120px 0 80px;
+    background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+    min-height: 100vh;
+  }
+
+  .legal-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .legal-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--color-accent);
+  }
+
+  .legal-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-section h2 {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .legal-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .legal-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .legal-section ul li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    line-height: 1.8;
+  }
+
+  .legal-section ul li::before {
+    content: "▪";
+    color: var(--color-accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .legal-update {
+    font-style: italic;
+    color: #666;
+    margin-top: 2rem;
+  }
+
+  .legal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 1.2s ease,
+                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 1.2s ease,
+                color 1.2s ease;
+    will-change: transform;
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #c69635;
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 100px 0 60px;
+    }
+
+    .legal-content {
+      padding: 30px 20px;
+    }
+
+    .legal-title {
+      font-size: 2rem;
+    }
+
+    .legal-section h2 {
+      font-size: 1.3rem;
+    }
+
+    .legal-actions {
+      flex-direction: column;
+    }
+  }
+</style>

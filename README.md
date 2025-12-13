@@ -131,7 +131,8 @@ composer install --no-dev --optimize-autoloader
 │   │   ├── Services.astro   # Servicios legales
 │   │   ├── Team.astro       # Equipo de abogados
 │   │   ├── Testimonials.astro # Testimonios
-│   │   ├── News.astro       # Blog/noticias
+│   │   ├── SuccessStories.astro # Casos de éxito
+│   │   ├── FAQ.astro        # Preguntas frecuentes
 │   │   ├── Contact.astro    # Formulario de contacto
 │   │   └── Footer.astro     # Pie de página
 │   ├── layouts/
@@ -180,9 +181,6 @@ client-1.jpg         # Foto cliente testimonio 1
 client-2.jpg         # Foto cliente testimonio 2
 client-3.jpg         # Foto cliente testimonio 3
 client-4.jpg         # Foto cliente testimonio 4
-news-1.jpg           # Imagen artículo 1
-news-2.jpg           # Imagen artículo 2
-news-3.jpg           # Imagen artículo 3
 pattern.png          # Patrón para fondo de estadísticas
 logo.svg             # Logo principal
 logo-white.svg       # Logo blanco para footer
@@ -270,7 +268,7 @@ chmod 644 *.html
 Para soporte técnico o consultas sobre el desarrollo:
 
 - **Email**: soporte@abogadosfl.cl
-- **Teléfono**: +56 (9) XXXXXXXX
+- **Teléfono**: +56 9 7319 8154
 - **Documentación**: Ver comentarios en el código fuente
 
 ## 📄 Licencia

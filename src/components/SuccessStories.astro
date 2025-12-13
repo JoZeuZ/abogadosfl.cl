@@ -1,0 +1,479 @@
+---
+// Success Stories Component - Casos de Éxito
+const successCases = [
+  {
+    title: "Indemnización por Despido Injustificado",
+    category: "Derecho Laboral",
+    icon: "fas fa-briefcase",
+    description: "Cliente despedido sin causa justificada después de 8 años de trabajo en empresa tecnológica. Se negaba al pago de indemnización completa.",
+    result: "Obtuvimos sentencia favorable con pago de indemnización por años de servicio, feriado proporcional, y recargo del 80% por despido improcedente.",
+    stats: [
+      { label: "Indemnización obtenida", value: "$18.500.000" },
+      { label: "Tiempo de resolución", value: "4 meses" }
+    ],
+    variant: "primary"
+  },
+  {
+    title: "Custodia Compartida Exitosa",
+    category: "Derecho de Familia",
+    icon: "fas fa-heart",
+    description: "Padre buscaba régimen de custodia compartida tras separación conflictiva. Madre se oponía alegando dedicación exclusiva al trabajo.",
+    result: "Logramos custodia compartida con régimen 50/50, permitiendo al padre estar presente en la crianza de sus hijos y equilibrar responsabilidades.",
+    stats: [
+      { label: "Tiempo con hijos", value: "50%" },
+      { label: "Satisfacción familiar", value: "Alta" }
+    ],
+    variant: "accent"
+  },
+  {
+    title: "Constitución Exitosa de Startup Tecnológica",
+    category: "Derecho Corporativo",
+    icon: "fas fa-building",
+    description: "Tres socios buscaban constituir una startup con estructura flexible, protección de propiedad intelectual y preparación para inversión externa.",
+    result: "Constituimos SPA con pacto de accionistas robusto, registro de marca, y estructura lista para recibir inversionistas ángeles en 6 meses.",
+    stats: [
+      { label: "Inversión captada", value: "$50.000.000" },
+      { label: "Tiempo de constitución", value: "3 semanas" }
+    ],
+    variant: "primary"
+  },
+  {
+    title: "Resolución de Conflicto por Incumplimiento Contractual",
+    category: "Derecho Civil",
+    icon: "fas fa-file-contract",
+    description: "Empresa constructora no cumplió plazos de entrega de proyecto inmobiliario, generando pérdidas importantes a nuestro cliente inversor.",
+    result: "Negociamos acuerdo extrajudicial con pago de multas contractuales, compensación por lucro cesante y entrega de unidades adicionales.",
+    stats: [
+      { label: "Compensación total", value: "$95.000.000" },
+      { label: "Resolución", value: "Extrajudicial" }
+    ],
+    variant: "accent"
+  },
+  {
+    title: "Absolución en Proceso Penal Complejo",
+    category: "Derecho Penal",
+    icon: "fas fa-shield-alt",
+    description: "Cliente acusado de delito económico con riesgo de pena privativa de libertad. Evidencia circunstancial débil pero contexto desfavorable.",
+    result: "Desarrollamos defensa técnica sólida demostrando falta de participación. Obtuvimos sentencia absolutoria tras juicio oral de 3 días.",
+    stats: [
+      { label: "Resultado", value: "Absolución total" },
+      { label: "Antecedentes", value: "Limpios" }
+    ],
+    variant: "primary"
+  },
+  {
+    title: "Compra de Propiedad con Múltiples Gravámenes",
+    category: "Derecho Inmobiliario",
+    icon: "fas fa-home",
+    description: "Cliente interesado en propiedad comercial con prohibiciones, hipotecas y conflictos de herencia. Vendedores ofrecían precio atractivo.",
+    result: "Realizamos estudio de títulos exhaustivo, negociamos alzamiento de gravámenes y aseguramos transferencia limpia con ahorro del 30%.",
+    stats: [
+      { label: "Ahorro obtenido", value: "$120.000.000" },
+      { label: "Gravámenes resueltos", value: "5" }
+    ],
+    variant: "accent"
+  }
+];
+---
+
+<section id="casos-exito" class="success-stories section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Casos de Éxito</span>
+      <h2 class="section-title">
+        Resultados que <span class="text-accent">Hablan por Nosotros</span>
+      </h2>
+      <p class="section-description">
+        Cada caso es único y merece una estrategia legal personalizada. 
+        Estos son algunos ejemplos de cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos.
+      </p>
+    </div>
+
+    <div class="success-grid">
+      {successCases.map((case_, index) => (
+        <div class={`success-card ${case_.variant}`} data-delay={index * 100}>
+          <div class="card-header">
+            <div class="header-content">
+              <div class="icon-circle">
+                <i class={case_.icon}></i>
+              </div>
+              <span class="category-tag">{case_.category}</span>
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <h3 class="case-title">{case_.title}</h3>
+            
+            <div class="case-info">
+              <div class="info-block">
+                <span class="info-label">Situación</span>
+                <p class="info-text">{case_.description}</p>
+              </div>
+              
+              <div class="info-block highlight">
+                <span class="info-label">
+                  <i class="fas fa-trophy"></i> Resultado
+                </span>
+                <p class="info-text">{case_.result}</p>
+              </div>
+            </div>
+
+            {case_.stats && case_.stats.length > 0 && (
+              <div class="stats-container">
+                {case_.stats.map(stat => (
+                  <div class="stat-box">
+                    <span class="stat-number">{stat.value}</span>
+                    <span class="stat-desc">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="success-cta text-center fade-in">
+      <h3>Su caso también merece el mejor resultado</h3>
+      <p>Permítanos analizar su situación legal y diseñar la mejor estrategia para su éxito</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Solicitar Consulta</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .success-stories {
+    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-white) 100%);
+  }
+
+  .success-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .success-card {
+    background: var(--color-white);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(31, 44, 61, 0.08);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+  }
+
+  .success-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    transition: height 0.3s ease;
+  }
+
+  .success-card.primary::before {
+    background: linear-gradient(90deg, var(--color-primary), #4a5d75);
+  }
+
+  .success-card.accent::before {
+    background: linear-gradient(90deg, var(--color-accent), #d4b080);
+  }
+
+  .success-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(31, 44, 61, 0.15);
+  }
+
+  .success-card:hover::before {
+    height: 8px;
+  }
+
+  .card-header {
+    padding: 2.5rem 2.5rem 1.5rem;
+    position: relative;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+
+  .success-card.primary .icon-circle {
+    background: linear-gradient(135deg, rgba(31, 44, 61, 0.1), rgba(31, 44, 61, 0.05));
+  }
+
+  .success-card.accent .icon-circle {
+    background: linear-gradient(135deg, rgba(197, 164, 126, 0.15), rgba(197, 164, 126, 0.05));
+  }
+
+  .success-card:hover .icon-circle {
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  .icon-circle i {
+    font-size: 2.5rem;
+  }
+
+  .success-card.primary .icon-circle i {
+    color: var(--color-primary);
+  }
+
+  .success-card.accent .icon-circle i {
+    color: var(--color-accent);
+  }
+
+  .category-tag {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .success-card.primary .category-tag {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .success-card.accent .category-tag {
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .card-body {
+    padding: 0 2.5rem 2.5rem;
+  }
+
+  .case-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+  }
+
+  .case-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-block {
+    position: relative;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: var(--color-light);
+    transition: all 0.3s ease;
+  }
+
+  .info-block.highlight {
+    background: transparent;
+    border: 2px solid;
+    border-radius: 16px;
+  }
+
+  .success-card.primary .info-block.highlight {
+    border-color: rgba(31, 44, 61, 0.15);
+    background: linear-gradient(135deg, rgba(31, 44, 61, 0.03), transparent);
+  }
+
+  .success-card.accent .info-block.highlight {
+    border-color: rgba(197, 164, 126, 0.2);
+    background: linear-gradient(135deg, rgba(197, 164, 126, 0.05), transparent);
+  }
+
+  .info-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .success-card.primary .info-label {
+    color: var(--color-primary);
+  }
+
+  .success-card.accent .info-label {
+    color: var(--color-accent);
+  }
+
+  .info-label i {
+    font-size: 1rem;
+  }
+
+  .info-text {
+    color: var(--color-text);
+    line-height: 1.7;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid;
+  }
+
+  .success-card.primary .stats-container {
+    border-top-color: rgba(31, 44, 61, 0.1);
+  }
+
+  .success-card.accent .stats-container {
+    border-top-color: rgba(197, 164, 126, 0.15);
+  }
+
+  .stat-box {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .success-card.primary .stat-box {
+    background: linear-gradient(135deg, rgba(31, 44, 61, 0.05), transparent);
+  }
+
+  .success-card.accent .stat-box {
+    background: linear-gradient(135deg, rgba(197, 164, 126, 0.08), transparent);
+  }
+
+  .stat-box:hover {
+    transform: translateY(-3px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: var(--font-heading);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .success-card.primary .stat-number {
+    color: var(--color-primary);
+  }
+
+  .success-card.accent .stat-number {
+    color: var(--color-accent);
+  }
+
+  .stat-desc {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-text-light);
+    line-height: 1.3;
+  }
+
+  .success-cta {
+    margin-top: 4rem;
+    padding: 3.5rem 2rem;
+    background: linear-gradient(135deg, var(--color-white), var(--color-light));
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(31, 44, 61, 0.08);
+  }
+
+  .success-cta h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .success-cta p {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .success-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .card-header {
+      padding: 2rem 2rem 1rem;
+    }
+
+    .card-body {
+      padding: 0 2rem 2rem;
+    }
+
+    .case-title {
+      font-size: 1.35rem;
+    }
+
+    .icon-circle {
+      width: 65px;
+      height: 65px;
+    }
+
+    .icon-circle i {
+      font-size: 2rem;
+    }
+
+    .category-tag {
+      font-size: 0.65rem;
+      padding: 0.4rem 1rem;
+    }
+
+    .stats-container {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<script>
+  // Animación de aparición al hacer scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const cards = document.querySelectorAll('.success-card');
+    cards.forEach(card => observer.observe(card));
+  });
+</script>
+

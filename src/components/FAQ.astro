@@ -1,0 +1,318 @@
+---
+// FAQ Component - Preguntas Frecuentes por Área Legal
+const faqs = [
+  {
+    area: "Derecho Laboral",
+    icon: "fas fa-briefcase",
+    questions: [
+      {
+        question: "¿Cuándo puedo demandar por despido injustificado?",
+        answer: "Puedes demandar si fuiste despedido sin causa justificada. Tienes 60 días hábiles desde el despido para interponer la demanda. La indemnización puede incluir: antigüedad, aviso previo, recargo del 30-100% si el despido es improcedente."
+      },
+      {
+        question: "¿Qué hacer si no me pagan las horas extras?",
+        answer: "Reúne evidencia (marcajes, correos, testigos) y presenta una demanda laboral. Las horas extras se pagan con un 50% de recargo las primeras 2 horas y 100% las restantes. Prescriben en 6 meses desde el no pago."
+      }
+    ]
+  },
+  {
+    area: "Derecho de Familia",
+    icon: "fas fa-heart",
+    questions: [
+      {
+        question: "¿Cuánto tiempo tarda un divorcio de mutuo acuerdo?",
+        answer: "Un divorcio de común acuerdo puede resolverse en 2-4 meses si todos los acuerdos están claros (pensión alimenticia, custodia, bienes). Si hay conflicto, puede extenderse 1-2 años."
+      },
+      {
+        question: "¿Cómo se determina la pensión alimenticia?",
+        answer: "Se considera: necesidades del hijo, capacidad económica del alimentante, nivel de vida previo. Generalmente es 20-40% del ingreso líquido del padre/madre obligado. Puede modificarse si cambian las circunstancias."
+      }
+    ]
+  },
+  {
+    area: "Derecho Corporativo",
+    icon: "fas fa-building",
+    questions: [
+      {
+        question: "¿Qué tipo de sociedad es mejor para mi empresa?",
+        answer: "Depende de tu actividad y objetivos. SPA (Sociedad por Acciones) es flexible y para 1+ socios. Limitada requiere 2+ socios. Anónima es para grandes empresas. Te asesoramos según tu caso específico."
+      },
+      {
+        question: "¿Cómo protejo mi marca comercial?",
+        answer: "Registra tu marca en INAPI (Instituto Nacional de Propiedad Industrial). El proceso toma 8-12 meses. La protección dura 10 años renovables. Evita conflictos y uso indebido por terceros."
+      }
+    ]
+  },
+  {
+    area: "Derecho Civil",
+    icon: "fas fa-file-contract",
+    questions: [
+      {
+        question: "¿Qué hacer si alguien no cumple un contrato?",
+        answer: "Primero, envía un requerimiento formal por escrito. Si no responde, puedes demandar el cumplimiento forzado o la resolución del contrato más indemnización de daños. Guarda toda la documentación del contrato."
+      },
+      {
+        question: "¿Cómo reclamar una herencia?",
+        answer: "Si eres heredero legítimo, tienes derecho a tu porción hereditaria. El proceso incluye: posesión efectiva, tasación de bienes, partición. Un testamento puede modificar la distribución dentro de los límites legales."
+      }
+    ]
+  },
+  {
+    area: "Derecho Penal",
+    icon: "fas fa-shield-alt",
+    questions: [
+      {
+        question: "¿Qué hacer si me detienen injustamente?",
+        answer: "Ejercita tu derecho a guardar silencio y solicita un abogado inmediatamente. No firmes nada sin asesoría legal. Tienes derecho a que te informen de los cargos y a comunicarte con tu familia."
+      },
+      {
+        question: "¿Puedo retirar una denuncia penal?",
+        answer: "Depende del delito. En delitos de acción pública (robo, lesiones graves) solo el fiscal puede archivar. En acción privada (injurias, calumnias) sí puedes desistir. En violencia intrafamiliar es más complejo."
+      }
+    ]
+  },
+  {
+    area: "Derecho Inmobiliario",
+    icon: "fas fa-home",
+    questions: [
+      {
+        question: "¿Qué verificar antes de comprar una propiedad?",
+        answer: "Revisa: certificado de dominio vigente en Conservador de Bienes Raíces, prohibiciones/gravámenes, planos reguladores, deudas de contribuciones, gastos comunes, estado de la posesión. Recomendamos hacer un estudio de títulos completo."
+      },
+      {
+        question: "¿Cómo desalojar a un arrendatario moroso?",
+        answer: "Envía un aviso de término de contrato por no pago. Si no desaloja, demanda en tribunal. El proceso puede tomar 3-6 meses. Mientras tanto, no puedes cambiar cerraduras ni cortar servicios (es ilegal)."
+      }
+    ]
+  }
+];
+---
+
+<section id="preguntas-frecuentes" class="faq section-padding">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <span class="section-subtitle">Preguntas Frecuentes</span>
+      <h2 class="section-title">
+        Resolvemos sus <span class="text-accent">Dudas Legales</span>
+      </h2>
+      <p class="section-description">
+        Encuentre respuestas a las preguntas más frecuentes organizadas por área legal. 
+        Si no encuentra lo que busca, contáctenos para una consulta personalizada.
+      </p>
+    </div>
+
+    {faqs.map((area, areaIndex) => (
+      <div class="faq-area fade-in" data-delay={areaIndex * 100}>
+        <div class="faq-area-header">
+          <i class={area.icon}></i>
+          <h3>{area.area}</h3>
+        </div>
+        <div class="faq-list">
+          {area.questions.map((faq, index) => (
+            <div class="faq-item" data-area={areaIndex} data-faq={index}>
+              <button class="faq-question" aria-expanded="false">
+                <span>{faq.question}</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="faq-cta text-center fade-in">
+      <h3>¿No encuentra la respuesta que busca?</h3>
+      <p>Contáctenos para una consulta legal personalizada y sin compromiso</p>
+      <a href="#contacto" class="btn btn-primary btn-lg">Consultar Ahora</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background-color: var(--color-white);
+  }
+
+  .faq-area {
+    margin-bottom: 3rem;
+    background: var(--color-light);
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .faq-area-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--color-accent);
+  }
+
+  .faq-area-header i {
+    font-size: 2rem;
+    color: var(--color-accent);
+  }
+
+  .faq-area-header h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin: 0;
+    font-family: var(--font-heading);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .faq-item:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background-color: var(--color-light);
+  }
+
+  .faq-icon {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 2rem 1.5rem;
+  }
+
+  .faq-answer p {
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .faq-cta {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-white) 100%);
+    border-radius: 15px;
+  }
+
+  .faq-cta h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .faq-cta p {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .faq-area {
+      padding: 1.5rem;
+    }
+
+    .faq-area-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+    }
+
+    .faq-cta {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    // Abrir el primer FAQ de cada área por defecto
+    const firstFaqsPerArea: { [key: string]: Element | null } = {};
+    faqItems.forEach(item => {
+      const area = item.getAttribute('data-area');
+      if (area && !firstFaqsPerArea[area]) {
+        firstFaqsPerArea[area] = item;
+        item.classList.add('active');
+        const button = item.querySelector('.faq-question');
+        if (button) {
+          button.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
+
+    // Toggle FAQ al hacer click
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-question');
+      button?.addEventListener('click', () => {
+        const area = item.getAttribute('data-area');
+        const isActive = item.classList.contains('active');
+
+        // Cerrar todos los FAQs de la misma área
+        faqItems.forEach(otherItem => {
+          if (otherItem.getAttribute('data-area') === area && otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherButton = otherItem.querySelector('.faq-question');
+            if (otherButton) {
+              otherButton.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+
+        // Toggle el FAQ actual
+        item.classList.toggle('active');
+        button.setAttribute('aria-expanded', (!isActive).toString());
+      });
+    });
+  });
+</script>

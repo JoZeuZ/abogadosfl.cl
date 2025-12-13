@@ -171,7 +171,10 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background-color 1.2s ease,
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 1.2s ease;
+            will-change: transform;
             cursor: pointer;
             border: none;
             font-family: var(--font-body);
@@ -184,7 +187,7 @@
         
         .btn-primary:hover {
             background-color: #b8956d;
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
         
         .btn-outline {
@@ -283,7 +286,7 @@
                     <i class="fas fa-phone"></i>
                     <div>
                         <strong>Teléfono Principal:</strong><br>
-                        +56 (9) XXXXXXXX
+                        +56 9 7319 8154
                     </div>
                 </div>
                 
@@ -299,7 +302,7 @@
                     <i class="fas fa-exclamation-circle"></i>
                     <div>
                         <strong>Emergencias 24/7:</strong><br>
-                        +56 (9) XXXXXXXX
+                        +56 9 7319 8154
                     </div>
                 </div>
                 
@@ -325,7 +328,7 @@
             <div class="actions">
                 <a href="/#contacto" class="btn btn-error">Intentar Nuevamente</a>
                 <a href="/" class="btn btn-primary">Volver al Inicio</a>
-                <a href="tel:+5614567890" class="btn btn-outline">Llamar Ahora</a>
+                <a href="tel:+56973198154" class="btn btn-outline">Llamar Ahora</a>
             </div>
         </div>
     </div>
