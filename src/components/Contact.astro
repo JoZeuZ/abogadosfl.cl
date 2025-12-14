@@ -449,75 +449,104 @@
   }
 </style>
 
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contactForm') as HTMLFormElement;
-    const submitBtn = document.querySelector('.contact-submit') as HTMLButtonElement;
-    const btnText = document.querySelector('.btn-text') as HTMLElement;
-    const btnLoader = document.querySelector('.btn-loader') as HTMLElement;
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
     
-    form?.addEventListener('submit', async (e) => {
+    if (!form) return;
+    
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Validar checkbox de privacidad
-      const privacyCheckbox = form.querySelector('input[name="privacidad"]') as HTMLInputElement;
-      if (!privacyCheckbox?.checked) {
-        alert('Debe aceptar la Política de Privacidad y Tratamiento de Datos');
+      const submitBtn = form.querySelector('.contact-submit');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoader = submitBtn.querySelector('.btn-loader');
+      
+      // Validar que se aceptaron las políticas
+      const privacyCheckbox = form.querySelector('input[name="privacidad"]');
+      if (!privacyCheckbox.checked) {
+        alert('❌ Debe aceptar la Política de Privacidad y el Tratamiento de Datos');
         return;
       }
       
-      // Cambiar estado del botón
-      if (submitBtn) submitBtn.disabled = true;
-      if (btnText) btnText.style.display = 'none';
-      if (btnLoader) btnLoader.style.display = 'inline';
+      // Mostrar spinner
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoader.style.display = 'inline-block';
       
       try {
-        const formData = new FormData(form);
-        
-        // Verificar si reCAPTCHA está disponible
-        const grecaptcha = (window as any).grecaptcha;
-        
-        if (grecaptcha && grecaptcha.execute) {
-          // Esperar a que reCAPTCHA esté listo
-          await new Promise<void>((resolve) => {
-            grecaptcha.ready(() => resolve());
-          });
-          
-          // Ejecutar reCAPTCHA v3
-          const token = await grecaptcha.execute('6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3', { action: 'submit' });
-          formData.append('g-recaptcha-response', token);
-        } else {
+        // Verificar si grecaptcha está disponible
+        if (typeof grecaptcha === 'undefined') {
           console.warn('reCAPTCHA no disponible, enviando sin validación');
+          form.submit();
+          return;
         }
         
-        console.log('Enviando formulario a http://localhost:8080/enviar_correo.php');
-        
-        const response = await fetch('http://localhost:8080/enviar_correo.php', {
-          method: 'POST',
-          body: formData
+        // Ejecutar reCAPTCHA v3
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3', {action: 'submit'})
+            .then(async function(token) {
+              // Agregar token al formulario
+              let recaptchaInput = form.querySelector('input[name="g-recaptcha-response"]');
+              if (!recaptchaInput) {
+                recaptchaInput = document.createElement('input');
+                recaptchaInput.type = 'hidden';
+                recaptchaInput.name = 'g-recaptcha-response';
+                form.appendChild(recaptchaInput);
+              }
+              recaptchaInput.value = token;
+              
+              // Preparar FormData
+              const formData = new FormData(form);
+              
+              console.log('Enviando formulario...');
+              
+              // Enviar vía fetch - USA RUTA RELATIVA en producción
+              const response = await fetch('/enviar_correo.php', {
+                method: 'POST',
+                body: formData
+              });
+              
+              console.log('Respuesta recibida:', response.status);
+              
+              if (response.ok) {
+                const result = await response.json();
+                
+                if (result.success) {
+                  // Redirigir a página de agradecimiento
+                  window.location.href = '/gracias.html';
+                } else {
+                  // Mostrar error específico del servidor
+                  alert('❌ ' + result.message);
+                  
+                  // Restaurar botón
+                  submitBtn.disabled = false;
+                  btnText.style.display = 'inline';
+                  btnLoader.style.display = 'none';
+                }
+              } else {
+                throw new Error('Error en la respuesta del servidor');
+              }
+            })
+            .catch(function(error) {
+              console.error('Error reCAPTCHA:', error);
+              alert('❌ Error de verificación. Por favor, inténtelo de nuevo o contáctenos por teléfono al +56 9 7319 8154');
+              
+              // Restaurar botón
+              submitBtn.disabled = false;
+              btnText.style.display = 'inline';
+              btnLoader.style.display = 'none';
+            });
         });
-        
-        console.log('Respuesta recibida:', response.status, response.statusText);
-        
-        // Parsear respuesta JSON
-        const data = await response.json();
-        
-        if (response.ok && data.success) {
-          // Éxito - redirigir a página de gracias
-          window.location.href = '/gracias.html';
-        } else {
-          // Error - mostrar mensaje específico
-          const errorMsg = data.error || 'Hubo un error al enviar el formulario';
-          alert('❌ Error al enviar el formulario:\n\n' + errorMsg + '\n\nPor favor, revise los datos e intente nuevamente.');
-        }
       } catch (error) {
-        console.error('Error:', error);
-        alert('❌ Error de conexión\n\nNo se pudo conectar con el servidor. Por favor, verifique su conexión a internet e intente nuevamente, o contáctenos por teléfono al +56 9 7319 8154.');
-      } finally {
-        // Restaurar estado del botón
-        if (submitBtn) submitBtn.disabled = false;
-        if (btnText) btnText.style.display = 'inline';
-        if (btnLoader) btnLoader.style.display = 'none';
+        console.error('Error al procesar formulario:', error);
+        alert('❌ Error de conexión. Por favor, inténtelo de nuevo o contáctenos por teléfono al +56 9 7319 8154');
+        
+        // Restaurar botón
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
       }
     });
   });

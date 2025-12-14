@@ -19,7 +19,19 @@ ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/logs/php_errors.log');
 
 // Configuración de headers de seguridad
-header('Access-Control-Allow-Origin: http://localhost:4321');
+$allowed_origins = [
+    'http://localhost:4321',
+    'https://abogadosfl.cl',
+    'https://www.abogadosfl.cl',
+    'http://abogadosfl.cl',
+    'http://www.abogadosfl.cl'
+];
+
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+if (in_array($origin, $allowed_origins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
+
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Credentials: true');
