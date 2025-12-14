@@ -1,4 +1,4 @@
-# robots.txt para Abogados FL
+# robots.txt para FL y Asociados
 # Permite el rastreo de todo el sitio por motores de búsqueda
 
 User-agent: *

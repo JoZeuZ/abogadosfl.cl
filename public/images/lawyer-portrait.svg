@@ -9,5 +9,5 @@
   <circle cx="250" cy="180" r="80" fill="#1f2c3d"/>
   <rect x="200" y="280" width="100" height="200" fill="#1f2c3d"/>
   <text x="50%" y="85%" font-family="Arial, sans-serif" font-size="16" fill="#1f2c3d" text-anchor="middle" font-weight="bold">Abogado Profesional</text>
-  <text x="50%" y="92%" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">Abogados FL</text>
+  <text x="50%" y="92%" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">FL y Asociados</text>
 </svg>

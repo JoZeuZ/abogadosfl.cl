@@ -1,4 +1,4 @@
-# Guía de Estilos - Proyecto Abogados FL
+# Guía de Estilos - Proyecto FL y Asociados
 
 ## 🎨 Sistema de Diseño
 

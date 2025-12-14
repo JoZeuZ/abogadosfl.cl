@@ -1,6 +1,6 @@
-# Abogados FL - Sitio Web del Bufete
+# FL y Asociados - Sitio Web del Bufete
 
-Un sitio web profesional y moderno para el bufete de abogados Abogados FL, desarrollado con Astro para máximo rendimiento y optimización SEO.
+Un sitio web profesional y moderno para el bufete de abogados FL y Asociados, desarrollado con Astro para máximo rendimiento y optimización SEO.
 
 ## 🌟 Características
 
@@ -50,7 +50,7 @@ $config = [
         'username' => 'info@abogadosfl.cl',    // Su email SMTP
         'password' => 'su_password_smtp',     // Su password SMTP
         'from_email' => 'info@abogadosfl.cl',
-        'from_name' => 'Abogados FL',
+        'from_name' => 'FL y Asociados',
         'to_email' => 'contacto@abogadosfl.cl' // Email donde recibir consultas
     ],
     'recaptcha' => [
@@ -273,8 +273,8 @@ Para soporte técnico o consultas sobre el desarrollo:
 
 ## 📄 Licencia
 
-Este proyecto está desarrollado exclusivamente para Abogados FL. Todos los derechos reservados.
+Este proyecto está desarrollado exclusivamente para FL y Asociados. Todos los derechos reservados.
 
 ---
 
-*Desarrollado con ❤️ para Abogados FL - Defendemos sus derechos con excelencia y dedicación*
+*Desarrollado con ❤️ para FL y Asociados - Defendemos sus derechos con excelencia y dedicación*

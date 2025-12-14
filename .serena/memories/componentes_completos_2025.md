@@ -4,7 +4,7 @@
 ### Estructura HTML
 - `header#header.header`: Contenedor principal con position fixed
 - `nav.navbar`: Navegación con flex layout
-- `div.nav-brand`: Logo + texto "Bufete de Abogados FL"
+- `div.nav-brand`: Logo + texto "Bufete de FL y Asociados"
 - `ul#nav-menu.nav-menu`: Lista de 7 enlaces + botón CTA mobile
   - Inicio, Nosotros, Servicios, Equipo, Testimonios, Noticias, Contacto
   - CTA mobile solo visible en móvil

@@ -1,6 +1,6 @@
 # Project Overview
 
-This is a static website for a law firm called "Abogados FL" located in Los Ángeles, Biobío region, Chile. The site is built using Astro for optimal performance and SEO, with Tailwind CSS for styling, TypeScript for type safety, and PHP with PHPMailer for contact form handling.
+This is a static website for a law firm called "FL y Asociados" located in Los Ángeles, Biobío region, Chile. The site is built using Astro for optimal performance and SEO, with Tailwind CSS for styling, TypeScript for type safety, and PHP with PHPMailer for contact form handling.
 
 ## Purpose
 - Professional website for a law firm

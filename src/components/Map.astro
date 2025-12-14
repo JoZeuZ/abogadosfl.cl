@@ -1,5 +1,5 @@
 ---
-// Map Component - Ubicación de las oficinas de Abogados FL
+// Map Component - Ubicación de las oficinas de FL y Asociados
 ---
 
 <section id="ubicacion" class="py-20 bg-gray-50">
@@ -24,7 +24,7 @@
             </svg>
             <div>
               <h4 class="font-semibold text-gray-900 mb-1">Dirección</h4>
-              <p class="text-gray-600">Valdivia #300 Oficina 505</p>
+              <p class="text-gray-600">Valdivia #300 Oficina 515</p>
               <p class="text-gray-600">Edificio Plaza Fundación</p>
               <p class="text-gray-600">Los Ángeles, Biobío, Chile</p>
             </div>
@@ -47,13 +47,13 @@
             </svg>
             <div>
               <h4 class="font-semibold text-gray-900 mb-1">Teléfono</h4>
-              <p class="text-gray-600">+56 9 1234 5678</p>
+              <p class="text-gray-600">+56 9 7319 8154</p>
             </div>
           </div>
 
           <div class="mt-6">
             <a 
-              href="https://www.google.com/maps/dir/?api=1&destination=-37.47005715557837,-72.35250437912185" 
+              href="https://www.google.com/maps/dir/?api=1&destination=-37.4701005,-72.3524619" 
               target="_blank" 
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300"
@@ -77,8 +77,9 @@
 
 
 <!-- Leaflet JS y configuración del mapa (cliente) -->
-<!-- load map-client.js from the public folder (copy it to /public/js during deployment or build) -->
-<script src="/js/map-client.js" defer></script>
+<script>
+  import './map-client.js';
+</script>
 
 
 <style>

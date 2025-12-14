@@ -2,8 +2,8 @@ import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const initMap = () => {
-  const lat = -37.47005715557837;
-  const lng = -72.35250437912185;
+  const lat = -37.4701005;
+  const lng = -72.3524619;
 
   const map = L.map('map').setView([lat, lng], 16);
 
@@ -33,7 +33,7 @@ const initMap = () => {
   marker.bindPopup(`
     <div style="text-align: center; font-family: sans-serif;">
       <strong style="color: #1f2c3d; font-size: 16px;">Flores León y Asociados</strong><br>
-      <span style="color: #666; font-size: 14px;">Valdivia #300 Oficina 505</span><br>
+      <span style="color: #666; font-size: 14px;">Valdivia #300 Oficina 515</span><br>
       <span style="color: #666; font-size: 14px;">Edificio Plaza Fundación</span><br>
       <span style="color: #666; font-size: 14px;">Los Ángeles, Biobío</span>
     </div>

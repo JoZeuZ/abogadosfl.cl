@@ -153,7 +153,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 {
   "@context": "https://schema.org",
   "@type": "LegalService",
-  "name": "Bufete de Abogados FL",
+  "name": "Bufete de FL y Asociados",
   "description": "...",
   "address": {
     "@type": "PostalAddress",
@@ -213,8 +213,8 @@ ExpiresByType application/javascript "access plus 1 month"
 ## PWA Support (manifest.json)
 ```json
 {
-  "name": "Bufete de Abogados FL",
-  "short_name": "Abogados FL",
+  "name": "Bufete de FL y Asociados",
+  "short_name": "FL y Asociados",
   "theme_color": "#1f2c3d",
   "background_color": "#ffffff",
   "display": "standalone",
