@@ -31,7 +31,7 @@ const teamMembers = [
     
     <div class="team-grid">
       {teamMembers.map((member, index) => (
-        <div class="team-card fade-in">
+        <div class="team-card scale-in" data-delay={index * 150}>
           <div class="team-image">
             <img src={member.image} alt={member.name} />
             <div class="team-overlay">

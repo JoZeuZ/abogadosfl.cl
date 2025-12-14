@@ -55,7 +55,7 @@ const services = [
     
     <div class="services-grid">
       {services.map((service, index) => (
-        <div class={`service-card service-card--${service.bgColor} fade-in`}>
+        <div class={`service-card service-card--${service.bgColor} scale-in`} data-delay={index * 100}>
           <div class="service-icon">
             <i class={service.icon}></i>
           </div>

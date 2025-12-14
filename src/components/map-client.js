@@ -32,7 +32,7 @@ const initMap = () => {
 
   marker.bindPopup(`
     <div style="text-align: center; font-family: sans-serif;">
-      <strong style="color: #1f2c3d; font-size: 16px;">Abogados FL</strong><br>
+      <strong style="color: #1f2c3d; font-size: 16px;">Flores León y Asociados</strong><br>
       <span style="color: #666; font-size: 14px;">Valdivia #300 Oficina 505</span><br>
       <span style="color: #666; font-size: 14px;">Edificio Plaza Fundación</span><br>
       <span style="color: #666; font-size: 14px;">Los Ángeles, Biobío</span>

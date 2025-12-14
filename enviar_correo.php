@@ -1,7 +1,7 @@
 <?php
 /**
  * Script de procesamiento del formulario de contacto
- * Abogados FL - Bufete de Abogados
+ * Flores León y Asociados - Estudio Jurídico
  * 
  * Este script maneja el envío seguro de formularios de contacto
  * con validación, sanitización y verificación reCAPTCHA
@@ -19,9 +19,19 @@ ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/logs/php_errors.log');
 
 // Configuración de headers de seguridad
+header('Access-Control-Allow-Origin: http://localhost:4321');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
+
+// Manejar preflight request de CORS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 // Solo permitir método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -136,13 +146,18 @@ function saveBackup($data, $file_path) {
 
 // Procesar el formulario
 try {
+    error_log('[INFO] ===== Iniciando procesamiento de formulario =====');
+    error_log('[DEBUG] Campos POST recibidos: ' . implode(', ', array_keys($_POST)));
+    
     // Verificar que existan los campos requeridos
-    $required_fields = ['nombre', 'email', 'telefono', 'servicio', 'mensaje', 'politicas'];
+    $required_fields = ['nombre', 'email', 'telefono', 'servicio', 'mensaje', 'privacidad'];
     foreach ($required_fields as $field) {
         if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+            error_log('[ERROR] Campo obligatorio faltante: ' . $field);
             throw new Exception("El campo {$field} es obligatorio");
         }
     }
+    error_log('[INFO] Todos los campos requeridos presentes');
     
     // Verificar reCAPTCHA
     if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
@@ -150,8 +165,10 @@ try {
     }
     
     if (!verifyRecaptcha($_POST['g-recaptcha-response'], $config)) {
+        error_log('[ERROR] Verificación reCAPTCHA fallida');
         throw new Exception("Verificación reCAPTCHA fallida");
     }
+    error_log('[INFO] reCAPTCHA verificado exitosamente');
     
     // Sanitizar y validar datos
     $nombre = sanitizeInput($_POST['nombre']);
@@ -162,25 +179,27 @@ try {
     
     // Validaciones específicas
     if (strlen($nombre) < 2 || strlen($nombre) > 100) {
-        throw new Exception("El nombre debe tener entre 2 y 100 caracteres");
+        throw new Exception("El nombre debe tener entre 2 y 100 caracteres.");
     }
     
     if (!validateEmail($email)) {
-        throw new Exception("El email no tiene un formato válido");
+        throw new Exception("El email no tiene un formato válido. Por favor, revise su dirección de correo electrónico.");
     }
     
     if (!validatePhone($telefono)) {
-        throw new Exception("El teléfono no tiene un formato válido");
+        throw new Exception("El teléfono no tiene un formato válido. Debe ser un número chileno (ej: +56912345678 o 912345678).");
     }
     
     if (strlen($mensaje) < 10 || strlen($mensaje) > 1000) {
-        throw new Exception("El mensaje debe tener entre 10 y 1000 caracteres");
+        throw new Exception("El mensaje debe tener entre 10 y 1000 caracteres. Actualmente tiene " . strlen($mensaje) . " caracteres.");
     }
     
     // Verificar que se aceptaron las políticas
-    if ($_POST['politicas'] !== 'on') {
+    if (!isset($_POST['privacidad']) || $_POST['privacidad'] !== 'on') {
+        error_log('[ERROR] Políticas de privacidad no aceptadas');
         throw new Exception("Debe aceptar las políticas de privacidad");
     }
+    error_log('[INFO] Validaciones completadas exitosamente');
     
     // Preparar datos para guardar y enviar
     $form_data = [
@@ -195,7 +214,9 @@ try {
     
     // Guardar backup si está habilitado
     if ($config['backup']['enabled']) {
-        saveBackup($form_data, $config['backup']['file']);
+        error_log('[INFO] Intentando guardar backup en: ' . $config['backup']['file']);
+        $backup_result = saveBackup($form_data, $config['backup']['file']);
+        error_log('[INFO] Resultado backup: ' . ($backup_result ? 'exitoso' : 'fallido'));
     }
     
     // Preparar el email
@@ -239,7 +260,7 @@ try {
     <body>
         <div class="header">
             <h2>Nueva Consulta Legal</h2>
-            <p>Abogados FL</p>
+            <p>Flores León y Asociados</p>
         </div>
         <div class="content">
             <div class="field">
@@ -266,27 +287,41 @@ try {
             </div>
         </div>
         <div class="footer">
-            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de Abogados FL</p>
+            <p>Este mensaje fue enviado desde el formulario de contacto del sitio web de Flores León y Asociados</p>
         </div>
     </body>
     </html>';
     
     // Enviar el email
+    error_log('[INFO] Intentando enviar email a: ' . $config['smtp']['to_email']);
     if ($mail->send()) {
-        // Redirigir a página de éxito
-        header('Location: /gracias.html');
+        error_log('[INFO] Email enviado exitosamente');
+        // Devolver éxito como JSON
+        http_response_code(200);
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => true,
+            'message' => 'Formulario enviado exitosamente'
+        ]);
         exit();
     } else {
-        throw new Exception("Error al enviar el email: " . $mail->ErrorInfo);
+        error_log('[ERROR] Fallo al enviar email: ' . $mail->ErrorInfo);
+        throw new Exception("Error al enviar el email. Por favor, intente nuevamente o contáctenos por teléfono.");
     }
     
 } catch (Exception $e) {
     // Log del error
-    error_log("Error en formulario de contacto: " . $e->getMessage());
-    error_log("Datos POST: " . print_r($_POST, true));
+    error_log('[ERROR] Excepción en formulario de contacto: ' . $e->getMessage());
+    error_log('[ERROR] Archivo: ' . $e->getFile() . ' Línea: ' . $e->getLine());
+    error_log('[DEBUG] Datos POST: ' . print_r($_POST, true));
     
-    // Redirigir a página de error
-    header('Location: /error.html');
+    // Devolver error como JSON
+    http_response_code(400);
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'error' => $e->getMessage()
+    ]);
     exit();
 }
 ?>

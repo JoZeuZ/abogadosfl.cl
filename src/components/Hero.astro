@@ -22,15 +22,15 @@
   
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title fade-in">
+      <h1 class="hero-title fade-in" data-delay="100">
         Defendemos sus Derechos con
         <span class="text-accent">Excelencia y Dedicación</span>
       </h1>
-      <p class="hero-subtitle fade-in">
+      <p class="hero-subtitle fade-in" data-delay="300">
         Brindamos asesoría legal de primera calidad. 
         Nuestro compromiso es proteger sus intereses con la máxima profesionalidad.
       </p>
-      <div class="hero-actions fade-in">
+      <div class="hero-actions fade-in" data-delay="500">
         <a href="#contacto" class="btn btn-primary btn-lg">
           <span>Consulta Gratis</span>
           <i class="fas fa-arrow-right"></i>
@@ -41,7 +41,7 @@
         </a>
       </div>
       
-      <div class="hero-stats fade-in">
+      <div class="hero-stats fade-in" data-delay="700">
         <div class="stat-item">
           <div class="stat-icon">
             <i class="fas fa-gavel"></i>
@@ -478,45 +478,23 @@
   // ===== OPTIMIZACIÓN DE VIDEO =====
   const heroVideo = document.querySelector('.hero-video') as HTMLVideoElement | null;
   
-  console.log('🎥 Video element:', heroVideo);
-  console.log('🎥 Video source:', heroVideo?.src);
-  console.log('🎥 Video readyState:', heroVideo?.readyState);
-  
   if (heroVideo) {
     // Intentar reproducir inmediatamente
-    heroVideo.play()
-      .then(() => {
-        console.log('✅ Video playing successfully');
-      })
-      .catch(err => {
-        console.error('❌ Video autoplay prevented:', err);
+    heroVideo.play().catch(() => {
         // Intentar reproducir en cualquier interacción del usuario
         document.addEventListener('click', () => {
-          heroVideo.play().then(() => {
-            console.log('✅ Video playing after user interaction');
-          }).catch(e => console.error('❌ Still cannot play:', e));
+          heroVideo.play().catch(() => {});
         }, { once: true });
       });
     
-    // Eventos de debug
-    heroVideo.addEventListener('loadstart', () => console.log('📥 Video loadstart'));
-    heroVideo.addEventListener('loadedmetadata', () => console.log('📊 Video metadata loaded'));
-    heroVideo.addEventListener('loadeddata', () => console.log('📦 Video data loaded'));
-    heroVideo.addEventListener('canplay', () => console.log('▶️ Video can play'));
-    heroVideo.addEventListener('playing', () => console.log('🎬 Video is playing'));
-    
-    // 1. Pausar/reproducir según visibilidad del HERO (no del video)
+    // Pausar/reproducir según visibilidad del HERO
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
       const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            console.log('👁️ Hero section visible, playing video');
-            heroVideo.play().catch(err => {
-              console.log('❌ Video play prevented:', err);
-            });
+            heroVideo.play().catch(() => {});
           } else {
-            console.log('🙈 Hero section not visible, pausing video');
             heroVideo.pause();
           }
         });
@@ -525,21 +503,18 @@
       videoObserver.observe(heroSection);
     }
     
-    // 2. Pausar video cuando la pestaña no está visible
+    // Pausar video cuando la pestaña no está visible
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         heroVideo.pause();
       } else if (heroVideo.paused) {
-        heroVideo.play().catch(err => console.log('❌ Video play prevented:', err));
+        heroVideo.play().catch(() => {});
       }
     });
     
-    // 3. Manejar errores de carga del video
-    heroVideo.addEventListener('error', (e) => {
-      console.error('💥 Error cargando video:', e);
-      console.error('💥 Error details:', heroVideo.error);
+    // Manejar errores de carga del video
+    heroVideo.addEventListener('error', () => {
+      // Video fallback automático (imagen de fondo ya está en CSS)
     });
-  } else {
-    console.error('❌ No se encontró el elemento de video');
   }
 </script>

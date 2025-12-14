@@ -16,7 +16,7 @@
     </div>
     
     <div class="contact-grid">
-      <div class="contact-info fade-in">
+      <div class="contact-info slide-in-left">
         <h3>Información de Contacto</h3>
         <p>Estamos disponibles para atender sus consultas y brindarle la mejor asesoría legal.</p>
         
@@ -66,8 +66,8 @@
         </div>
       </div>
       
-      <div class="contact-form-container fade-in">
-        <form class="contact-form" id="contactForm" action="/enviar_correo.php" method="POST">
+      <div class="contact-form-container slide-in-right">
+        <form class="contact-form" id="contactForm" action="http://localhost:8080/enviar_correo.php" method="POST">
           <div class="form-group">
             <label for="nombre">Nombre Completo *</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -105,9 +105,11 @@
           
           <div class="form-group checkbox-group">
             <label class="checkbox-label">
-              <input type="checkbox" id="politicas" name="politicas" required>
+              <input type="checkbox" id="privacidad" name="privacidad" required>
               <span class="checkmark"></span>
-              He leído y acepto la <a href="/politica-privacidad" target="_blank">Política de Privacidad</a> y el <a href="/terminos-condiciones" target="_blank">Tratamiento de Datos</a>
+              <span class="checkbox-text">
+                He leído y acepto la <a href="/politica-privacidad" target="_blank">Política de Privacidad</a> y el <a href="/terminos-condiciones" target="_blank">Tratamiento de Datos</a>
+              </span>
             </label>
           </div>
           
@@ -287,32 +289,122 @@
   }
   
   .checkbox-group {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .checkbox-group:hover {
+    border-color: var(--color-primary);
+    background-color: #fff;
   }
   
   .checkbox-label {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 2.5rem;
     cursor: pointer;
-    line-height: 1.5;
-    font-size: 0.9rem;
+    line-height: 1.7;
+    font-size: 1rem;
+    color: var(--color-text);
+    position: relative;
+    user-select: none;
+    margin: 0;
+    font-weight: 500;
   }
   
+  /* Ocultar el checkbox nativo */
   .checkbox-label input[type="checkbox"] {
-    width: auto;
-    margin: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Checkbox personalizado - MÁS GRANDE Y VISIBLE */
+  .checkbox-label .checkmark {
+    position: relative;
+    height: 32px;
+    width: 32px;
+    min-width: 32px;
+    background-color: #ffffff;
+    border: 3px solid #94a3b8;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-right: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+  }
+  
+  /* Hover sobre el checkbox */
+  .checkbox-label:hover .checkmark {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(46, 64, 83, 0.25);
+    transform: scale(1.05);
+  }
+  
+  /* Cuando está marcado */
+  .checkbox-label input[type="checkbox"]:checked ~ .checkmark {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(46, 64, 83, 0.4), inset 0 0 0 3px rgba(255,255,255,0.3);
+  }
+  
+  /* Icono de check - MÁS GRANDE Y GRUESO */
+  .checkbox-label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 9px;
+    top: 3px;
+    width: 9px;
+    height: 16px;
+    border: solid var(--color-accent);
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  }
+  
+  .checkbox-label input[type="checkbox"]:checked ~ .checkmark:after {
+    display: block;
+    animation: checkPop 0.3s ease;
+  }
+  
+  @keyframes checkPop {
+    0% { transform: rotate(45deg) scale(0); }
+    50% { transform: rotate(45deg) scale(1.2); }
+    100% { transform: rotate(45deg) scale(1); }
+  }
+  
+  /* Animación al hacer click */
+  .checkbox-label .checkmark:active {
+    transform: scale(0.95);
+  }
+  
+  .checkbox-text {
+    flex: 1;
+    padding-top: 2px;
+    padding-left: 0.5rem;
+    z-index: 1;
   }
   
   .checkbox-label a {
     color: var(--color-accent);
     text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
   }
   
   .checkbox-label a:hover {
-    text-decoration: underline;
+    border-bottom-color: var(--color-accent);
+    color: var(--color-primary);
   }
   
   .contact-submit {
@@ -367,32 +459,60 @@
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      // Validar checkbox de privacidad
+      const privacyCheckbox = form.querySelector('input[name="privacidad"]') as HTMLInputElement;
+      if (!privacyCheckbox?.checked) {
+        alert('Debe aceptar la Política de Privacidad y Tratamiento de Datos');
+        return;
+      }
+      
       // Cambiar estado del botón
       if (submitBtn) submitBtn.disabled = true;
       if (btnText) btnText.style.display = 'none';
       if (btnLoader) btnLoader.style.display = 'inline';
       
       try {
-        // Ejecutar reCAPTCHA v3
-        const grecaptcha = (window as any).grecaptcha;
-        const token = await grecaptcha.execute('6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3', { action: 'submit' });
-        
         const formData = new FormData(form);
-        formData.append('g-recaptcha-response', token);
         
-        const response = await fetch('/enviar_correo.php', {
+        // Verificar si reCAPTCHA está disponible
+        const grecaptcha = (window as any).grecaptcha;
+        
+        if (grecaptcha && grecaptcha.execute) {
+          // Esperar a que reCAPTCHA esté listo
+          await new Promise<void>((resolve) => {
+            grecaptcha.ready(() => resolve());
+          });
+          
+          // Ejecutar reCAPTCHA v3
+          const token = await grecaptcha.execute('6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3', { action: 'submit' });
+          formData.append('g-recaptcha-response', token);
+        } else {
+          console.warn('reCAPTCHA no disponible, enviando sin validación');
+        }
+        
+        console.log('Enviando formulario a http://localhost:8080/enviar_correo.php');
+        
+        const response = await fetch('http://localhost:8080/enviar_correo.php', {
           method: 'POST',
           body: formData
         });
         
-        if (response.ok) {
+        console.log('Respuesta recibida:', response.status, response.statusText);
+        
+        // Parsear respuesta JSON
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          // Éxito - redirigir a página de gracias
           window.location.href = '/gracias.html';
         } else {
-          window.location.href = '/error.html';
+          // Error - mostrar mensaje específico
+          const errorMsg = data.error || 'Hubo un error al enviar el formulario';
+          alert('❌ Error al enviar el formulario:\n\n' + errorMsg + '\n\nPor favor, revise los datos e intente nuevamente.');
         }
       } catch (error) {
         console.error('Error:', error);
-        window.location.href = '/error.html';
+        alert('❌ Error de conexión\n\nNo se pudo conectar con el servidor. Por favor, verifique su conexión a internet e intente nuevamente, o contáctenos por teléfono al +56 9 7319 8154.');
       } finally {
         // Restaurar estado del botón
         if (submitBtn) submitBtn.disabled = false;

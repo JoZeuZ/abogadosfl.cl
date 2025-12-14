@@ -8,8 +8,8 @@ export interface Props {
 
 const { 
   title, 
-  description = "Bufete de Abogados Profesional - Defendemos sus derechos con excelencia y dedicación. Más de 5 años de experiencia en derecho corporativo, inmobiliario, familia, laboral y penal.",
-  keywords = "abogados, bufete legal, derecho corporativo, derecho inmobiliario, derecho familia, derecho laboral, derecho penal, asesoría legal, abogados Chile",
+  description = "Flores León y Asociados - Estudio Jurídico - Defendemos sus derechos con excelencia y dedicación. Más de 5 años de experiencia en derecho corporativo, inmobiliario, familia, laboral y penal.",
+  keywords = "abogados, bufete legal, derecho corporativo, derecho inmobiliario, derecho familia, derecho laboral, derecho penal, asesoría legal, abogados Chile, Flores León",
   ogImage = "/images/og-image.jpg"
 } = Astro.props;
 
@@ -49,8 +49,8 @@ const canonicalURL = Astro.site
     <meta property="twitter:image" content={ogImage} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/images/logo-abogados-sinletra.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-abogados-sinletra.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#1f2c3d" />
     
@@ -80,8 +80,8 @@ const canonicalURL = Astro.site
       {
         "@context": "https://schema.org",
         "@type": "LegalService",
-        "name": "Abogados FL",
-        "description": "Bufete de abogados profesional especializado en múltiples áreas del derecho",
+        "name": "Flores León y Asociados",
+        "description": "Estudio Jurídico profesional especializado en múltiples áreas del derecho",
         "url": "https://www.abogadosfl.cl",
         "logo": "https://www.abogadosfl.cl/logo.svg",
         "address": {
@@ -116,6 +116,9 @@ const canonicalURL = Astro.site
         }
       }
     </script>
+    
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LceRAksAAAAAJrvVA017oaAMaMJnPR7wTxXDYY3" async defer></script>
   </head>
   <body>
     <slot />
@@ -152,7 +155,11 @@ const canonicalURL = Astro.site
         animatedElements.forEach(el => observer.observe(el));
       }
 
-      // Smooth scroll para enlaces de navegación
+      // Smooth scroll mejorado con easing personalizado
+      const easeInOutCubic = (t: number): number => {
+        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+      };
+
       document.addEventListener('click', (e) => {
         const target = (e.target as HTMLElement)?.closest('a[href^="#"]') as HTMLAnchorElement | null;
         if (!target) return;
@@ -168,16 +175,30 @@ const canonicalURL = Astro.site
           const headerOffset = 80; // Altura del header fijo
           const elementPosition = targetElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-          
-          // Actualizar la URL sin recargar
-          if (history.pushState && href) {
-            history.pushState(null, '', href);
-          }
+          const startPosition = window.pageYOffset;
+          const distance = offsetPosition - startPosition;
+          const duration = 800; // 800ms para el scroll
+          let startTime: number | null = null;
+
+          const animation = (currentTime: number) => {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            const ease = easeInOutCubic(progress);
+            
+            window.scrollTo(0, startPosition + distance * ease);
+            
+            if (timeElapsed < duration) {
+              requestAnimationFrame(animation);
+            } else {
+              // Actualizar la URL al finalizar el scroll
+              if (history.pushState && href) {
+                history.pushState(null, '', href);
+              }
+            }
+          };
+
+          requestAnimationFrame(animation);
         }
       });
 
